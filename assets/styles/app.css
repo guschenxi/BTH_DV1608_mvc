@@ -33,6 +33,20 @@ nav li {
 	
 }
 
+footer{
+    background: grey;
+    padding: 1em;
+    text-align: center;
+    margin-top: 1em;
+}
+.site-title{
+    font-size:400%;
+    color: #fff;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+
+    padding: 2em;
+    width: 50%;
+}
 .wrapper, .report{
     display: flex;
     flex-direction: row;

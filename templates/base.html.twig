@@ -15,8 +15,8 @@
         {% endblock %}
     </head>
     <body>
-		<header class="site-header" style="background-image: url({{ asset('img/background.jpg') }})">
-			<span class="site-title">My Symfony Site</span>
+		<header class="site-header" style="background-image: url({{ asset('img/background.avif') }})">
+			<span class="site-title">My Report Site</span>
 		</header>
 		<nav>
 			<ul>
@@ -27,5 +27,10 @@
 			</ul>
 		</nav>
         {% block body %}{% endblock %}
+        <footer>
+            <p>Copyright &copy; Xi Chen</p>
+            <p>Adress: Storgatan 88, 88888 Karlskrona</p>
+            <p>Telefon: 010-12345678</p>
+        </footer>
     </body>
 </html>
