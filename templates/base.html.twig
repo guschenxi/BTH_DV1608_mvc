@@ -18,6 +18,7 @@
 		<header class="site-header" style="background-image: url({{ asset('img/background.avif') }})">
 			<span class="site-title">My Report Site</span>
 		</header>
+		
 		<nav>
 			<ul>
 				<li><a href="{{ path('home') }}">Home</a></li>
@@ -26,7 +27,9 @@
 				<li><a href="{{ path('lucky') }}">Lucky</a></li>
 			</ul>
 		</nav>
-        {% block body %}{% endblock %}
+		<main>
+            {% block body %}{% endblock %}
+        </main>
         <footer>
             <p>Copyright &copy; Xi Chen</p>
             <p>Adress: Storgatan 88, 88888 Karlskrona</p>
