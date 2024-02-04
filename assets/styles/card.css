@@ -1,0 +1,154 @@
+
+/* MAIN part */
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #eee;
+    font-size: 1.5em;
+}
+
+input {
+    font-size: 1em;
+}
+	
+h1 {
+	border-bottom: 4px double #eee;
+}
+
+nav {
+	margin: auto;
+	}
+	
+nav ul{
+    list-style-type: none;
+	display: flex;
+	flex-direction: horizontal;
+	gap: 20px;
+	flex-wrap: wrap;
+	}
+
+
+nav li {
+    flex: auto ;
+}
+
+.site-header {
+	width: 100%;
+	height: 100px;
+}
+
+.site-header {
+    font-size:2.5em;
+    color: #fff;
+}
+
+.die {
+    font-size: 2em;
+}
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+
+
+/**
+ * CSS sprite for a dice with six faces.
+ */
+/*.card-pic {
+    display: inline-block;
+    padding: 0;
+    margin: 0 4px 0 0;
+    width: 32px;
+    height: 32px;
+    background: url(../img/card-pic.png) no-repeat;
+}
+
+.card-pic.heart-2 { background-position: -160px 0; }
+.card-pic.heart-3 { background-position: -128px 0; }
+.card-pic.heart-4 { background-position: -96px 0; }
+.card-pic.heart-5 { background-position: -64px 0; }
+.card-pic.heart-6 { background-position: -32px 0; }
+.card-pic.heart-7 { background-position: 0 0; }
+.card-pic.heart-jack { background-position: 0 0; }
+.card-pic.heart-queen { background-position: 0 0; }
+.card-pic.heart-king { background-position: 0 0; }
+.card-pic.heart-ace { background-position: 0 0; }
+*/
+.card-pic {
+    font-size:2em;
+}
+.card-pic.heart-2::after { content: "\1F0B2" }
+.card-pic.heart-3::after { content: "\1F0B3" }
+.card-pic.heart-4::after { content: "\1F0B4" }
+.card-pic.heart-5::after { content: "\1F0B5" }
+.card-pic.heart-6::after { content: "\1F0B6" }
+.card-pic.heart-7::after { content: "\1F0B7" }
+.card-pic.heart-8::after { content: "\1F0B8" }
+.card-pic.heart-9::after { content: "\1F0B9" }
+.card-pic.heart-10::after { content: "\1F0BA" }
+.card-pic.heart-jack::after { content: "\1F0BB" }
+.card-pic.heart-queen::after { content: "\1F0BD" }
+.card-pic.heart-king::after { content: "\1F0BE" }
+.card-pic.heart-ace::after { content: "\1F0B1" }
+
+.card-pic.diamond-2::after { content: "\1F0C2" }
+.card-pic.diamond-3::after { content: "\1F0C3" }
+.card-pic.diamond-4::after { content: "\1F0C4" }
+.card-pic.diamond-5::after { content: "\1F0C5" }
+.card-pic.diamond-6::after { content: "\1F0C6" }
+.card-pic.diamond-7::after { content: "\1F0C7" }
+.card-pic.diamond-8::after { content: "\1F0C8" }
+.card-pic.diamond-9::after { content: "\1F0C9" }
+.card-pic.diamond-10::after { content: "\1F0CA" }
+.card-pic.diamond-jack::after { content: "\1F0CB" }
+.card-pic.diamond-queen::after { content: "\1F0CD" }
+.card-pic.diamond-king::after { content: "\1F0CE" }
+.card-pic.diamond-ace::after { content: "\1F0C1" }
+
+.card-pic.club-2::after { content: "\1F0D2" }
+.card-pic.club-3::after { content: "\1F0D3" }
+.card-pic.club-4::after { content: "\1F0D4" }
+.card-pic.club-5::after { content: "\1F0D5" }
+.card-pic.club-6::after { content: "\1F0D6" }
+.card-pic.club-7::after { content: "\1F0D7" }
+.card-pic.club-8::after { content: "\1F0D8" }
+.card-pic.club-9::after { content: "\1F0D9" }
+.card-pic.club-10::after { content: "\1F0DA" }
+.card-pic.club-jack::after { content: "\1F0DB" }
+.card-pic.club-queen::after { content: "\1F0DD" }
+.card-pic.club-king::after { content: "\1F0DE" }
+.card-pic.club-ace::after { content: "\1F0D1" }
+
+.card-pic.spade-2::after { content: "\1F0A2" }
+.card-pic.spade-3::after { content: "\1F0A3" }
+.card-pic.spade-4::after { content: "\1F0A4" }
+.card-pic.spade-5::after { content: "\1F0A5" }
+.card-pic.spade-6::after { content: "\1F0A6" }
+.card-pic.spade-7::after { content: "\1F0A7" }
+.card-pic.spade-8::after { content: "\1F0A8" }
+.card-pic.spade-9::after { content: "\1F0A9" }
+.card-pic.spade-10::after { content: "\1F0AA" }
+.card-pic.spade-jack::after { content: "\1F0AB" }
+.card-pic.spade-queen::after { content: "\1F0AD" }
+.card-pic.spade-king::after { content: "\1F0AE" }
+.card-pic.spade-ace::after { content: "\1F0A1" }
+
+.card-pic.red-joker::after { content: "\1F0CF" }
+.card-pic.black-joker::after { content: "\1F0DF" }

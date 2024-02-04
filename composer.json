@@ -1,15 +1,18 @@
 {
+    "name" : "dbwebb/mvc",
+    "description": "Course report for mvc.",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
+        "league/commonmark": "^2.4",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.25",
         "symfony/asset": "7.0.*",
@@ -43,6 +46,7 @@
         "symfony/webpack-encore-bundle": "^2.1",
         "symfony/yaml": "7.0.*",
         "twig/extra-bundle": "^2.12|^3.0",
+        "twig/markdown-extra": "^3.8",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {
@@ -84,7 +88,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests",
+        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix --dry-run -v src tests"
     },
     "conflict": {
         "symfony/symfony": "*"

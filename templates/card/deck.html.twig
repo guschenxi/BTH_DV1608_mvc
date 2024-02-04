@@ -1,0 +1,13 @@
+{% extends "card.base.html.twig" %}
+
+{% block body %}
+    <h2>Card Deck</h2>
+    <p>
+		{% for card in deck %}
+		    <i class="card-pic {{ card.getAsString }}"></i>
+		{% endfor %}
+    </p>
+    
+    {{ include('card/flash.html.twig') }}
+{% endblock %}
+

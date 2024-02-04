@@ -1,0 +1,14 @@
+{% extends 'card.base.html.twig' %}
+
+{% block body %}
+    <h2>Drawn Card</h2>
+    {% if drawnCard %}
+        <p><i class="card-pic {{ drawnCard.getAsString }}"></i></p>
+    {% else %}
+        <p>No cards left in the deck</p>
+    {% endif %}
+    <p>Remaining Cards: {{ remainingCards }}</p>
+    <p>Amount of Cards in Hand: {{ cardsInHand }}</p>
+    
+    {{ include('card/flash.html.twig') }}
+{% endblock %}

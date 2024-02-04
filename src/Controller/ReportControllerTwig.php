@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Dice\Dice;
+use App\Dice\DiceGraphic;
+use App\Dice\DiceHand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReportControllerTwig extends AbstractController
 {
-
     #[Route("/", name: "home")]
     public function home(): Response
     {
@@ -50,7 +52,7 @@ class ReportControllerTwig extends AbstractController
             'Each day of your life, as soon as you open your eyes in the morning, you can square away for a happy and successful day.',
             'Never give up!'
         );
-        $random_index = random_int(0, count($quotes)-1);
+        $random_index = random_int(0, count($quotes) - 1);
 
         $data = [
             'date' => date("Y-m-d"),
@@ -63,5 +65,17 @@ class ReportControllerTwig extends AbstractController
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
+    }
+    #[Route("/game/pig/test/roll", name: "test_roll_dice")]
+    public function testRollDice(): Response
+    {
+        $die = new Dice();
+
+        $data = [
+            "dice" => $die->roll(),
+            "diceString" => $die->getAsString(),
+        ];
+
+        return $this->render('pig/test/roll.html.twig', $data);
     }
 }

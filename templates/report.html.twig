@@ -14,42 +14,73 @@
 		    <li><a href="#kmom02">Kmom02</a></li>
 		    <li><a href="#kmom03">Kmom03</a></li>
 		    <li><a href="#kmom04">Kmom04</a></li>
+		    <li><a href="#kmom05">Kmom05</a></li>
+		    <li><a href="#kmom06">Kmom06</a></li>
+		    <li><a href="#kmom10">Kmom10</a></li>
 		</ul>
 	</div>
 	<div class="report-content">
+	
 		<h2 id = "kmom01">Kmom01</h2>
+		{% apply markdown_to_html %}
+### Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.
 		
-		<h3>Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.</h3>
-        <p>
-            Väldigt begränsat. Jag visste bara det hade något göra med "class".
-        </p>
+Väldigt begränsat. Jag visste bara det hade något göra med "class".
+
+### Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?
+
+PHPs modell för klasser och objekt liknar faktiskt den som är i andra programmeringsspråk, såsom python och java. Vissa begrepp bör man förstå för att kunna komma igång. En klass är typ en mall för att skapa objekt. Ett objekt är en instans av en klass. Medlemsvariabler som liknar variabler är egenskaper (properties) av en klass. Metoder som liknar funktioner är definerade för att utföra uppgifter.
 		
-		<h3>Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?</h3>
-        <p>
-            PHPs modell för klasser och objekt liknar faktiskt den som är i andra programmeringsspråk, såsom python och java. Vissa begrepp bör man förstå för att kunna komma igång. En klass är typ en mall för att skapa objekt. Ett objekt är en instans av en klass. Medlemsvariabler som liknar variabler är egenskaper (properties) av en klass. Metoder som liknar funktioner är definerade för att utföra uppgifter.
-        </p>
-		
-		<h3>Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?</h3>
-        <p>
-            Först i Controller defineras router som används i sajten. Varje route kopplas till mall i templates-mappen med hjälp av TWIG. TWIG gör det möjligt att skapa mallar som används för att rendera sidorna. De flesta mallen är baserade på en grund-mall base.html.twig. Man kan skriva js och css/scss kod i assets-mappen med hjälp av Encore, och sedan kan de byggas automatiskt till css och js filer när man kör "npm run build" eller man kan köra "npm run watch" under tiden man skriver kod, då byggs filer automatiskt varje gång man sparar filerna.
-        </p>
-		<h3>Med tanke på artikeln “PHP The Right Way”, vilka delar in den finner du extra intressanta och värdefulla? Är det några särskilda områden som du känner att du vill veta mer om? Lyft fram några delar av artikeln som du känner mer värdefulla.</h3>
-        <p>
-            Jag tycker att Language Highlights, Coding Practice, och Templating, dessa tre delar är intressanta. Eftersom det är bara början av kursen och jag vet inte vad PHP kan göra och vilka förmåga PHP har, så det är lite svårt att säga vad jag vill veta om. Men jag är intresserad av databasen. Coding Practice i artikeln är bra lära mig för att komma igång med språket.
-        </p>
-		<h3>Vilken är din TIL för detta kmom?</h3>
-		<p>
-		    Eftersom jag tjuvbörjade tidigt att läsa kursmaterial och göra uppgifterna, är instruktionerna i kursmaterialer lite gamla/ouppdaterade, därför blev det mycket fel med dependencies när jag försökte installera Synfony. Jag fick lära mig ganska mycket medan jag felsökte problem och lösa problem. Jag fick lära mig grundstrukturen av webbsajten som byggs i Synfony.
-		</p>
-		
+### Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?
+       
+Först i Controller defineras router som används i sajten. Varje route kopplas till mall i templates-mappen med hjälp av TWIG. TWIG gör det möjligt att skapa mallar som används för att rendera sidorna. De flesta mallen är baserade på en grund-mall base.html.twig. Man kan skriva js och css/scss kod i assets-mappen med hjälp av Encore, och sedan kan de byggas automatiskt till css och js filer när man kör "npm run build" eller man kan köra "npm run watch" under tiden man skriver kod, då byggs filer automatiskt varje gång man sparar filerna.
+
+### Med tanke på artikeln “PHP The Right Way”, vilka delar in den finner du extra intressanta och värdefulla? Är det några särskilda områden som du känner att du vill veta mer om? Lyft fram några delar av artikeln som du känner mer värdefulla.
+
+Jag tycker att Language Highlights, Coding Practice, och Templating, dessa tre delar är intressanta. Eftersom det är bara början av kursen och jag vet inte vad PHP kan göra och vilka förmåga PHP har, så det är lite svårt att säga vad jag vill veta om. Men jag är intresserad av databasen. Coding Practice i artikeln är bra lära mig för att komma igång med språket.
+
+### Vilken är din TIL för detta kmom?
+
+Eftersom jag tjuvbörjade tidigt att läsa kursmaterial och göra uppgifterna, är instruktionerna i kursmaterialer lite gamla/ouppdaterade, därför blev det mycket fel med dependencies när jag försökte installera Synfony. Jag fick lära mig ganska mycket medan jag felsökte problem och lösa problem. Jag fick lära mig grundstrukturen av webbsajten som byggs i Synfony.
+	
+        {% endapply %}
+        
+        
 		<h2 id = "kmom02">Kmom02</h2>
-		<p>Text</p>
-		
+		{% apply markdown_to_html %}
+
+        {% endapply %}
+        
+        
 		<h2 id = "kmom03">Kmom03</h2>
-		<p>Text</p>
+		{% apply markdown_to_html %}
+
+        {% endapply %}
+        
+        
 
 		<h2 id = "kmom04">Kmom04</h2>
-		<p>Text</p>
+		{% apply markdown_to_html %}
+
+        {% endapply %}
+        
+        
+		<h2 id = "kmom05">Kmom05</h2>
+		{% apply markdown_to_html %}
+
+        {% endapply %}
+        
+        
+		<h2 id = "kmom06">Kmom06</h2>
+		{% apply markdown_to_html %}
+
+        {% endapply %}
+        
+        
+		<h2 id = "kmom10">Kmom10</h2>
+		{% apply markdown_to_html %}
+
+        {% endapply %}
 	</div>
 </div>
 {% endblock %}
