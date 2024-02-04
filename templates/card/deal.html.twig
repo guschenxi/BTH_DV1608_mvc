@@ -1,0 +1,18 @@
+{% extends 'card.base.html.twig' %}
+
+{% block body %}
+    <h2>Card Deal Result</h2>
+
+    {% for playerHand in playerHands %}
+        <h3>Player {{ loop.index }}</h3>
+        <p>
+            {% for card in playerHand %}
+                <i class="card-pic {{ card.getAsString }}"></i>
+            {% endfor %}
+        </p>
+    {% endfor %}
+
+    <p>Remaining cards in the deck: {{ remainingCards }}</p>
+    
+    {{ include('card/flash.html.twig') }}
+{% endblock %}

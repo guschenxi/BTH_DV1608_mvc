@@ -24,6 +24,14 @@ class CardDeckNoJoker
     {
         shuffle($this->cards);
     }
+    /* draw card */
+    public function drawCard(): object
+    {
+        $randomIndex = array_rand($this->cards);
+        $drawnCard = $this->cards[$randomIndex];
+        $this->removeCardFromDeck($randomIndex);
+        return $drawnCard;
+    }
     /*
      * Remove a card from the deck by given index
      * @param int $drawnCardIndex the given index
@@ -32,8 +40,17 @@ class CardDeckNoJoker
     public function removeCardFromDeck(int $drawnCardIndex)
     {
         $index = $drawnCardIndex;
-        
+
         array_splice($this->cards, $index, 1);
+    }
+    /*
+     * Remove last card from the deck
+     * @param int $drawnCardIndex the given index
+     *
+    */
+    public function popFromDeck()
+    {
+        return array_pop($this->cards);
     }
     /*
      * Return the deck of cards

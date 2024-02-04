@@ -14,5 +14,5 @@ class CardDeck extends CardDeckNoJoker
         $this->cards[] = new Card('red', 'joker');
         $this->cards[] = new Card('black', 'joker');
     }
-    
+
 }
