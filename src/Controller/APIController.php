@@ -85,7 +85,7 @@ class APIController extends AbstractController
         $session->set("deck", $deck);
         $session->set("cardHand", $cardHand);
 
-
+        $output = [];
         $output[] = ["suit" => $drawnCard->getColor(), "rank" => $drawnCard->getNumber()];
 
 

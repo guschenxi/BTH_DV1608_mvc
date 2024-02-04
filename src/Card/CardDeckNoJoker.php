@@ -62,5 +62,4 @@ class CardDeckNoJoker
     {
         return count($this->cards);
     }
-
 }

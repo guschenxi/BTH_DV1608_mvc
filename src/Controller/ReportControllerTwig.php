@@ -49,12 +49,12 @@ class ReportControllerTwig extends AbstractController
             'Each day of your life, as soon as you open your eyes in the morning, you can square away for a happy and successful day.',
             'Never give up!'
         );
-        $random_index = random_int(0, count($quotes) - 1);
+        $randomIndex = random_int(0, count($quotes) - 1);
 
         $data = [
             'date' => date("Y-m-d"),
             'timestamp' => time(),
-            'quote' => $quotes[$random_index],
+            'quote' => $quotes[$randomIndex],
         ];
 
         $response = new JsonResponse($data);

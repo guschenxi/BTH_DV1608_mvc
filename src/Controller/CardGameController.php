@@ -19,7 +19,7 @@ class CardGameController extends AbstractController
         return $this->render('card/home.html.twig');
     }
     #[Route("/card/deck", name: "card_deck")]
-    public function card_deck(
+    public function cardDeck(
         SessionInterface $session
     ): Response {
         $deck = new CardDeck();
@@ -38,7 +38,7 @@ class CardGameController extends AbstractController
         return $this->render('card/deck.html.twig', $data);
     }
     #[Route("/card/shuffle", name: "card_shuffle")]
-    public function card_shuffle(
+    public function cardShuffle(
         SessionInterface $session
     ): Response {
         $deck = new CardDeck();
