@@ -5,14 +5,16 @@
 {% block body %}
 
 <h1>Card game</h1>
-
-<p>This is a classical card game. You can read more on 
-the <a href="https://sv.wikipedia.org/wiki/Kortlek"> 
-basics of the game on Wikipedia</a>.</p>
-<p>På din landdningssida, berätta kort om strukturen på dina klasser, vilka klasser har du och hur är de relaterade till varandra. Rita ett UML klass diagram och visa i sidan.</p>
 <ul>
 	<li><a href="{{ path('card_deck') }}">Deck</a></li>
 	<li><a href="{{ path('card_shuffle') }}">Shuffle</a></li>
 	<li><a href="{{ path('card_draw') }}">Draw</a></li>
+	<li><a href="/card/draw/15">Draw/15</a></li>
+	<li><a href="/card/deck/deal/3/5">Deal/3/5</a></li>
 </ul>
+
+<p>
+Jag har 4 classer with namespace App\Card, dessa är Card.php som reprsenterar ett spelkort med deras "suit" och "ranks"; CardDeckNoJoker.php som representerar "a deck of cards" och genererar alla 52 kort; CardDeck.php som ärvar CardDeckNoJoker.php och lägger till 2 joker-kort på "the deck of cards"; CardHand.php representerar en hand av kort, när man drar ett kort då placeras kortet i handen. Både CardHand och CardDeck är kompositioner av Card. 
+</p>
+<img src="{{ asset('img/uml.png') }}" alt="uml chart">
 {% endblock %}

@@ -18,19 +18,17 @@ class APIController extends AbstractController
     {
         return $this->render('/api.html.twig');
     }
-    
-    #[Route("/api/deck", methods: ['GET'])]
-    public function apiDeck
-    (
+
+    #[Route("/api/deck", name: "api_deck", methods: ['GET'])]
+    public function apiDeck(
         SessionInterface $session
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $deck = new CardDeck();
         $cardHand = new CardHand();
-        
+
         $session->set("deck", $deck);
         $session->set("cardHand", $cardHand);
-        
+
         $cards = $deck->getCards();
         $output = [];
         foreach ($cards as $card) {
@@ -44,20 +42,18 @@ class APIController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/shuffle", methods: ['GET'])]
-    public function apiDeckShuffle
-    (
+    #[Route("/api/deck/shuffle", name: "api_deck_shuffle", methods: ['POST'])]
+    public function apiDeckShuffle(
         SessionInterface $session
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $deck = new CardDeck();
         $cardHand = new CardHand();
         $deck->shuffleCards();
         $cards = $deck->getCards();
-        
+
         $session->set("deck", $deck);
         $session->set("cardHand", $cardHand);
-        
+
         $output = [];
         foreach ($cards as $card) {
             $output[] = ["suit" => $card->getColor(), "rank" => $card->getNumber()];
@@ -70,12 +66,8 @@ class APIController extends AbstractController
         return $response;
         //return $this->json(['deck' => $cards]);
     }
-    #[Route("/api/deck/shuffle", methods: ['POST'])]
-    public function apiDeckShuffleCallBack(): JsonResponse
-    {
-        return $this->redirectToRoute('/api/deck/shuffle');
-    }
-    #[Route("/api/deck/draw", methods: ['GET'])]
+
+    #[Route("/api/deck/draw", name: "api_deck_draw", methods: ['POST'])]
     public function apiDrawCard(
         SessionInterface $session
     ): Response {
@@ -95,7 +87,7 @@ class APIController extends AbstractController
 
 
         $output[] = ["suit" => $drawnCard->getColor(), "rank" => $drawnCard->getNumber()];
-        
+
 
         $data = [
             'drawnCards' => $output,
@@ -107,7 +99,7 @@ class APIController extends AbstractController
         );
         return $response;
     }
-    #[Route("/api/deck/draw/{num<\d+>}", methods: ['GET'])]
+    #[Route("/api/deck/draw/{num<\d+>}", name: "api_deck_draw_num", methods: ['POST'])]
     public function apiDrawCards(
         int $num,
         SessionInterface $session
@@ -128,11 +120,11 @@ class APIController extends AbstractController
         // write to session
         $session->set("deck", $deck);
         $session->set("cardHand", $cardHand);
-        
+
         $drawnCards = array_slice($cardHand->getCards(), -$num);
-		$output = [];
-		foreach ($drawnCards as $drawnCard) {
-        	$output[] = ["suit" => $drawnCard->getColor(), "rank" => $drawnCard->getNumber()];
+        $output = [];
+        foreach ($drawnCards as $drawnCard) {
+            $output[] = ["suit" => $drawnCard->getColor(), "rank" => $drawnCard->getNumber()];
         }
         $data = [
             'drawnCards' => $output,
@@ -145,5 +137,36 @@ class APIController extends AbstractController
         );
         return $response;
     }
-}
+    #[Route("/api/deck/deal/{players<\d+>}/{cards<\d+>}", name: "api_deal_cards")]
+    public function apiDealCards(
+        int $players,
+        int $cards,
+        SessionInterface $session
+    ): Response {
+        $deck = $session->get("deck");
 
+        $playerHands = [];
+        for ($i = 1; $i <= $players; $i++) {
+            $playerHands[] = [];
+        }
+
+        for ($cardCount = 0; $cardCount < $cards; $cardCount++) {
+            for ($player = 0; $player < $players; $player++) {
+                $card = $deck->drawCard();
+                $playerHands[$player][] = ["suit" => $card->getColor(), "rank" => $card->getNumber()];
+            }
+        }
+
+        $remainingCards = $deck->getAmount();
+
+        $data = [
+            'playerHands' => $playerHands,
+            'remainingCards' => $remainingCards,
+        ];
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+}
