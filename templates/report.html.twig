@@ -48,6 +48,31 @@ Eftersom jag tjuvbörjade tidigt att läsa kursmaterial och göra uppgifterna, �
         
 		<h2 id = "kmom02">Kmom02</h2>
 		{% apply markdown_to_html %}
+### Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.
+
+En klass som ärver en annan klass kan ärva dess egenskaper och metoder så att mycket kod kan återanvändas, dessutom skapar en relation mellan dem. Det skapas genom att använda "extends" när klassen skapas.
+
+Komposition betyder att en klass innehåller medlemmar skapade av andra klasser. I mitt projekt till exampel så finns det class för "deck of cards" och class för "a hand of cards" som innehåller medlemmar av "Card". Man kan skapa komplex objekt av komposition.
+
+Man använder interface för att reglera vilka metoder en del klass måste ha. Man använda nyckelord "interface" istället för "class" för att definera interface, men man behöver inte definera hur alla metoder ska implementeras inne i interface, utan man gör det i varje class. Alla metoder i en interface måste vara offentliga. En klass som använder en interface ska defineras så: class ClasName implements InterfaceName {} 
+
+Trait är designade för att minska begränsningarna för arv och tillåta oss att fritt återanvända metoder i oberoende klasser. Trait defineras med nyckelord "trait <Traitname> {}" och används i en klass genom kod "use <TraitName>;".
+
+### Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden och dina klasser?
+
+Jag har enligt instruktionen skapat classer Card, CardDeck, CardHand för att representera alla objekt som behövs i uppgiften. Sedan bytte jag namnet för CardDeck till CardDeckNoJocker, sedan skapade jag en ny CardDeck som ärver CardDeckNoJocker för att lägga till två Jockers i CardDeck. Sedan var det bara fortsätta implementera alla Router, nödvändiga metoder i varje klass, och landningssidor för alla Router. 
+
+Uppgifter var inte svårt egentligen, men det är lätt hänt att man glömmer lite här och där, så det tar väldigt lång tid att felsöka varje gång. Sedan var det lite krångligt med att hantera hämtade objekt från en klass, ibland kom de som array, och ibland som objekt. Det gäller att man måste vara noga när man funderar på hur return-värden ska vara. 
+
+Det finns möjligt att skapa en klass som ärver Card för att grafiskt representerar alla kort, men just nu löste jag grafiska representationer i CSS istället, och det fungerar bra. Koden för webbklienten och koden för API-delen är helt oberoende av varandra, men de är nästan likadana. Det vore bra om man kan slå ihop en del av dem för att minska total skriven kod.
+
+### Vilka är dina reflektioner så här långt med att jobb i Symfony med applikationskod enligt MVC?
+
+Konceptet MVC(Model-View-Controller)-arkitektur är lätt förstått och det gör det tydligt att vilka tre delar man ska implementera för att lösa varje uppgift. Symfony-ramverk gör det ganska enkelt att implementera en applikation enligt MVC. Man kodar Controller och Model i motsvarande mappar i "src", och View i mappen "templates". När man skapar Model är det viktigt att fundera noga på relationer mellan olika objekt och hur man ska representera dem i classer med deras egenskaper. Att skapa användbara metoder i class ger fördelar till att lösa uppgifter, och man slipper mer kod i Controller och View. Att använda session i Controller möjliggör att applikation blir en helhet, och olika Controller jobbar med samma egenskaper.
+
+### Vilken är din TIL för detta kmom?
+
+Jag fick starkare förståelse av MVC och dess tre delar, samt hur de implementeras i Symfony. Genom "oändliga" felsökningar fick jag mycket erfarenheter att hantera olika möjliga fel, samt hur jag undviker dem i framtiden. Jag fick också använda UTF-8 "bilder" genom att koda in dem i CSS, det är kul att se resultaten i webbsidorna.
 
         {% endapply %}
         
