@@ -43,15 +43,7 @@ class CardDeckNoJoker
 
         array_splice($this->cards, $index, 1);
     }
-    /*
-     * Remove last card from the deck
-     * @param int $drawnCardIndex the given index
-     *
-    */
-    public function popFromDeck()
-    {
-        return array_pop($this->cards);
-    }
+
     /*
      * Return the deck of cards
      * @return array the deck of cards
@@ -70,4 +62,5 @@ class CardDeckNoJoker
     {
         return count($this->cards);
     }
+
 }

@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <h1>API</h1>
+    <div class="wrapper">
+    	<div class="wrapper-sidebar">
+    	    <ul>
+			    <li><a href="/api/quote/">api/quote</a></li>
+			    <li><a href="https://github.com/guschenxi">Mitt Git-repo</a></li>
+			</ul>
+		</div>
+    	<div class="wrapper-content">
+			<a href="/api/quote/"><h2>api/quote</h2></a>
+			It chooses one quote among five and returns it together with the date of today and the timestamp when returning.
+
+			</a>
+    	</div>
+	</div>
+{% endblock %}

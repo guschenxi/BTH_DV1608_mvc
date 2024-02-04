@@ -2,9 +2,6 @@
 
 namespace App\Controller;
 
-use App\Dice\Dice;
-use App\Dice\DiceGraphic;
-use App\Dice\DiceHand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,7 +41,7 @@ class ReportControllerTwig extends AbstractController
 
 
     #[Route("/api/quote")]
-    public function jsonNumber(): Response
+    public function jsonNumber(): JsonResponse
     {
         $quotes = array(
             'Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow.',
@@ -65,17 +62,5 @@ class ReportControllerTwig extends AbstractController
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
-    }
-    #[Route("/game/pig/test/roll", name: "test_roll_dice")]
-    public function testRollDice(): Response
-    {
-        $die = new Dice();
-
-        $data = [
-            "dice" => $die->roll(),
-            "diceString" => $die->getAsString(),
-        ];
-
-        return $this->render('pig/test/roll.html.twig', $data);
     }
 }
