@@ -4,10 +4,10 @@ namespace App\Card;
 
 class Player extends CardHand
 {
-    public $name;
-    //public $score;
+    public string $name;
+    public int $score;
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
         $this->score = 0;

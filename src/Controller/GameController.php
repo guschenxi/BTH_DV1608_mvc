@@ -13,7 +13,6 @@ class GameController extends AbstractController
 {
     #[Route("/game", name: "game_start")]
     public function gameHome(
-        SessionInterface $session
     ): Response {
         return $this->render('game/home.html.twig');
     }
@@ -91,10 +90,10 @@ class GameController extends AbstractController
     ): Response {
         $game = $session->get("game");
 
-        $who_win = $game->whoWin();
+        $whoWin = $game->whoWin();
 
         $data = [
-            'who_win' => $who_win->getName(),
+            'who_win' => $whoWin->getName(),
             'player' => $game->getPlayer()->getCards(),
             'playerMinSum' => $game->getPlayer()->getMinSum(),
             'playerMaxSum' => $game->getPlayer()->getMaxSum(),

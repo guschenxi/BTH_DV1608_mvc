@@ -13,7 +13,7 @@ class Card
         $this->number = $number;
     }
 
-    public function getValue(): array
+    public function getValue(): mixed
     {
         return [$this->color, $this->number];
     }

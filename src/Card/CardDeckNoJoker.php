@@ -6,7 +6,7 @@ use App\Card\Card;
 
 class CardDeckNoJoker
 {
-    public $cards = [];
+    public mixed $cards = [];
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class CardDeckNoJoker
         shuffle($this->cards);
     }
     /* draw card */
-    public function drawCard(): object
+    public function drawCard(): Card
     {
         $randomIndex = array_rand($this->cards);
         $drawnCard = $this->cards[$randomIndex];
@@ -37,7 +37,7 @@ class CardDeckNoJoker
      * @param int $drawnCardIndex the given index
      *
     */
-    public function removeCardFromDeck(int $drawnCardIndex)
+    public function removeCardFromDeck(mixed $drawnCardIndex): void
     {
         $index = $drawnCardIndex;
 
@@ -49,7 +49,7 @@ class CardDeckNoJoker
      * @return array the deck of cards
      *
     */
-    public function getCards(): array
+    public function getCards(): mixed
     {
         return $this->cards;
     }

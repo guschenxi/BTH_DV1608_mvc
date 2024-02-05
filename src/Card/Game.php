@@ -2,16 +2,19 @@
 
 namespace App\Card;
 
+use App\Card\CardDeckNoJoker;
 use App\Card\CardDeck;
+use App\Card\Card;
 use App\Card\CardHand;
+use App\Card\Player;
 
 class Game
 {
-    protected object $deck;
-    protected object $player;
-    protected object $bank;
+    protected CardDeckNoJoker $deck;
+    protected Player $player;
+    protected Player $bank;
 
-    public function __construct(string $playerName)
+    public function __construct(mixed $playerName)
     {
         $this->deck = new CardDeckNoJoker();
         $this->player = new Player(($playerName === "") ? "Spelare" : $playerName);
@@ -75,7 +78,7 @@ class Game
     {
         return $this->deck;
     }
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
         return
         [

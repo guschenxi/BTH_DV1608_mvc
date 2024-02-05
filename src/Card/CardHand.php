@@ -4,14 +4,14 @@ namespace App\Card;
 
 class CardHand
 {
-    public $cards = [];
+    public mixed $cards = [];
 
-    public function addCard(Card $card)
+    public function addCard(Card $card): void
     {
         $this->cards[] = $card;
     }
 
-    public function getCards()
+    public function getCards(): Card
     {
         return $this->cards;
     }
@@ -19,7 +19,7 @@ class CardHand
     {
         $this->cards = [];
     }
-    public function getAmount()
+    public function getAmount(): int
     {
         return count($this->cards);
     }
@@ -41,7 +41,7 @@ class CardHand
         }
         return $sum;
     }
-    public function changeNumberMin($number): int
+    public function changeNumberMin(mixed $number): int
     {
         switch ($number) {
             case "king": $number = 13;
@@ -56,7 +56,7 @@ class CardHand
         }
         return $number;
     }
-    public function changeNumberMax($number): int
+    public function changeNumberMax(mixed $number): int
     {
         switch ($number) {
             case "king": $number = 13;

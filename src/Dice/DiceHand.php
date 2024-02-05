@@ -6,7 +6,7 @@ use App\Dice\Dice;
 
 class DiceHand
 {
-    private $hand = [];
+    private mixed $hand = [];
 
     public function add(Dice $die): void
     {
@@ -25,7 +25,7 @@ class DiceHand
         return count($this->hand);
     }
 
-    public function getValues(): array
+    public function getValues(): mixed
     {
         $values = [];
         foreach ($this->hand as $die) {
@@ -34,7 +34,7 @@ class DiceHand
         return $values;
     }
 
-    public function getString(): array
+    public function getString(): mixed
     {
         $values = [];
         foreach ($this->hand as $die) {
