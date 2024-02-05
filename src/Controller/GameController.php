@@ -12,8 +12,8 @@ use App\Card\Game;
 class GameController extends AbstractController
 {
     #[Route("/game", name: "game_start", methods: ["POST", "GET"])]
-    public function gameHome(
-    ): Response {
+    public function gameHome(): Response
+    {
         return $this->render('game/home.html.twig');
     }
     #[Route("/game/doc", name: "game_doc")]

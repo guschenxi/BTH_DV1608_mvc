@@ -44,30 +44,40 @@ class CardHand
     public function changeNumberMin(mixed $number): int
     {
         switch ($number) {
-            case "king": $number = 13;
+            case "king":
+                $number = 13;
                 break;
-            case "queen": $number = 12;
+            case "queen":
+                $number = 12;
                 break;
-            case "jack": $number = 11;
+            case "jack":
+                $number = 11;
                 break;
-            case "ace": $number = 1;
+            case "ace":
+                $number = 1;
                 break;
-            default: $number = $number;
+            default:
+                $number = $number;
         }
         return $number;
     }
     public function changeNumberMax(mixed $number): int
     {
         switch ($number) {
-            case "king": $number = 13;
+            case "king":
+                $number = 13;
                 break;
-            case "queen": $number = 12;
+            case "queen":
+                $number = 12;
                 break;
-            case "jack": $number = 11;
+            case "jack":
+                $number = 11;
                 break;
-            case "ace": $number = 14;
+            case "ace":
+                $number = 14;
                 break;
-            default: $number = $number;
+            default:
+                $number = $number;
         }
         return $number;
     }
