@@ -79,7 +79,21 @@ Jag fick starkare förståelse av MVC och dess tre delar, samt hur de implemente
         
 		<h2 id = "kmom03">Kmom03</h2>
 		{% apply markdown_to_html %}
+### Berätta hur det kändes att modellera ett kortspel med flödesdiagram och psuedokod. Var det något som du tror stödjer dig i din problemlösning och tankearbete för att strukturera koden kring en applikation?
 
+Jag har gjort likadana innan i andra programmeringskurser, och det gick alltid bra, och det hjälpte alltid problemlösning. Man får mycket bättre struktur om det hela.
+
+### Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden, dina klasser och applikationen som helhet?
+
+Det var lite svårt från början för att jag inte visste var jag skulle börja med, men sedan blev det bättre och bättre när det fanns en grundstruktur. Man kan börja spelet med att namnge spelaren. CardDeck visas på sidan för att det blir enklare att se hur hela applikation fungerar, men man kan ta bort det sen om man vill. När antal kort är mindre än 6 kan man inte starta en ny rundan utan det går direkt till game-over. När det inte finns kort i CardDeck att dra, går det också direkt till game-over. Varje gång man vinner, får man en poäng. När spelet är över, kan man se bådas poänger och vem som är vinnare. Jag har försökt göra det mesta i klasserna och lämnade Router och Viewer så enkla som möjligt. Jag är nöjd med min applikation. Man kan göra utseende lite snyggare genom att applicera mer css. 
+
+### Vilken är din känsla för att koda i ett ramverk som Symfony, så här långt in i kursen?
+
+Symfony gör det mycket enklare att utvecka en applikation. Om man följer konceptet MVC, så är det endast tre filer som behöver skrivas vid varje funktionutveckling. Det känns svårt från början, men det blev bara enklare och tydligare när man gjort mer och mer.
+
+### Vilken är din TIL för detta kmom?
+
+Jag har lärt mig att använda olika verktyg för att skriva, reglera, förbättra PHP-kod. Och det är väldigt användbart att göra en script i composer, så att alla verktyg körs samtidgt, snabbt och smidigt. När jag försökte fixa upphittade fel/problem, lärde jag ännu mer om hur man ska skriva php-kod. Det blir användbara erfarenheter i framtiden, då vet jag vad jag ska tänka på när jag skriver php-koden, så slipper jag redigera det koden. Jag har tränat igen att använda arv och komposition, det gick bra och det resultatet känns kraftfullt.
         {% endapply %}
         
         

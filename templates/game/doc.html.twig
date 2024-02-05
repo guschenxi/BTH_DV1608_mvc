@@ -11,13 +11,36 @@
 Skapa ett flödesschema som representerar hur du tänker lösa grunderna i spelet. Resultatet kan du placera som en bild i webbsidan för dokumentationen. Det behöver inte vara en komplett lösning, en dellösning räcker bra.
 </p>
 
-<h2>Psuedokod</h2>
-<p>
-Skapa psuedokod som visar hur du tänker lösa delar av spelet. Du kan spara resultatet som text eller bild men visa upp det i webbsidan för dokumentationen. Det behöver inte vara en komplett lösning, en dellösning räcker bra.
-</p>
+{% apply markdown_to_html %}
+## Psuedokod - avgör vem vinner i varje runda
 
+Min sum = sum(all cards) when ace = 1
+
+Max sum = sum(all cards) when ace = 14
+
+if player's min sum > 21, winner = bank
+
+else if player's min sum = 21 or player's max sum = 21, winner = player
+
+else if banken's min sum > 21, winner = player
+
+else:
+
+ if player's max sum <= 21, player's score = max sum, else player's score = min sum
+ 
+ if banken's max sum <= 21, banken's score = max sum, else banken's score = min sum
+ 
+ if banken's score = player's score, winner = banken, else winner = player
+  
+{% endapply %}
 <h2>Klasserna</h2>
 <p>
-Fundera igenom vilka klasser du behöver för att implementera spelet. Beskriv klasserna i text med klassens namn och en mening som beskriver vad klassens syfte är. Håll det kort och enkelt.
+Jag åter använder följande klasser från förra uppgiften.
 </p>
+<li>Card: representerar varje spelkort, dess "suit" och "rank"</li>
+<li>CardDeckNoJoker: innehåller Card; genererar och representerar alla 52 kort i korspelet</li>
+<li>CardHand: innehåller Card; representerar en hand som drar kort</li>
+<p>Jag har skapat 2 yttligare klass för att genomföra denna uppgift.</p>
+<li>Player: ärver CardHand fast med 2 yttligare egenskaper name och score; representerar varje spelare</li>
+<li>Game: innehåller Card, CardDeckNoJoker, Player; representerar allt i spelet och har många metoder</li>
 {% endblock %}
