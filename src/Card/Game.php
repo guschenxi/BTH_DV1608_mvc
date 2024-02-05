@@ -39,6 +39,11 @@ class Game
             $winner->raiseScore();
             return $winner;
         }
+        if ($this->player->getMinSum() == 21 || $this->player->getMaxSum() == 21) {
+            $winner = $this->player;
+            $winner->raiseScore();
+            return $winner;
+        }
         if ($this->bank->getMinSum() > 21) {
             $winner = $this->player;
             $winner->raiseScore();

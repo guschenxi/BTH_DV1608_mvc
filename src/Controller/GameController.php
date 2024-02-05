@@ -43,6 +43,7 @@ class GameController extends AbstractController
     {
         $game = $session->get("game");
         $playerMinSum = $game->getPlayer()->getMinSum();
+        $playerMaxSum = $game->getPlayer()->getMaxSum();
         
         $data = [
             'player' => $game->getPlayer()->getCards(),
@@ -60,7 +61,7 @@ class GameController extends AbstractController
         ];
 
         $session->set("game", $game);
-        if ($playerMinSum >= 21) {
+        if ($playerMinSum >= 21 || $playerMaxSum == 21) {
         	return $this->redirectToRoute('who_win');
         }
         return $this->render('game/play.html.twig', $data);

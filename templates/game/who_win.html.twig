@@ -3,6 +3,14 @@
 {% block body %}
 
 <h2>Spelare: {{ playerName }}, Score: {{ playerScore }}</h2> min/max: {{ playerMinSum }}/{{ playerMaxSum }}
+	<form method="post" action="">
+		<input type="submit" name="do_it" value="Nästa Runda"
+			onClick="this.form.action='/game/play';this.form.method='post';"
+		>
+		<input type="submit" name="do_it" value="Börja Om"
+			onClick="this.form.action='/game/';this.form.method='get';"
+		>
+	</form>
     <p class="player">
 		{% for card in player %}
 		    <i class="card-pic {{ card.getAsString }}"></i>
@@ -16,14 +24,7 @@
 		{% endfor %}
     </p>
 <h2>Vinnare i den här rundan är: <span class="winner">{{who_win}}</span></h2>
-<form method="post" action="">
-	<input type="submit" name="do_it" value="Nästa Runda"
-		onClick="this.form.action='/game/play';this.form.method='post';"
-	>
-	<input type="submit" name="do_it" value="Börja Om"
-		onClick="this.form.action='/game/';this.form.method='get';"
-	>
-</form>
+
 
     {{ include('game/flash.html.twig') }}
 {% endblock %}
