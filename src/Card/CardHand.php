@@ -11,7 +11,7 @@ class CardHand
         $this->cards[] = $card;
     }
 
-    public function getCards(): Card
+    public function getCards(): mixed
     {
         return $this->cards;
     }
