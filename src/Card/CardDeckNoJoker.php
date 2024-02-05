@@ -62,4 +62,10 @@ class CardDeckNoJoker
     {
         return count($this->cards);
     }
+    public function hasEnoughCards(): bool
+    {
+        $minimumCardsForRound = 6;
+
+        return self::getAmount() >= $minimumCardsForRound;
+    }
 }

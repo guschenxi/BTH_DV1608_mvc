@@ -36,7 +36,7 @@ class Game
             $this->bank->addCard($this->deck->drawCard());
         } while ($this->bank->getMinSum() < 17);
     }
-    public function whoWin(): object
+    public function whoWin(): Player
     {
         if ($this->player->getMinSum() > 21) {
             $winner = $this->bank;
@@ -59,22 +59,23 @@ class Game
         $winner->raiseScore();
         return $winner;
     }
-    public function nextRound(): void
+    public function nextRound(): bool
     {
         //clear hands
         $this->player->cleanHand();
         $this->bank->cleanHand();
+        return $this->deck->hasEnoughCards();
     }
-    public function getPlayer(): object
+    public function getPlayer(): Player
     {
         return $this->player;
     }
 
-    public function getBank(): object
+    public function getBank(): Player
     {
         return $this->bank;
     }
-    public function getDeck(): object
+    public function getDeck(): CardDeckNoJoker
     {
         return $this->deck;
     }
@@ -91,6 +92,15 @@ class Game
     {
         $playerScore = $this->player->getScore();
         $bankScore = $this->bank->getScore();
-        return "{ $playerScore } : { $bankScore }";
+        return " $playerScore  :  $bankScore ";
+    }
+    public function getFinalWinner(): ?Player
+    {
+        $playerScore = $this->player->getScore();
+        $bankScore = $this->bank->getScore();
+        if ($playerScore == $bankScore) {
+            return null;
+        }
+        return $playerScore > $bankScore ? $this->player : $this->bank ;
     }
 }

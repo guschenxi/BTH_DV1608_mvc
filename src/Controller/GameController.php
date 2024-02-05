@@ -106,8 +106,26 @@ class GameController extends AbstractController
             'bankScore' => $game->getbank()->getScore(),
         ];
 
-        $game->nextRound();
         $session->set("game", $game);
         return $this->render('game/who_win.html.twig', $data);
+    }
+    #[Route("/game/next_round", name: "next_round")]
+    public function nextRound(
+            SessionInterface $session
+    ): Response {
+        $game = $session->get("game");
+        $nextRound = $game->nextRound();
+
+        if ($nextRound) {
+            $session->set("game", $game);
+            return $this->redirectToRoute('game_play');
+        } else {
+            $data = [
+                "finalScore" => $game->getTotalScore(),
+                'playerName' => $game->getPlayer()->getName(),
+                'finalWinner' => $game->getFinalWinner()? $game->getFinalWinner()->getName() : "Ingen",
+            ];
+            return $this->render('game/game_over.html.twig', $data);
+        }
     }
 }
