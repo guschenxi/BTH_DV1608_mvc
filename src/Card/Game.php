@@ -26,15 +26,25 @@ class Game
         $this->deck->shuffleCards();
         //$this->player->addCard($this->deck->drawCard());
     }
-    public function playerDraw(): void
+    public function playerDraw(): bool
     {
-        $this->player->addCard($this->deck->drawCard());
+        $drawnCard = $this->deck->drawCard();
+        if (!$drawnCard) {
+            return false;
+        }
+        $this->player->addCard($drawnCard);
+        return false;
     }
-    public function playerStay(): void
+    public function playerStay(): bool
     {
         do {
-            $this->bank->addCard($this->deck->drawCard());
+            $drawnCard = $this->deck->drawCard();
+            if (!$drawnCard) {
+                return false;
+            }
+            $this->bank->addCard($drawnCard);
         } while ($this->bank->getMinSum() < 17);
+        return true;
     }
     public function whoWin(): Player
     {

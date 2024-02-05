@@ -11,7 +11,7 @@ use App\Card\Game;
 
 class GameController extends AbstractController
 {
-    #[Route("/game", name: "game_start")]
+    #[Route("/game", name: "game_start", methods: ["POST", "GET"])]
     public function gameHome(
     ): Response {
         return $this->render('game/home.html.twig');
@@ -68,7 +68,13 @@ class GameController extends AbstractController
     ): Response {
         $game = $session->get("game");
 
-        $game->playerDraw();
+        if (!$game->playerDraw()) {
+            $this->addFlash(
+                'notice',
+                "Det finns inte tillräckligt kort kvar att dra."
+            );
+            return $this->redirectToRoute('game_over');
+        }
 
         $session->set("game", $game);
         return $this->redirectToRoute('game_play');
@@ -80,6 +86,13 @@ class GameController extends AbstractController
         $game = $session->get("game");
 
         $game->playerStay();
+        if (!$game->playerStay()) {
+            $this->addFlash(
+                'notice',
+                "Det finns inte tillräckligt kort kvar att dra."
+            );
+            return $this->redirectToRoute('game_over');
+        }
 
         $session->set("game", $game);
         return $this->redirectToRoute('who_win');
@@ -111,21 +124,31 @@ class GameController extends AbstractController
     }
     #[Route("/game/next_round", name: "next_round")]
     public function nextRound(
-            SessionInterface $session
+        SessionInterface $session
     ): Response {
         $game = $session->get("game");
         $nextRound = $game->nextRound();
 
-        if ($nextRound) {
-            $session->set("game", $game);
-            return $this->redirectToRoute('game_play');
-        } else {
-            $data = [
+        if (!$nextRound) {
+            $this->addFlash(
+                'notice',
+                "Antal kort räcker inte till nästa runda."
+            );
+            return $this->redirectToRoute('game_over');
+        }
+        $session->set("game", $game);
+        return $this->redirectToRoute('game_play');
+    }
+    #[Route("/game/game_over", name: "game_over")]
+    public function gameOver(
+        SessionInterface $session
+    ): Response {
+        $game = $session->get("game");
+        $data = [
                 "finalScore" => $game->getTotalScore(),
                 'playerName' => $game->getPlayer()->getName(),
-                'finalWinner' => $game->getFinalWinner()? $game->getFinalWinner()->getName() : "Ingen",
+                'finalWinner' => $game->getFinalWinner() ? $game->getFinalWinner()->getName() : "Ingen",
             ];
-            return $this->render('game/game_over.html.twig', $data);
-        }
+        return $this->render('game/game_over.html.twig', $data);
     }
 }

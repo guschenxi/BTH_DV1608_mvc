@@ -25,8 +25,12 @@ class CardDeckNoJoker
         shuffle($this->cards);
     }
     /* draw card */
-    public function drawCard(): Card
+    public function drawCard(): ?Card
     {
+        if (empty($this->cards)) {
+            //throw new \RuntimeException('The deck is empty.');
+            return null;
+        }
         $randomIndex = array_rand($this->cards);
         $drawnCard = $this->cards[$randomIndex];
         $this->removeCardFromDeck($randomIndex);
@@ -62,6 +66,11 @@ class CardDeckNoJoker
     {
         return count($this->cards);
     }
+    /*
+     * check if there are enough cards left on the deck
+     * @return boolen true or false
+     *
+    */
     public function hasEnoughCards(): bool
     {
         $minimumCardsForRound = 6;
