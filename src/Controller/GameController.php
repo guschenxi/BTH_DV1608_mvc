@@ -14,8 +14,7 @@ class GameController extends AbstractController
     #[Route("/game", name: "game_start")]
     public function gameHome(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         return $this->render('game/home.html.twig');
     }
     #[Route("/game/doc", name: "game_doc")]
@@ -27,24 +26,22 @@ class GameController extends AbstractController
     public function playNew(
         SessionInterface $session,
         Request $request
-    ): Response
-    {
+    ): Response {
         $session->remove('game');
         $playerName = $request->request->get('player_name');
         $game = new Game($playerName);
-        
+
         $session->set("game", $game);
         return $this->redirectToRoute('game_play');
     }
     #[Route("/game/play", name: "game_play")]
     public function playGame(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $game = $session->get("game");
         $playerMinSum = $game->getPlayer()->getMinSum();
         $playerMaxSum = $game->getPlayer()->getMaxSum();
-        
+
         $data = [
             'player' => $game->getPlayer()->getCards(),
             'playerMinSum' => $playerMinSum,
@@ -62,43 +59,40 @@ class GameController extends AbstractController
 
         $session->set("game", $game);
         if ($playerMinSum >= 21 || $playerMaxSum == 21) {
-        	return $this->redirectToRoute('who_win');
+            return $this->redirectToRoute('who_win');
         }
         return $this->render('game/play.html.twig', $data);
     }
     #[Route("/game/player/draw", name: "player_draw", methods: ["POST"])]
     public function playerDraw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $game = $session->get("game");
-        
+
         $game->playerDraw();
-        
+
         $session->set("game", $game);
         return $this->redirectToRoute('game_play');
     }
-        #[Route("/game/player/stay", name: "player_stay", methods: ["POST"])]
+    #[Route("/game/player/stay", name: "player_stay", methods: ["POST"])]
     public function playerStay(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $game = $session->get("game");
-        
+
         $game->playerStay();
-        
+
         $session->set("game", $game);
         return $this->redirectToRoute('who_win');
     }
-        #[Route("/game/win", name: "who_win")]
+    #[Route("/game/win", name: "who_win")]
     public function whoWin(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $game = $session->get("game");
-        
+
         $who_win = $game->whoWin();
-        
+
         $data = [
             'who_win' => $who_win->getName(),
             'player' => $game->getPlayer()->getCards(),
@@ -112,7 +106,7 @@ class GameController extends AbstractController
             //'bankName' => $game->getbank()->getName(),
             'bankScore' => $game->getbank()->getScore(),
         ];
-        
+
         $game->nextRound();
         $session->set("game", $game);
         return $this->render('game/who_win.html.twig', $data);

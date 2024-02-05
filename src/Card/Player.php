@@ -6,7 +6,7 @@ class Player extends CardHand
 {
     public $name;
     //public $score;
-    
+
     public function __construct($name)
     {
         $this->name = $name;

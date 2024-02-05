@@ -1,32 +1,33 @@
 <?php
 
 namespace App\Card;
+
 use App\Card\CardDeck;
 use App\Card\CardHand;
 
 class Game
 {
-    protected $deck;
-    protected $player;
-    protected $bank;
-    
-    public function __construct(string $player_name)
+    protected object $deck;
+    protected object $player;
+    protected object $bank;
+
+    public function __construct(string $playerName)
     {
         $this->deck = new CardDeckNoJoker();
-        $this->player = new Player(($player_name === "") ? "Spelare" : $player_name);
+        $this->player = new Player(($playerName === "") ? "Spelare" : $playerName);
         $this->bank = new Player("SmartPC");
         $this->startGame();
     }
-    public function startGame()
+    public function startGame(): void
     {
         $this->deck->shuffleCards();
         //$this->player->addCard($this->deck->drawCard());
     }
-    public function playerDraw()
+    public function playerDraw(): void
     {
         $this->player->addCard($this->deck->drawCard());
     }
-    public function playerStay()
+    public function playerStay(): void
     {
         do {
             $this->bank->addCard($this->deck->drawCard());
@@ -61,22 +62,22 @@ class Game
         $this->player->cleanHand();
         $this->bank->cleanHand();
     }
-    public function getPlayer()
+    public function getPlayer(): object
     {
         return $this->player;
     }
 
-    public function getBank()
+    public function getBank(): object
     {
         return $this->bank;
     }
-    public function getDeck()
+    public function getDeck(): object
     {
         return $this->deck;
     }
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
-        return 
+        return
         [
             'player' => $this->getPlayer(),
             'bank' => $this->getBank(),

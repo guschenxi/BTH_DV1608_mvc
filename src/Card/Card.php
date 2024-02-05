@@ -4,10 +4,10 @@ namespace App\Card;
 
 class Card
 {
-    public $color;
-    public $number;
+    public string $color;
+    public string $number;
 
-    public function __construct($color, $number)
+    public function __construct(string $color, string $number)
     {
         $this->color = $color;
         $this->number = $number;
