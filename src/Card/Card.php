@@ -4,8 +4,8 @@ namespace App\Card;
 
 class Card
 {
-    private $color;
-    private $number;
+    public $color;
+    public $number;
 
     public function __construct($color, $number)
     {

@@ -6,7 +6,7 @@ use App\Card\Card;
 
 class CardDeck extends CardDeckNoJoker
 {
-    protected $cards = [];
+    public $cards = [];
 
     public function __construct()
     {

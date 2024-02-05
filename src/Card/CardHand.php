@@ -4,7 +4,7 @@ namespace App\Card;
 
 class CardHand
 {
-    protected $cards = [];
+    public $cards = [];
 
     public function addCard(Card $card)
     {

@@ -169,4 +169,15 @@ class APIController extends AbstractController
         );
         return $response;
     }
+    #[Route("/api/game", name: "api_game", methods: ['POST'])]
+    public function apiGame(
+        SessionInterface $session
+    ): JsonResponse {
+
+        $response = new JsonResponse($session->get("game")->jsonSerialize());
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
 }

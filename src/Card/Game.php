@@ -6,17 +6,15 @@ use App\Card\CardHand;
 
 class Game
 {
-    private $deck;
-    private $player;
-    private $bank;
-    private $turn;
+    protected $deck;
+    protected $player;
+    protected $bank;
     
     public function __construct(string $player_name)
     {
         $this->deck = new CardDeckNoJoker();
         $this->player = new Player(($player_name === "") ? "Spelare" : $player_name);
         $this->bank = new Player("SmartPC");
-        // $this->turn = "player";
         $this->startGame();
     }
     public function startGame()
@@ -70,6 +68,15 @@ class Game
     public function getDeck()
     {
         return $this->deck;
+    }
+    public function jsonSerialize()
+    {
+        return 
+        [
+            'player' => $this->getPlayer(),
+            'bank' => $this->getBank(),
+            'deck' => $this->getDeck(),
+        ];
     }
     public function getTotalScore(): string
     {
