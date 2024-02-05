@@ -6,7 +6,13 @@ body {
     background-color: #eee;
     font-size: 1.2em;
 }
-
+footer{
+	background: grey;
+	padding: 0.5em;
+	text-align: center;
+	margin-top: 1em;
+	font-size: 0.8em
+}
 input {
     font-size: 1em;
 }

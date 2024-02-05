@@ -33,7 +33,7 @@ class Game
             return false;
         }
         $this->player->addCard($drawnCard);
-        return false;
+        return true;
     }
     public function playerStay(): bool
     {
