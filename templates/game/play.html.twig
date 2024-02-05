@@ -1,0 +1,36 @@
+{% extends "game.base.html.twig" %}
+
+{% block body %}
+
+<h2>Spelare: {{ playerName }}, Score: {{ playerScore }}</h2> min/max: {{ playerMinSum }}/{{ playerMaxSum }}
+	<form method="post" action="">
+		<input type="submit" name="do_it" value="Dra Nytt Kort"
+			onClick="this.form.action='/game/player/draw';this.form.method='post';"
+		>
+		<input type="submit" name="do_it" value="Stanna"
+			onClick="this.form.action='/game/player/stay';this.form.method='post';"
+		>
+    </form>
+    <p class="player">
+		{% for card in player %}
+		    <i class="card-pic {{ card.getAsString }}"></i>
+		{% endfor %}
+	</p>
+	
+<h2>Bank, Score: {{ bankScore }}</h2> min/max: {{ bankMinSum }}/{{ bankMaxSum }}
+    <p class="player">
+		{% for card in bank %}
+		    <i class="card-pic {{ card.getAsString }}"></i>
+		{% endfor %}
+    </p>
+    
+<h2>Card Deck</h2>
+    <p class="deck">
+		{% for card in deck %}
+		    <i class="card-pic {{ card.getAsString }}"></i>
+		{% endfor %}
+    </p>
+    
+    {{ include('game/flash.html.twig') }}
+{% endblock %}
+

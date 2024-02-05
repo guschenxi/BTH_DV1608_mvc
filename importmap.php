@@ -18,6 +18,18 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'card' => [
+        'path' => './assets/card.js',
+        'entrypoint' => true,
+    ],
+    'game' => [
+        'path' => './assets/game.js',
+        'entrypoint' => true,
+    ],
+    'pig' => [
+        'path' => './assets/pig.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],

@@ -11,7 +11,7 @@ use App\Card\Card;
 use App\Card\CardDeck;
 use App\Card\CardHand;
 
-class CardGameController extends AbstractController
+class CardController extends AbstractController
 {
     #[Route("/card", name: "card_start")]
     public function home(): Response

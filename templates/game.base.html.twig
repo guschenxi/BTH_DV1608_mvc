@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('game') }}
+        {% endblock %}
+
+        {% block javascripts %}
+
+        {% endblock %}
+    </head>
+    <body>
+        <header class="site-header" style="background-image: url({{ asset('img/background.avif') }})">
+			<span class="site-title">Kortspel (Kmom03)</span>
+		</header>
+        <nav>
+            <ul>
+				<li><a href="{{ path('home') }}">Hem</a></li>
+				<li><a href="{{ path('game_start') }}">Kortspel Hem</a></li>
+				<li><a href="{{ path('game_doc') }}">Dokumentation</a></li>
+			</ul>
+        </nav>
+        
+
+		<main>
+            {% block body %}{% endblock %}
+        </main>
+
+    </body>
+</html>

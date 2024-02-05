@@ -66,8 +66,14 @@ nav li {
     content: "⚠";
 }
 
+.winner{
+    color: red;
+    font-style: bolder;
+}
 
-
+form {
+    display: inline;
+}
 /**
  * CSS sprite for a dice with six faces.
  */
@@ -155,5 +161,6 @@ nav li {
 .card-pic.red-joker::after { content: "\1F0CF"; color: red; }
 .card-pic.black-joker::after { content: "\1F0DF" }
 
-
-
+.deck .card-pic{
+    font-size:1em;
+}

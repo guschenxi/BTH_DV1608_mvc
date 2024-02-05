@@ -1,0 +1,22 @@
+{% extends "game.base.html.twig" %}
+
+{% block title %}Kortspel (Kmom03){% endblock %}
+
+{% block body %}
+
+<h1>Kortspel Tjugoett</h1>
+<form method="post" action="/game/play_new">
+        <label for='player_name'>Spelarnamn:</label>
+		<input type="text" name="player_name" placeholder="Default: Spelare">
+		<input type="submit" name="do_it" value="Börja Spela">
+</form>
+
+<p>
+Tjugoett är ett kortspel som är den svenska motsvarigheten till det internationellt spridda kortspelet Black Jack. 
+Spelets idé är att med två eller flera kort försöka uppnå det sammanlagda värdet 21, eller komma så nära som möjligt utan att överskrida 21. Essen är värda valfritt 1 eller 14, kungarna 13, damerna 12, knektarna 11. Nummerkorten har samma värden som valören.
+Om summan av korten är 21 vinner spelaren från banken ett belopp lika stort som insatsen. Är summan större än 21 har spelaren ”spruckit” eller ”blivit tjock” och förlorar sin insats till banken. Om summan är under 21 kan spelaren antingen förklara sig nöjd eller begära ytterligare kort för att komma närmare 21, men då också riskera att spricka. 
+[Från <a href="https://sv.wikipedia.org/wiki/Tjugoett_(kortspel)">Wikipedia: Tjugoett (kortspel)</a>]
+</p>
+
+<a href="{{ path('game_doc') }}">Gå till dokumentationssidan</a>
+{% endblock %}
