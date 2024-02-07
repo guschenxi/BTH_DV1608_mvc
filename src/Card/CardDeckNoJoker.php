@@ -42,7 +42,7 @@ class CardDeckNoJoker
     }
     /**
      * Remove a card from the deck by given index
-     * @param int $drawnCardIndex the given index
+     * @param mixed $drawnCardIndex the given index
      *
      */
     public function removeCardFromDeck(mixed $drawnCardIndex): void
@@ -54,7 +54,7 @@ class CardDeckNoJoker
 
     /**
      * Return the deck of cards
-     * @return array the deck of cards
+     * @return mixed array the deck of cards
      *
      */
     public function getCards(): mixed
@@ -72,7 +72,7 @@ class CardDeckNoJoker
     }
     /**
      * check if there are enough cards left on the deck
-     * @return boolen true or false
+     * @return bool true or false
      *
      */
     public function hasEnoughCards(): bool
