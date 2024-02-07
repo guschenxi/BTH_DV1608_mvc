@@ -100,7 +100,29 @@ Jag har lärt mig att använda olika verktyg för att skriva, reglera, förbätt
 
 		<h2 id = "kmom04">Kmom04</h2>
 		{% apply markdown_to_html %}
+### Berätta hur du upplevde att skriva kod som testar annan kod med PHPUnit och hur du upplever phpunit rent allmänt.
 
+Verktyget är väldigt användbar tycker jag. Man kan helt enkelt se vilka rader inkluderas i testkoden.  Om koden går inte att köras, kan man se vilken rad har problem, så det är smidigt att debugga. Det gick bra och snabbt att skriva testkoden. Jag fick använda flera assert, t.ex, assertEquals, assertIsArray, assertGreaterThan, assertNotEquals, osv.
+
+### Hur väl lyckades du med kodtäckningen av din kod, lyckades du nå mer än 90% kodtäckning?
+
+Jag lyckades nå 100% kodtäckning för alla klasser i kortspelet.
+
+### Upplever du din egen kod som “testbar kod” eller finns det delar i koden som är mer eller mindre testbar och finns det saker som kan göras för att förbättra kodens testbarhet?
+
+De flesta delar av kod är testbara. Men eftersom kortspelet är dynamiskt, dvs dragna korten är slumpmässiga varje gång, så den där delen är lite svår att testa. Jag fick hårdkoda en del dragna kort i "CardDeck" för att sedan köra testen, och det gick bra till sist. Jag tror inte att man kan göra något för att förbättra den här delen så att den blir mer testbar, eftersom de dragna kort alltid är slupmässiga och spelares poäng är också olika från gång till gång.
+
+### Valde du att skriva om delar av din kod för att förbättra den eller göra den mer testbar, om så berätta lite hur du tänkte.
+
+Jag har inte skrivit om någon del av min kod, eftersom det inte behövdes tyckte jag. Jag fick som sagt hårdkoda en liten del i testkod för att testa spelarens poängsättning och vem som vinner. Jag tycker att det går bra att göra så och testen fungerade bra.
+
+### Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”.
+
+Ja, jag tycker att man behöver skriva testbar kod medan man utvecklar en applikation. Eftersom test är också en stor del av hela utvecklingsprocessen. Testbar kod gör att testen blir mycket mer smidig och gör det lättare att skriva testkod med. Det gör också att testen kan nå mycket högre kodtäckning, vilket är viktigt i unittesten.
+
+### Vilken är din TIL för detta kmom?
+
+Jag fick lära mig att skriva testkod för mina klasser i kortspelet, det gick mycket bra och faktiskt snabbt. Jag har inte träffat mycket errors i denna uppgift, men en liten del av felsökning get mig ändå erfarenheter. Jag fick lära känna två yttligare verktyg som är mycket användbara i framtiden. 
         {% endapply %}
         
         
