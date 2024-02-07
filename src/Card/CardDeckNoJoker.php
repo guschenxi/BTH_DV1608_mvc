@@ -19,12 +19,16 @@ class CardDeckNoJoker
             }
         }
     }
-    /* Shuffle cards */
+    /**
+     * Shuffle cards
+     */
     public function shuffleCards(): void
     {
         shuffle($this->cards);
     }
-    /* draw card */
+    /**
+     * draw card
+     */
     public function drawCard(): ?Card
     {
         if (empty($this->cards)) {
@@ -36,11 +40,11 @@ class CardDeckNoJoker
         $this->removeCardFromDeck($randomIndex);
         return $drawnCard;
     }
-    /*
+    /**
      * Remove a card from the deck by given index
      * @param int $drawnCardIndex the given index
      *
-    */
+     */
     public function removeCardFromDeck(mixed $drawnCardIndex): void
     {
         $index = $drawnCardIndex;
@@ -48,29 +52,29 @@ class CardDeckNoJoker
         array_splice($this->cards, $index, 1);
     }
 
-    /*
+    /**
      * Return the deck of cards
      * @return array the deck of cards
      *
-    */
+     */
     public function getCards(): mixed
     {
         return $this->cards;
     }
-    /*
+    /**
      * Return the count of the current deck
      * @return int the count
      *
-    */
+     */
     public function getAmount(): int
     {
         return count($this->cards);
     }
-    /*
+    /**
      * check if there are enough cards left on the deck
      * @return boolen true or false
      *
-    */
+     */
     public function hasEnoughCards(): bool
     {
         $minimumCardsForRound = 6;
