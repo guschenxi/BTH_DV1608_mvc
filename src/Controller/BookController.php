@@ -154,10 +154,10 @@ class BookController extends AbstractController
             );
         }
 
-        $book->setTitle($request->request->get('book_title'));
-        $book->setIsbn($request->request->get('book_isbn'));
-        $book->setAuthor($request->request->get('book_author'));
-        $book->setImage($request->request->get('book_image'));
+        $book->setTitle((string)$request->request->get('book_title'));
+        $book->setIsbn((int)$request->request->get('book_isbn'));
+        $book->setAuthor((string)$request->request->get('book_author'));
+        $book->setImage((string)$request->request->get('book_image'));
         $entityManager->flush();
 
         $this->addFlash(
