@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Exception;
 use App\Repository\BookRepository;
 
-
 class APIController extends AbstractController
 {
     #[Route("/api", name: "api")]
@@ -186,9 +185,9 @@ class APIController extends AbstractController
     #[Route("/api/library/books", name: "api_library_books", methods: ['GET', 'POST'])]
     public function apiBooks(
         BookRepository $bookRepository
-	): JsonResponse {
-    	$books = $bookRepository
-    	    ->findAll();
+    ): JsonResponse {
+        $books = $bookRepository
+            ->findAll();
 
         $response = $this->json($books);
         $response->setEncodingOptions(
@@ -199,10 +198,10 @@ class APIController extends AbstractController
     #[Route("/api/library/book/{isbn}", name: "api_library_book_isbn", methods: ['GET', 'POST'])]
     public function apiBookIsbn(
         BookRepository $bookRepository,
-		int $isbn
-	): JsonResponse {
-		$book = $bookRepository
-		    ->findOneBy( ['isbn' => $isbn]);
+        int $isbn
+    ): JsonResponse {
+        $book = $bookRepository
+            ->findOneBy(['isbn' => $isbn]);
 
         $response = $this->json($book);
         $response->setEncodingOptions(
