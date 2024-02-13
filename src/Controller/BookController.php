@@ -127,4 +127,43 @@ class BookController extends AbstractController
             );
 		return $this->redirectToRoute('book_show_all');
     }
+	#[Route('/library/update/{id}', name: 'book_update_by_id', methods: ["GET"])]
+	public function bookUpdateById(
+		BookRepository $bookRepository,
+		int $id
+	): Response {
+		$book = $bookRepository
+		    ->find($id);
+		$data = [
+            'book' => $book,
+            ];
+        return $this->render('book/update_book.html.twig', $data);
+	}
+	#[Route('/library/update/{id}', name: 'update_book_by_id', methods: ["POST"])]
+	public function updateBookById(
+		ManagerRegistry $doctrine,
+		int $id,
+        Request $request
+	): Response {
+		$entityManager = $doctrine->getManager();
+		$book = $entityManager->getRepository(Book::class)->find($id);
+
+		if (!$book) {
+		    throw $this->createNotFoundException(
+		        'No book found for id '.$id
+		    );
+		}
+
+		$book->setTitle($request->request->get('book_title'));
+		$book->setIsbn($request->request->get('book_isbn'));
+		$book->setAuthor($request->request->get('book_author'));
+		$book->setImage($request->request->get('book_image'));
+		$entityManager->flush();
+
+        $this->addFlash(
+                'notice',
+                'Updated details for book with id '.$id
+            );
+		return $this->redirectToRoute('book_show_all');
+	}
 }

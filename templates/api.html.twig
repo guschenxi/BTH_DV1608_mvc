@@ -44,6 +44,16 @@
 						onClick="this.form.action='/api/game';this.form.method='post';"
 					>
 				</li>
+			    <li>
+					<input type="submit" name="do_it" value="api/library/books"
+						onClick="this.form.action='/api/library/books';this.form.method='post';"
+					>
+				</li>
+			    <li>
+					<input type="submit" name="do_it" value="api/library/book/<ISBN>"
+						onClick="this.form.action='/api/library/book/1234567890';this.form.method='post';"
+					>
+				</li>
 			</ul>
 		</div>
     	<div class="wrapper-content">
@@ -88,6 +98,18 @@
 						onClick="this.form.action='/api/game';this.form.method='post';"
 					>
 					POST api/game/ visar upp den aktuella ställningen för kortspelet Tjugoett i en JSON struktur.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/library/books"
+						onClick="this.form.action='api/library/books';this.form.method='post';"
+					>
+					POST api/library/books visar samtliga böcker i databasen i en JSON struktur.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/library/book/1234567890"
+						onClick="this.form.action='api/library/book/1234567890';this.form.method='post';"
+					>
+					POST api/library/book/<ISBN> visar en boks detaljer via bokens ISBN i en JSON struktur.
 				</li>
 			</ul>
     	</div>
