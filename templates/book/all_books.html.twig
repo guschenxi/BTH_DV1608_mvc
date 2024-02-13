@@ -1,0 +1,41 @@
+{% extends "book.base.html.twig" %}
+
+{% block title %}Library (Kmom05){% endblock %}
+
+{% block body %}
+    {{ include('game/flash.html.twig') }}
+
+<h1>All Books<h1>
+<form method="post">
+	<table>
+		<tr>
+		    <th>ID</th>
+		    <th>Title</th>
+		    <th>ISBN</th>
+		    <th>Author</th>
+		    <th>Image</th>
+		    <th>Action</th>
+		</tr>
+		{% for book in books %}
+		    <tr>
+		        <td>{{ book.id }}</td>
+		        <td><a href="/library/show/{{ book.id }}">{{ book.title }}</a></td>
+		        <td>{{ book.isbn }}</td>
+		        <td>{{ book.author }}</td>
+		        <td>{{ book.image }}</td>
+		        <td>
+		            <input type="submit" name="do_it" value="Update book"
+		            	onClick="this.form.action='/library/update/{{ book.id }}';this.form.method='post';"
+		            >
+		            <input type="submit" name="do_it" value="Delete book"
+		            	onClick="this.form.action='/library/delete/{{ book.id }}';this.form.method='post';"
+		            >
+		        </td>
+		    </tr>
+		{% endfor %}
+	</table>
+</form>
+<p>
+</p>
+
+{% endblock %}

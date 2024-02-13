@@ -1,0 +1,27 @@
+{% extends "book.base.html.twig" %}
+
+{% block title %}Library (Kmom05){% endblock %}
+
+{% block body %}
+
+<h1>Add a book<h1>
+<form method="post" action="/library/create">
+        <label for='book_title'>Book Title:</label>
+		<input type="text" name="book_title" placeholder="book title" required>
+		<br>
+		<label for='book_isbn'>ISBN:</label>
+		<input type="number" name="book_isbn" placeholder="ISBN (max 13 digits)" required>
+		<br>
+		<label for='book_author'>Book Author:</label>
+		<input type="text" name="book_author" placeholder="author name">
+		<br>
+		<label for='book_title'>Image filename:</label>
+		<input type="text" name="book_image" placeholder="book's image filename">
+		<br>
+		<input type="submit" name="do_it" value="Add book">
+</form>
+
+<p>
+</p>
+
+{% endblock %}
