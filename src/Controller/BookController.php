@@ -63,13 +63,13 @@ class BookController extends AbstractController
             ];
         return $this->render('book/all_books.html.twig', $data);
     }
-    #[Route('/library/show/{book_id}', name: 'book_by_id')]
+    #[Route('/library/show/{bookid}', name: 'book_by_id')]
     public function showBookById(
         BookRepository $bookRepository,
-        int $book_id
+        int $bookid
     ): Response {
         $book = $bookRepository
-            ->find($book_id);
+            ->find($bookid);
         $data = [
             'book' => $book,
             ];
@@ -85,13 +85,13 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
-        $book_id = $request->request->get('book_id');
+        $bookid = $request->request->get('book_id');
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($book_id);
+        $book = $entityManager->getRepository(Book::class)->find($bookid);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$book_id
+                'No book found for id '.$bookid
             );
         }
 
@@ -99,23 +99,23 @@ class BookController extends AbstractController
         $entityManager->flush();
         $this->addFlash(
             'notice',
-            'Deleted book with id '.$book_id
+            'Deleted book with id '.$bookid
         );
         return $this->redirectToRoute('book_show_all');
     }
 
 
-    #[Route('/library/delete/{book_id}', name: 'book_delete_by_id', methods: ["POST"])]
+    #[Route('/library/delete/{bookid}', name: 'book_delete_by_id', methods: ["POST"])]
     public function deleteBookById(
         ManagerRegistry $doctrine,
-        int $book_id
+        int $bookid
     ): Response {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($book_id);
+        $book = $entityManager->getRepository(Book::class)->find($bookid);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$book_id
+                'No book found for id '.$bookid
             );
         }
 
@@ -123,34 +123,34 @@ class BookController extends AbstractController
         $entityManager->flush();
         $this->addFlash(
             'notice',
-            'Deleted book with id '.$book_id
+            'Deleted book with id '.$bookid
         );
         return $this->redirectToRoute('book_show_all');
     }
-    #[Route('/library/update/{book_id}', name: 'book_update_by_id', methods: ["GET"])]
+    #[Route('/library/update/{bookid}', name: 'book_update_by_id', methods: ["GET"])]
     public function bookUpdateById(
         BookRepository $bookRepository,
-        int $book_id
+        int $bookid
     ): Response {
         $book = $bookRepository
-            ->find($book_id);
+            ->find($bookid);
         $data = [
             'book' => $book,
             ];
         return $this->render('book/update_book.html.twig', $data);
     }
-    #[Route('/library/update/{book_id}', name: 'update_book_by_id', methods: ["POST"])]
+    #[Route('/library/update/{bookid}', name: 'update_book_by_id', methods: ["POST"])]
     public function updateBookById(
         ManagerRegistry $doctrine,
-        int $book_id,
+        int $bookid,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($book_id);
+        $book = $entityManager->getRepository(Book::class)->find($bookid);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$book_id
+                'No book found for id '.$bookid
             );
         }
 
@@ -162,7 +162,7 @@ class BookController extends AbstractController
 
         $this->addFlash(
             'notice',
-            'Updated details for book with id '.$book_id
+            'Updated details for book with id '.$bookid
         );
         return $this->redirectToRoute('book_show_all');
     }
