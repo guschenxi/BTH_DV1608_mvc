@@ -21,7 +21,7 @@ class BookController extends AbstractController
         ]);
     }
     #[Route('/library/create', name: 'book_create', methods: ["GET"])]
-    public function bookCreate()
+    public function bookCreate(): Response
     {
         return $this->render('book/create.html.twig');
     }
@@ -33,10 +33,10 @@ class BookController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $book = new Book();
-        $book->setTitle($request->request->get('book_title'));
-        $book->setIsbn($request->request->get('book_isbn'));
-        $book->setAuthor($request->request->get('book_author'));
-        $book->setImage($request->request->get('book_image'));
+        $book->setTitle((string)$request->request->get('book_title'));
+        $book->setIsbn((int)$request->request->get('book_isbn'));
+        $book->setAuthor((string)$request->request->get('book_author'));
+        $book->setImage((string)$request->request->get('book_image'));
 
         // tell Doctrine you want to (eventually) save the Product
         // (no queries yet)
@@ -76,7 +76,7 @@ class BookController extends AbstractController
         return $this->render('book/show_book.html.twig', $data);
     }
     #[Route('/library/delete/', name: 'book_delete', methods: ["GET"])]
-    public function deleteBook()
+    public function deleteBook(): Response
     {
         return $this->render('book/delete_book.html.twig');
     }
