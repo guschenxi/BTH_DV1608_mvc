@@ -128,6 +128,25 @@ Jag fick lära mig att skriva testkod för mina klasser i kortspelet, det gick m
         
 		<h2 id = "kmom05">Kmom05</h2>
 		{% apply markdown_to_html %}
+### Gick det bra att jobba igenom övningen med Symfony och Doctrine. Något särskilt du tänkte/reagerade på under övningen?
+
+Jag fick fel med PDO Driver. Det var svårt att säga varför. Jag har testat allt jag kunde googla fram, men inget framsteg i en hel vecka. Det visade bara "No Driver Found". En dag började det fungera direkt efter ett till försök. Jag är osäker på hur jag har rättat till felet. I instruktionen, finns det alternativ-lösning på Delete-Product, men det fungerade inte, eftersom remove-funktion finns inte i det automatiskt genererade BookRepository.php eller ProductRepository.php. Jag vet inte om jag gjort något fel här eller om jag missuppfattat något från instruktionen. Men den orginella lösning fungerar bra.
+
+### Berätta om din applikation och hur du tänkte när du byggde upp den. Tänkte du något speciellt på användargränssnittet?
+
+På landningssidan finns det länkar till Skapa-bok, visa-alla-böcker, ta-bort-en-bok, och dessa länkar finns också i navigeringen. Sidan som visar alla böcker är som en hub. När man skapat, raderat, uppdaterat en bok, går det alltid tillbaka till sidan som visar alla böcker. Alla böcker visas i en tabell, och i sista kolumen finns två knappar "updatera bok" och "radera bok". Man kan klicka de för att uppdatera eller radera en bok direkt. Man kan också klicka på bokens namn för att gå in till varje bok och läsa bokens detaljer, där inne finns också dessa två knappar som man kan klicka på för att uppdatera eller radera boken. Jag har även lagt i flash-meddelande. När man skapat, raderat, uppdaterat en bok, får man se ett meddelande som visar vad som är precis gjort, t.ex "Boken med id 1 är raderat". Jag har dock inte laddat upp någon bild, därför visas böckernas bilder inte, utan endast filnamnen som strängar.
+
+### Gick det bra att jobba med ORM i CRUD eller vad anser du om det, jämför gärna med andra sätt att jobba med databaser?
+
+Det gick bra och det är ganska lätt att jobba med databaser på detta sätt. Man behöver inte skriva mycket kod. Och man kan använda exempelkoden som en mall, och behöver nästan bara fylla i attribut, tabellen/entitets namn i olika metoder. Sedan fungerade det.
+
+### Vad är din uppfattning om ORM så här långt och relatera gärna till andra sätt att jobba med applikationskod mot databaser?
+
+Man använder data i databasen som en objekt med olika egenskaper. Sedan genom olika metoder når eller uppdatera man data i databasen, precis som hur vi använde objekt. Det tar dock lite tid att uppfatta vad alla rader kod gör. Vi behövde inte använda någon SQL-sats för att ta hand om data i databasen, som vi vanligtvis jobbar med databasen på ett "traditionellt" sätt.
+
+### Vilken är din TIL för detta kmom?
+
+Det största gjädjen idag var att jag äntligen löst problemet "PDO Driver not found" där jag var fastnad i en vecka. Jag fick träna jobba med ORM i CRUD både i övningen och när jag gjorde uppgifterna. Det var roligt och utmaningsfullt att få lära mig ett annat sätt att jobba med databasen.
 
         {% endapply %}
         
