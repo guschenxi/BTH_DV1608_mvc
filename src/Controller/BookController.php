@@ -63,13 +63,13 @@ class BookController extends AbstractController
             ];
         return $this->render('book/all_books.html.twig', $data);
     }
-    #[Route('/library/show/{id}', name: 'book_by_id')]
+    #[Route('/library/show/{book_id}', name: 'book_by_id')]
     public function showBookById(
         BookRepository $bookRepository,
-        int $id
+        int $book_id
     ): Response {
         $book = $bookRepository
-            ->find($id);
+            ->find($book_id);
         $data = [
             'book' => $book,
             ];
@@ -85,13 +85,13 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
-        $id = $request->request->get('book_id');
+        $book_id = $request->request->get('book_id');
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($id);
+        $book = $entityManager->getRepository(Book::class)->find($book_id);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$id
+                'No book found for id '.$book_id
             );
         }
 
@@ -99,23 +99,23 @@ class BookController extends AbstractController
         $entityManager->flush();
         $this->addFlash(
             'notice',
-            'Deleted book with id '.$id
+            'Deleted book with id '.$book_id
         );
         return $this->redirectToRoute('book_show_all');
     }
 
 
-    #[Route('/library/delete/{id}', name: 'book_delete_by_id', methods: ["POST"])]
+    #[Route('/library/delete/{book_id}', name: 'book_delete_by_id', methods: ["POST"])]
     public function deleteBookById(
         ManagerRegistry $doctrine,
-        int $id
+        int $book_id
     ): Response {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($id);
+        $book = $entityManager->getRepository(Book::class)->find($book_id);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$id
+                'No book found for id '.$book_id
             );
         }
 
@@ -123,34 +123,34 @@ class BookController extends AbstractController
         $entityManager->flush();
         $this->addFlash(
             'notice',
-            'Deleted book with id '.$id
+            'Deleted book with id '.$book_id
         );
         return $this->redirectToRoute('book_show_all');
     }
-    #[Route('/library/update/{id}', name: 'book_update_by_id', methods: ["GET"])]
+    #[Route('/library/update/{book_id}', name: 'book_update_by_id', methods: ["GET"])]
     public function bookUpdateById(
         BookRepository $bookRepository,
-        int $id
+        int $book_id
     ): Response {
         $book = $bookRepository
-            ->find($id);
+            ->find($book_id);
         $data = [
             'book' => $book,
             ];
         return $this->render('book/update_book.html.twig', $data);
     }
-    #[Route('/library/update/{id}', name: 'update_book_by_id', methods: ["POST"])]
+    #[Route('/library/update/{book_id}', name: 'update_book_by_id', methods: ["POST"])]
     public function updateBookById(
         ManagerRegistry $doctrine,
-        int $id,
+        int $book_id,
         Request $request
     ): Response {
         $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Book::class)->find($id);
+        $book = $entityManager->getRepository(Book::class)->find($book_id);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book found for id '.$id
+                'No book found for id '.$book_id
             );
         }
 
@@ -162,7 +162,7 @@ class BookController extends AbstractController
 
         $this->addFlash(
             'notice',
-            'Updated details for book with id '.$id
+            'Updated details for book with id '.$book_id
         );
         return $this->redirectToRoute('book_show_all');
     }
