@@ -1,0 +1,35 @@
+{% extends "book.base.html.twig" %}
+
+{% block title %}Library (Kmom05){% endblock %}
+
+{% block body %}
+
+
+<h1>Edit Book Details<h1>
+<form method="post">
+
+	<label for='book_title'>Book ID</label>
+	<input type="text" name="book_id" value="{{ book.id }}" readonly>
+	<br>
+	<label for='book_title'>Book Title:</label>
+	<input type="text" name="book_title" placeholder="book title" value="{{ book.title }}" required>
+	<br>
+	<label for='book_isbn'>ISBN:</label>
+	<input type="number" name="book_isbn" placeholder="ISBN (max 13 digits)" value="{{ book.isbn }}" required>
+	<br>
+	<label for='book_author'>Book Author:</label>
+	<input type="text" name="book_author" placeholder="author name" value="{{ book.author }}">
+	<br>
+	<label for='book_title'>Image filename:</label>
+	<input type="text" name="book_image" placeholder="book's image filename" value="{{ book.image }}">
+    <p>
+        <input type="submit" name="do_it" value="Update details"
+        	onClick="this.form.action='/library/update/{{ book.id }}';this.form.method='post';"
+        >
+        <input type="submit" name="do_it" value="Delete book"
+        	onClick="this.form.action='/library/delete/{{ book.id }}';this.form.method='post';"
+        >
+    </p>
+</form>
+
+{% endblock %}

@@ -9,6 +9,7 @@ body {
 
 main{
 	min-height: 200px;
+	font-size: normal;
 	}
 	
 h1 {
@@ -52,32 +53,44 @@ footer{
 	padding: 2em;
 	width: 50%;
 }
-.wrapper, .report{
-	display: flex;
-	flex-direction: row;
-	column-gap: 1.5em;
-	max-width: 90%;
-}
-
-.wrapper-sidebar, .report-sidebar{
-	flex-grow: 3;
-	flex-basis: 0;
-}
-
-.wrapper-content, .report-content{
-	flex-grow: 7;
-	flex-basis: 0;
-	line-height: 1.4;
-}
-
-
-.random-number {
-	font-size: larger;
-	color: red;
-	border: 2px dashed orange;
-	padding: 10px;
-}
 
 li{
     margin: 1em;
+}
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+table th, table td {
+    border: 1px solid black;
+        padding: 5px;
+}
+table td {
+    font-size: 1rem;
+    font-style: none;
+
+}
+table th {
+    font-size: 1.2rem;
+}
+
+form label{
+    font-size: 1.2rem;
 }
