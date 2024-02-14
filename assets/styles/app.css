@@ -23,7 +23,8 @@ nav {
 nav ul{
 	display: flex;
 	flex-direction: horizontal;
-	gap: 20px;
+	gap: 0 40px;
+	flex-wrap: wrap;
 	}
 
 
