@@ -19,8 +19,7 @@ build:
                     version: 8.2.4
         analysis:
             tests:
-                override:
-                    - php-scrutinizer-run
+                override: [php-scrutinizer-run]
     tests:
         override:
             -   command: "composer phpunit"
