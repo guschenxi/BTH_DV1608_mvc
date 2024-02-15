@@ -22,8 +22,7 @@ build:
             
         analysis:
             tests:
-                override: 
-                    php-scrutinizer-run	
+                override: [php-scrutinizer-run]	
     tests:
         override:
             -   command: "composer phpunit"
