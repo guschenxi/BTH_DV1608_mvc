@@ -1,8 +1,5 @@
 imports:
     - php
-
-checks:
-  php: true
   
 filter:
     excluded_paths: [vendor/*, test/*]
@@ -10,17 +7,22 @@ filter:
 build:
     image: default-bionic
 
+    environment:
+        php:
+            version: "8.2.4"
+        node:
+            version: "v18.0.0"
     nodes:
         my-tests:
             environment:
                 php:
                     #version: 8.1.13
                     # version: 8.1.17
-                    version: 8.2.4
+                    #version: 8.2.4
             
         analysis:
             tests:
-                override: [php-scrutinizer-run]
+                override: php-scrutinizer-run	
     tests:
         override:
             -   command: "composer phpunit"
