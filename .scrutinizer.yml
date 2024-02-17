@@ -13,8 +13,6 @@ build:
     environment:
         php:
             version: "8.2.4"
-        node:
-            version: "v18.0.0"
     nodes:
         my-tests:
             environment:
