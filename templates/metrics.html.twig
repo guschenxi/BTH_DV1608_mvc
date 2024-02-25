@@ -21,7 +21,20 @@
 	
 		<h2 id = "introduktion">Introduktion</h2>
 		{% apply markdown_to_html %}
-du förklarar de sex C:na och hur de kan påverka kodens kvalitet. Exemplifiera, där det passar, med några mätvärden som är kopplad till din egen kod och ge en kort förklaring av mätvärdet relaterat till kodkvalitet.
+Det finns sex C:er som kan påverka kodens kvalitet, och de är:
+1. __Codestyle__ handlar mest om storlek av koden, dvs. hur många rader kod varje klass eller metod innehåller inkl. kommentarerna eller exkl. kommentarerna. Det är viktigt att hålla koden inom en rimlig storlek, annars kan det bli svårt att vidareutveckla, underhålla och felsöka. I min applikation är den största klassen just nu APIController som har 195 rader kod enligt Scrutinizers analys, medan klassen BookRepository har 5 rader kod som är den minsta klassen. Min APIController-klass är just nu lagom stor, men om den ska bli ännu större i framtiden, ska man överväga att dela koden till olika klasser, så att det bli lättare för att göra underhåll.
+
+2. __Coverage__ handlar om hur mycket kod är täckt av testkod. Man kan mäta kodtäckning för hela applikationen, för varje klass, och för varje metod i klassen. I min applikation har jag skrivit testkod för klasserna som var skapade för kortspel, därför är alla dessa klasser 100% täckta av testkod, medan de andra klasserna är 0% täckta av testkod eftersom jag inte har skrivit någon testkod för dem. Högre kodtäckning innebär att applikationen, klassen eller metoden är väl-testad, medan lägre kodtäckning kan innebär att det inte är säkert att koden har bra kvalitet, dvs koden KAN ha sämre kvalitet.
+
+3. __Complexity__ indikerar hur komplex koden är. Högre värde innebär att koden är mer komplex och lägre värde tvärtom. I min klassen är Game-klassen den mesta komplex bland alla, och det innebär att denna klass jämfört med andra klasser kan vara svårare att underhålla och vidareutveckla.
+
+4. __Cohesion__ kallas också för Lack of cohesion of methods (LCOM) och den indikerar hur bra olika metoder i en klass sitter ihop. Högre värde innebär att klassen kan ha för många ansvar och kan därför delas till olika mindre klasser, som APIController i min applikation som har det högsta värdet 8 bland alla klasser; medan lägre värde innebär att metoderna i klassen sitter ihop och är fokuserade med enkla funktioner, så de verkligen tillhör samma klass.
+
+5. __Coupling__ har två typer "afferent coupling (AC)" som visar hur många klasser är påverkade av en given klass, och "efferent coupling (EC) som visar hur många klasser en given klass få effekter från. Klassen CardHand i min applikation har AC-värde på 3 och EC-värde på 1, så det innebär att tre andra klasser använder och är beroende av Card, och Card använder och är beroende av en annan klass. 
+
+6. __CRAP__ står för "Change Risk Analyzer and Predictor" är en uppskattning av hur mycket arbete som krävs för att ta itu med taskiga metoder. Den påverkas av hur komplex en metod är och hur många testfall som täcker metoden. Man kan genom att öka testfall minska CRAP-värdet. Så länge man har tillräckligt med testfall, går det bra att ha komplex metoder. I min applikation har de php-filerna som är Controller högsta CRAP-värden just nu enligt PHPUnits dashboard, eftersom de inte alls täcks av testfall (0% coverage).
+
+
         {% endapply %}
         
 		<h2 id = "Phpmetrics">Phpmetrics</h2>
@@ -32,6 +45,10 @@ analysera dess rapport för din kod. Använd mätvärdena för att hitta flaskha
 		<h2 id = "Scrutinizer">Scrutinizer</h2>
 		{% apply markdown_to_html %}
 analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics.
+
+[![Build Status](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
 
 Inkludera klickbara Scrutinizer badges i din rapport för build, coverage och quality.
 Placera samma badges i din README.md.
