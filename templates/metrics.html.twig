@@ -39,21 +39,44 @@ Det finns sex C:er som kan påverka kodens kvalitet, och de är:
         
 		<h2 id = "Phpmetrics">Phpmetrics</h2>
 		{% apply markdown_to_html %}
-analysera dess rapport för din kod. Använd mätvärdena för att hitta flaskhalsar och svaga punkter i din kod (minst 3 stycken). Du vill hitta kod som har förbättringspotential. Visualisera med någon representativ bild från rapporten.
+		![phpmetrics results](img/phpmetrics.png)
+		
+		Analysverktyg PhpMetrics visar att min applikation innehåller totalt 1201 rader kod, 21 klasser och 114 assertations i testkoden, och genomsnitt-cyklomatisk-komplexitet efter klass är 3.98. 
+		
+		![phpmetrics results,, violations](img/phpmetrics-violations.png)
+		
+		Den hittade 1 fel in min kod i klassen APIController, som säger att klassen har låg "cohesion" eftersom det finns många metoder med olika ansvar, och rekommenderar att klassen delas i olika sub-klasser.
+		
+		Den gav också 9 varningar, varav 5 klasser är "probably bugged" och 4 paket (Package) är "Stable Abstractions Principle".
+		
+		![phpmetrics results](img/phpmetrics-test.png)
+		
+		Phpmetrics visar också att det finns 14st klasser som inte alls täckts av något testfall, och rekomenderar att klasserna med högt cyklomatiskt värde och hög sannolikhet av buggar bör täckas av enhetstest.
+		
         {% endapply %}
         
 		<h2 id = "Scrutinizer">Scrutinizer</h2>
 		{% apply markdown_to_html %}
-analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics.
+		
+![scrutinizer](img/scrutinizer.png)
 
-[![Build Status](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+Analysverktyg Scruntinizer visar att min applikation har fått ett betyg på 9.96 (Very good), test-täckning på 22%, och Scrutinizer badges visar också att "build" är "passed".
 
-Inkludera klickbara Scrutinizer badges i din rapport för build, coverage och quality.
-Placera samma badges i din README.md.
+![scrutinizer issues](img/scrutinizer-issues.png)
 
-I ovan analys så kopplar du dina “findings” till 6C. Använd gärna något ytterligare mättal som du finner relevant och intressant.
+Scrutinizer har hittat 6 "issues" som bör fixas eller kan förbättras i 4 php-filer. I filen CardDeckNoJoker.php, till exempel (bilden nedan), metoden getAmout() anropas "statically" trots att metoden inte är "static", enligt Scrutinizers rapport.
+
+![scrutinizer issue example](img/scrutinizer-issue-example.png)
+
+![scrutinizer hotspots](img/scrutinizer-hotspots.png)
+
+Scrutinizer ger betyg på klasser och metoderna i klasserna, enligt deras kodstil (storlek) och komplexitet. Alla klasser fick betyg A och endast en metod whoWin() in klassen Game fick betyg B eftersom den har 8 if-konditions och har högre cyklomatisk komplexitet.
+
+![scrutinizer coverage](img/scrutinizer-coverage.png)
+
+Scrutinizer visar även att testkoden täcker 168 av 767 rader kod och täckning nådde 21.9%.
+        
+
         {% endapply %}
         
 		<h2 id = "Förbättringar">Förbättringar</h2>
@@ -76,7 +99,12 @@ Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
         
 		<h2 id = "Diskussion">Diskussion</h2>
 		{% apply markdown_to_html %}
-		du diskuterar kort kring det du nyss gjort.
+		
+		[![Build Status](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+
+du diskuterar kort kring det du nyss gjort.
 
 Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
 Finns det fördelar och kanske nackdelar?
