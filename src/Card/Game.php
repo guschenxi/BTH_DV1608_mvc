@@ -63,6 +63,11 @@ class Game
             $winner->raiseScore();
             return $winner;
         }
+        
+        return $this->whoWinElse();
+    }
+    public function whoWinElse(): Player
+    {
         $playerScore = $this->player->getMaxSum() <= 21 ? $this->player->getMaxSum() : $this->player->getMinSum();
         $bankScore = $this->bank->getMaxSum() <= 21 ? $this->bank->getMaxSum() : $this->bank->getMinSum();
         $winner = $bankScore >= $playerScore ? $this->bank : $this->player;

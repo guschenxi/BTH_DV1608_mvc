@@ -81,17 +81,29 @@ Scrutinizer visar även att testkoden täcker 168 av 767 rader kod och täckning
         
 		<h2 id = "Förbättringar">Förbättringar</h2>
 		{% apply markdown_to_html %}
-du väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
+		
+### Planerade åtgärder
 
-Exempel på förbättringar kan vara:
+Jag tänker fixa några "issues" som Scrutinizer har upptäckt, i de php-filerna som jag själv skapat och skrivit. Dessa "issues" är inte svårt att fixa men kan ge bra resultat. Betyget som Scrutinizer ger borde höjas efter denna åtgärd.
 
-1. Fixa issues
-2. Öka kodtäckning
-3. Fokusera på kvalitetsindex i Scrutinizer
-4. Minska komplexiteten i class/metod
-Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+Jag tänker minska komplexiteten i klassen Game, eftersom det finns en metod i klassen som är den enda som har fått betyg B pga hög komplexitet. Klassen borde få betyg A efter åtgärden och komplexiteten minskas.
 
-Implementera sedan förbättringarna.
+Jag tänker fixa det enda felet som PhpMetrics visade: höja "cohesion" i APIController. 
+
+Jag tänker också öka kodtäckning och skapa mer testkod, så att flera klasser är täckta av testfall. 
+
+### Genomförda åtgärder
+
+Jag har fixat några "issues" som Scrutinizer har upptäckt, t.ex. de metoderna som anropas "statically" trots de inte är det, i filen CardDeckNoJoker.php och CardHand.php.
+
+Jag har minskat komplexiteten i metoden whoWin() i klassen Game, genom att dela metoden in till två metoder. Så att det inte finns lika många if-satser kvar i metoder.
+
+Jag har höjt "cohesion" i APIController genom att dela filen in till två olika filer. De funktionerna som har likadana ansvar och handlar om bara Deck finns i en fil, och de andra funktionerna finns i en annan fil.
+
+Jag har skapat lite mer testfall för klassen Dice.
+
+### Resultat efter åtgärder
+
 Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
 Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
 
@@ -104,8 +116,9 @@ Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
 [![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
 
-du diskuterar kort kring det du nyss gjort.
 
+
+		
 Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
 Finns det fördelar och kanske nackdelar?
 Ser du andra möjligheter att jobba mot “clean code”?

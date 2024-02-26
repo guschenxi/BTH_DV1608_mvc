@@ -27,7 +27,7 @@ class CardHand
     {
         $sum = 0;
         foreach ($this->cards as $card) {
-            $number = self::changeNumberMin($card->getNumber());
+            $number = $this->changeNumberMin($card->getNumber());
             $sum += $number;
         }
         return $sum;
@@ -36,7 +36,7 @@ class CardHand
     {
         $sum = 0;
         foreach ($this->cards as $card) {
-            $number = self::changeNumberMax($card->getNumber());
+            $number = $this->changeNumberMax($card->getNumber());
             $sum += $number;
         }
         return $sum;

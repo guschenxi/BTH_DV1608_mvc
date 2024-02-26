@@ -79,6 +79,6 @@ class CardDeckNoJoker
     {
         $minimumCardsForRound = 6;
 
-        return self::getAmount() >= $minimumCardsForRound;
+        return $this->getAmount() >= $minimumCardsForRound;
     }
 }
