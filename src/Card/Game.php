@@ -63,7 +63,7 @@ class Game
             $winner->raiseScore();
             return $winner;
         }
-        
+
         return $this->whoWinElse();
     }
     public function whoWinElse(): Player

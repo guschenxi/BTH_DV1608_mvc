@@ -155,10 +155,22 @@ Det största gjädjen idag var att jag äntligen löst problemet "PDO Driver not
 		{% apply markdown_to_html %}
 ### Hur uppfattade du verktyget phpmetrics och fann du några särskilda bitar mer värdefulla än andra? Var det några särskilda metrics eller bilder du uppskattade?
 
+Jag tycker PhpMetrics är ett kraftfullt verktyg som kan hjälpa oss med kodkvalitet. Det mest värdefulla är att verktyget visar applikationens komplexitet med många olika värden, så att man kan ha översikt på olika sätt. Violation-delen är också bra, då kan man inte bara upptäckta fel, utan också varningar som kan vara bra att tänka till och fixa.
+
 ### Berätta hur det gick att integrera med Scrutinizer och vilken är din första känsla av verktyget och dess badges? Vilken kodtäckning och kodkvalitet fick du efter första bygget?
+
+Jag hade problem att integrera med Scrutinizer från början pga konflikt mellan php-versionen, men jag hittade lösning på nätet, så det löste sig. Sedan fick jag felmeddelande om composers version. Och det tog lite längre tid för mig att fixa felet. Till sist lade jag till följande kod för att lösa problemet. 
+```
+dependencies:
+        before:
+          - composer config --unset repositories.0
+          - composer install
+```
+Men när jag fått det fungera, blev jag glad och tyckte att verktyget var superkraftfullt. Jag fick betyg 9.96 och kodtäckning på 21.9% efter första bygget.
 
 ### Hur är din egen syn på kodkvalitet, berätta lite om den? Tror du man kan man påvisa kodkvalitet i någon viss mån med badges eller vad tror du?
 
+Kodkvalitet är ganska viktig under utvecklingen. Har man hög kodkvalitet sparar man väldigt mycket tid på felsökning och vidareutveckling. Ja, självklart kan kodkvalitet påvisas med badges, men i mycket begränsad mån tycker jag. Man kan inte bara titta och lita på ett betyg, utan man behöver gå in och titta på andra siffror och andra mätvärden för att ha ett djupare översikt av hela applikations kodkvalitet. Man behöver också använda olika verktyg om möjligt, för att analysera kodkvalitet.
 ### Vilken är din TIL för detta kmom?
         {% endapply %}
         

@@ -21,7 +21,7 @@ class DiceTest extends TestCase
         $res = $die->getValue();
         $this->assertNull($res);
         $this->assertEquals($die->getAsString(), "[]");
-        
+
         $die = new DiceGraphic();
         $die->roll();
         $this->assertIsString($die->getAsString());
@@ -34,14 +34,14 @@ class DiceTest extends TestCase
         $this->assertNotEmpty($res);
         $this->assertNotNull($res);
         $this->assertIsInt($res);
-        
+
         $res = $die->getValue();
         $this->assertTrue($res >= 1);
         $this->assertTrue($res <= 6);
 
     }
     public function testDiceHand(): void
-    {	
+    {
         $diceHand = new DiceHand();
         $diceHand->add(new Dice());
         $diceHand->add(new Dice());
@@ -49,6 +49,6 @@ class DiceTest extends TestCase
         $this->assertEquals($diceHand->getNumberDices(), 2);
         $this->assertEquals(count($diceHand->getValues()), 2);
         $this->assertEquals(count($diceHand->getString()), 2);
-        
+
     }
 }

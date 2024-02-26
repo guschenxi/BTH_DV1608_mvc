@@ -57,10 +57,15 @@ Det finns sex C:er som kan påverka kodens kvalitet, och de är:
         
 		<h2 id = "Scrutinizer">Scrutinizer</h2>
 		{% apply markdown_to_html %}
-		
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/build-status/master)
+
+Analysverktyg Scrutinizer är ett annat kraftfullt verktyg som man kan utnyttja för att förbättra sin applikation. I analysresultatet visas en badges som ovan. Dessa är nuvarande resultat av det senaste uppdatering/förbättring.
+
 ![scrutinizer](img/scrutinizer.png)
 
-Analysverktyg Scruntinizer visar att min applikation har fått ett betyg på 9.96 (Very good), test-täckning på 22%, och Scrutinizer badges visar också att "build" är "passed".
+Resultatet av Scrutinizer visar att min applikation har fått ett betyg på 9.96 (Very good), test-täckning på 22%, och Scrutinizer badges visar också att "build" är "passed".
 
 ![scrutinizer issues](img/scrutinizer-issues.png)
 
@@ -104,24 +109,44 @@ Jag har skapat lite mer testfall för klassen Dice.
 
 ### Resultat efter åtgärder
 
+![phpmetrics results](img/phpmetrics.png)
+
+(Föregående resultatet av PhpMetrics)
+
+![phpmetrics new results](img/phpmetrics-new.png)
+
+(Uppdaterade resultatet av PhpMetrics)
+
+Det nya PhpMetrics-resultatet visar att rader av kod och antal klasser har ökat, men det felet försvann, cyclomatisk komplexitet har minskat med 0.13, och genomsnitt antal buggar per klass har minskat med 0.01. 
 Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
 Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
+
+![phpmetrics new complexity](img/phpmetrics-new-complexity.png)
+
+Om man går in och tittar på sidan om komplexitet, ser man att många värden inkl bugg per klass och defekter per klass har minskat.
+
+![scrutinizer result](img/scrutinizer.png)
+
+![scrutinizer new result](img/scrutinizer-new.png)
+
+Det nya resultatet av Scrutinizer (den andra bilden) visar att det totala betyget har ökat till 10 efter att åtgärdat 3 "issues", och kodtäckning har ökat med 3%.
+
+![scrutinizer improvement](img/scrutinizer-improvment.png)
+
+Resultatet av Scrutinizer visar även att den enda metoden som var för komplex pga många if-satser har fått ökat betyg från B till A.
 
         {% endapply %}
         
 		<h2 id = "Diskussion">Diskussion</h2>
 		{% apply markdown_to_html %}
 		
-		[![Build Status](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/build.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/guschenxi/BTH_DV1608_mvc/?branch=master)
+Även om jag inte har gjort mycket ändring i koden, kan man ändå se från resultatet att förbättring har lyckats. Därför är det viktigt och nödvändigt att man aktivt jobba med kodkvalitet och "clean code". Man kan få mycket snyggare kod och det underlättar underhåll och vidareutveckling så mycket.
 
+Just nu, efter förbättringen, ligger det mesta förbättringsutrymme i att skapa test suits för Controllerna. Just nu finns det inget testfall för Controllerna. Men man kan framställa hur mycket förbättring kan ske om man skapa test suits för Controllerna. CRAP-värden hade kunnat minskas kraftigt. Många varningar av PhpMetrics kan försvinna.
 
+Nackdelen kan vara att dessa verktyg varnar om "false positive" saker. Det kanske kostar man mycket tid för att hitta fel trots att felet inte finns från början.
 
-		
-Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
-Finns det fördelar och kanske nackdelar?
-Ser du andra möjligheter att jobba mot “clean code”?
+Man kan inte bara vara beroende av att använda dessa verktyg för att öka kodkvalitet, utan måste tänka på kodkvalitet redan när man designar sin applikation och innan man börjar skriva kod. Om man funderar noga på kodkvalitet rörande t.ex. komplexitet och cohesion, kan man ha en bra kodstruktur från början och slipper man spendera mycket tid i onödan på att göra förbättringar.
         {% endapply %}
 	</div>
 </div>
