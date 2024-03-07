@@ -1,0 +1,119 @@
+{% extends "proj.base.html.twig" %}
+
+{% block title %}Project kmom10 API{% endblock %}
+
+{% block body %}
+    <h1>Project Kmom10 API</h1>
+    <form method="post" action="">
+    <div class="wrapper">
+
+    	<div class="wrapper-sidebar">
+    	    <ul>
+			    <li>
+			        <input type="submit" name="do_it" value="api/quote"
+						onClick="this.form.action='/api/quote';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="api/deck"
+						onClick="this.form.action='{{ path('api_deck') }}';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="api/deck/shuffle"
+						onClick="this.form.action='{{ path('api_deck_shuffle') }}';this.form.method='post';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="api/deck/draw"
+						onClick="this.form.action='{{ path('api_deck_draw') }}';this.form.method='post';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="api/deck/draw/8"
+						onClick="this.form.action='/api/deck/draw/8';this.form.method='post';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="api/deck/deal/3/7"
+						onClick="this.form.action='/api/deck/deal/3/7';this.form.method='post';"
+					>
+			    </li>
+			    <li>
+					<input type="submit" name="do_it" value="api/game"
+						onClick="this.form.action='/api/game';this.form.method='post';"
+					>
+				</li>
+			    <li>
+					<input type="submit" name="do_it" value="api/library/books"
+						onClick="this.form.action='/api/library/books';this.form.method='post';"
+					>
+				</li>
+			    <li>
+					<input type="submit" name="do_it" value="api/library/book/<ISBN>"
+						onClick="this.form.action='/api/library/book/1234567890';this.form.method='post';"
+					>
+				</li>
+			</ul>
+		</div>
+    	<div class="wrapper-content">
+			<ul>
+			    <li>
+					<input type="submit" name="do_it" value="api/quote"
+						onClick="this.form.action='/api/quote';this.form.method='get';"
+					>
+						GET Den väljer en offert bland fem och returnerar den tillsammans med dagens datum och tidsstämpeln vid retur.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/deck"
+						onClick="this.form.action='{{ path('api_deck') }}';this.form.method='get';"
+					>
+				 	GET api/deck som returnerar en JSON struktur med hela kortleken sorterad per färg och värde.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/deck/shuffle"
+						onClick="this.form.action='{{ path('api_deck_shuffle') }}';this.form.method='post';"
+					>
+					POST api/deck/shuffle som blandar kortleken och därefter returnerar en JSON struktur med kortleken.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/deck/draw"
+						onClick="this.form.action='{{ path('api_deck_draw') }}';this.form.method='post';"
+					>
+					<input type="submit" name="do_it" value="api/deck/draw/8"
+						onClick="this.form.action='/api/deck/draw/8';this.form.method='post';"
+					>
+
+					POST api/deck/draw och POST api/deck/draw/:number som drar 1 eller :number kort från kortleken och visar upp dem i en JSON struktur samt antalet kort som är kvar i kortleken. Kortleken sparas i sessionen så om man anropar dem flera gånger så minskas antalet kort i kortleken.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/deck/deal/3/7"
+						onClick="this.form.action='/api/deck/deal/3/7';this.form.method='post';"
+					>
+
+					POST api/deck/deal/:players/:cards som delar ut ett antal :cards från kortleken till ett antal :players och visar upp de korten som respektive spelare har fått i en JSON struktur. Visa även antalet kort som är kvar i kortleken.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/game"
+						onClick="this.form.action='/api/game';this.form.method='post';"
+					>
+					POST api/game/ visar upp den aktuella ställningen för kortspelet Tjugoett i en JSON struktur.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/library/books"
+						onClick="this.form.action='api/library/books';this.form.method='post';"
+					>
+					GET/POST api/library/books visar samtliga böcker i databasen i en JSON struktur.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="api/library/book/1234567890"
+						onClick="this.form.action='api/library/book/1234567890';this.form.method='post';"
+					>
+					GET/POST api/library/book/<ISBN> visar en boks detaljer via bokens ISBN i en JSON struktur.
+				</li>
+			</ul>
+    	</div>
+
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "proj.base.html.twig" %}
+
+{% block body %}
+    {{ include('proj/flash.html.twig') }}
+<h1>Game Over</h1>
+<h2>Spelare - {{ playerName }} {{ finalScore }} Banken</h2>
+
+<h2>Vinnare i den här rundan är: <span class="winner">{{ finalWinner }}</span></h2>
+
+	<form method="post" action="">
+		<input type="submit" name="do_it" value="Börja Om"
+			onClick="this.form.action='/proj/';this.form.method='get';"
+		>
+	</form>
+	
+
+{% endblock %}
+

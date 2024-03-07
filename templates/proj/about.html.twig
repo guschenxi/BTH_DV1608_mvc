@@ -1,0 +1,21 @@
+{% extends "proj.base.html.twig" %}
+
+{% block title %}Project Kmom10 About{% endblock %}
+
+{% block body %}
+    <h1>Project Kmom10 About</h1>
+    <div class="wrapper">
+    	<div class="wrapper-sidebar">
+    	    <ul>
+			    <li><a href="https://github.com/dbwebb-se/mvc/">Kursens Git-repo</a></li>
+			    <li><a href="https://github.com/guschenxi/BTH_DV1608_mvc/tree/master">Mitt Git-repo</a></li>
+			</ul>
+		</div>
+    	<div class="wrapper-content">
+			<p>About</p>
+En sida /proj/about som ger en kort introduktion till ditt projekt och vad det handlar om.
+
+<a href="{{ path('project_about_database') }}">Gå till proj/about/database</a>
+    	</div>
+	</div>
+{% endblock %}

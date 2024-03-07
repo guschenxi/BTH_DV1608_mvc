@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('proj') }}
+        {% endblock %}
+
+        {% block javascripts %}
+
+        {% endblock %}
+    </head>
+    <body>
+        <header class="site-header">
+			<span class="site-title">Kmom10: Advanced Card Game</span>
+		</header>
+        <nav>
+            <ul>
+				<li><a href="{{ path('home') }}">Home</a></li>
+				<li><a href="{{ path('project') }}">Project Home</a></li>
+				<li><a href="{{ path('project_about') }}">Project About</a></li>
+				<li><a href="{{ path('project_api') }}">Project API</a></li>
+			</ul>
+        </nav>
+        
+
+		<main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            <p>Copyright &copy; Xi Chen<br>
+            Adress: Storgatan 88, 88888 Karlskrona<br>
+            Telefon: 010-12345678</p>
+        </footer>
+    </body>
+</html>
