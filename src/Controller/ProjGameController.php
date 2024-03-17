@@ -11,14 +11,16 @@ use App\Project\Game;
 
 class ProjGameController extends AbstractController
 {
-    #[Route("/proj/play_new", name: "proj_game_play_new")]
-    public function playNew(
+    #[Route("/proj/new_game", name: "proj_game_play_new")]
+    public function newGame(
         SessionInterface $session,
         Request $request
     ): Response {
         $session->remove('game');
         $playerName = $request->request->get('player_name');
-        $game = new Game($playerName);
+        $numberOfHands = $request->request->get('player_hands');
+        $bankBalance = $request->request->get('bank_balance');
+        $game = new Game($playerName, $numberOfHands, $bankBalance);
 
         $session->set("game", $game);
         return $this->redirectToRoute('proj_game_play');
@@ -28,37 +30,35 @@ class ProjGameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game = $session->get("game");
-        $playerMinSum = $game->getPlayer()->getMinSum();
-        $playerMaxSum = $game->getPlayer()->getMaxSum();
 
         $data = [
-            'player' => $game->getPlayer()->getCards(),
-            'playerMinSum' => $playerMinSum,
-            'playerMaxSum' => $game->getPlayer()->getMaxSum(),
+            'numOfHands' => $game->getPlayer()->getNumOfHands(),
             'playerName' => $game->getPlayer()->getName(),
-            'playerScore' => $game->getPlayer()->getScore(),
-            'bank' => $game->getBank()->getCards(),
-            'bankMinSum' => $game->getBank()->getMinSum(),
-            'bankMaxSum' => $game->getBank()->getMaxSum(),
+            'playerBalance' => $game->getPlayer()->getBalance(),
+            'playerHand' => $game->getPlayer()->getCards(),
+            'playerMinSum' => $game->getPlayer()->getMinSum(),
+            'playerMaxSum' => $game->getPlayer()->getMaxSum(),
+            'bank' => $game->getBank()->getCardHand(0)->getCards(),
+            'bankMinSum' => $game->getBank()->getCardHand(0)->getMinSum(),
+            'bankMaxSum' => $game->getBank()->getCardHand(0)->getMaxSum(),
             //'bankName' => $game->getbank()->getName(),
-            'bankScore' => $game->getbank()->getScore(),
+            //'bankScore' => $game->getbank()->getScore(),
             'deck' => $game->getDeck()->getCards(),
-            'totalScore' => $game->getTotalScore()
+            //'totalScore' => $game->getTotalScore()
         ];
 
         $session->set("game", $game);
-        if ($playerMinSum >= 21 || $playerMaxSum == 21) {
-            return $this->redirectToRoute('proj_who_win');
-        }
         return $this->render('proj/play.html.twig', $data);
     }
     #[Route("/proj/player/draw", name: "proj_player_draw", methods: ["POST"])]
     public function playerDraw(
-        SessionInterface $session
+        SessionInterface $session,
+        Request $request
     ): Response {
         $game = $session->get("game");
+        $handNum = $request->request->get('hand_num');
 
-        if (!$game->playerDraw()) {
+        if (!$game->playerDraw($handNum)) {
             $this->addFlash(
                 'notice',
                 "Det finns inte tillräckligt kort kvar att dra."

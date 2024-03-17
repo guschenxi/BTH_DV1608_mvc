@@ -2,22 +2,32 @@
 
 {% block body %}
 
-<h2>Spelare: {{ playerName }}, Score: {{ playerScore }}</h2> min/max: {{ playerMinSum }}/{{ playerMaxSum }}
-	<form method="post" action="">
-		<input type="submit" name="do_it" value="Dra Nytt Kort"
-			onClick="this.form.action='/proj/player/draw';this.form.method='post';"
-		>
+<h2>Spelare: {{ playerName }}, Balance: {{ playerBalance }}
+	<form>
 		<input type="submit" name="do_it" value="Stanna"
 			onClick="this.form.action='/proj/player/stay';this.form.method='post';"
 		>
-    </form>
-    <p class="player">
-		{% for card in player %}
-		    <i class="card-pic {{ card.getAsString }}"></i>
+	</form>
+</h2>
+{% for i in 0..numOfHands-1 %}
+<div class="player">
+    <h3>Hand {{ i }} - min/max: {{ playerMinSum[i] }}/{{ playerMaxSum[i] }}
+		<form method="post" action="">
+			<input type="text" name="hand_num" value="{{ i }}" readonly style="display:none;">
+			<input type="submit" name="do_it" value="Dra Nytt Kort"
+				onClick="this.form.action='/proj/player/draw';this.form.method='post';"
+			>
+	    </form>
+	</h3>
+	<p class="player">
+		{% for card in playerHand[i] %}
+			<i class="card-pic {{ card.getAsString }}"></i>
 		{% endfor %}
 	</p>
-	
-<h2>Bank, Score: {{ bankScore }}</h2> min/max: {{ bankMinSum }}/{{ bankMaxSum }}
+</div>
+{% endfor %}
+
+<h2>Bank, </h2> min/max: {{ bankMinSum }}/{{ bankMaxSum }}
     <p class="player">
 		{% for card in bank %}
 		    <i class="card-pic {{ card.getAsString }}"></i>

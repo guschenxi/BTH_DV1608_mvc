@@ -4,11 +4,27 @@
 
 {% block body %}
 
-<h1>Kortspel Tjugoett</h1>
-<form method="post" action="/proj/play_new">
-        <label for='player_name'>Spelarnamn:</label>
-		<input type="text" name="player_name" placeholder="Default: Spelare">
-		<input type="submit" name="do_it" value="Börja Spela">
+<h1>Kortspel Tjugoett Avancerad</h1>
+<form method="post" action="/proj/new_game">
+        <p>
+        	<label for='player_name'>Spelarnamn:</label>
+			<input type="text" name="player_name" placeholder="Default: Spelare">
+		</p>
+		<p>
+			Number of Hands: 
+			<input type="radio" id="one_hand" name="player_hands" value="1" checked>
+			<label for="one_hand">1 hand</label>
+			<input type="radio" id="two_hand" name="player_hands" value="2">
+			<label for="two_hand">2 hands</label>
+			<input type="radio" id="three_hand" name="player_hands" value="3">
+			<label for="three_hand">3 hands</label>
+		</p>
+		<p>
+			Bank balance: <input type="text" name="bank_balance" value="100">
+		</p>
+		<p>
+			<input type="submit" name="do_it" value="Börja Spela">
+		</p>
 </form>
 
 <p>

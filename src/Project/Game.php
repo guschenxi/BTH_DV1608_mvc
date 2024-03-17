@@ -14,36 +14,53 @@ class Game
     protected Player $player;
     protected Player $bank;
 
-    public function __construct(mixed $playerName)
+    public function __construct(mixed $playerName, int $numOfHands, int $bank_balance)
     {
         $this->deck = new CardDeckNoJoker();
-        $this->player = new Player(($playerName === "") ? "Spelare" : $playerName, 1);
-        $this->bank = new Player("SmartPC", 1);
+        $this->player = new Player(($playerName === "") ? "Spelare" : $playerName, $numOfHands, $bank_balance);
+        $this->bank = new Player("SmartPC", 1, 0);
         $this->startGame();
     }
     public function startGame(): void
     {
         $this->deck->shuffleCards();
         //$this->player->addCard($this->deck->drawCard());
+        $this->newRound();
     }
-    public function playerDraw(): bool
+    public function newRound(): void
+    {
+        $numOfHands = $this->getPlayer()->getNumOfHands();
+        for ($i = 0; $i < $numOfHands; $i++) {
+            $this->playerDraw($i);
+            $this->playerDraw($i);
+        }
+        $this->bankDraw();
+        $this->bankDraw();
+        
+    }
+    public function playerDraw($handNum): bool
     {
         $drawnCard = $this->deck->drawCard();
         if (!$drawnCard) {
             return false;
         }
-        $this->player->addCard($drawnCard);
+        $this->player->getCardHand($handNum)->addCard($drawnCard);
+        return true;
+    }
+    public function bankDraw(): bool
+    {
+    	$drawnCard = $this->deck->drawCard();
+        if (!$drawnCard) {
+            return false;
+        }
+        $this->bank->getCardHand(0)->addCard($drawnCard);
         return true;
     }
     public function playerStay(): bool
     {
         do {
-            $drawnCard = $this->deck->drawCard();
-            if (!$drawnCard) {
-                return false;
-            }
-            $this->bank->addCard($drawnCard);
-        } while ($this->bank->getMinSum() < 17);
+            $this->bankDraw();
+        } while ($this->bank->getCardHand(0)->getMinSum() < 17);
         return true;
     }
     public function whoWin(): Player
