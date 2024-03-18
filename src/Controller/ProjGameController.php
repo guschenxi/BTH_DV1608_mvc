@@ -35,7 +35,7 @@ class ProjGameController extends AbstractController
             'numOfHands' => $game->getPlayer()->getNumOfHands(),
             'playerName' => $game->getPlayer()->getName(),
             'playerBalance' => $game->getPlayer()->getBalance(),
-            'playerHand' => $game->getPlayer()->getCards(),
+            'playerHands' => $game->getPlayer()->getCards(),
             'playerMinSum' => $game->getPlayer()->getMinSum(),
             'playerMaxSum' => $game->getPlayer()->getMaxSum(),
             'bank' => $game->getBank()->getCardHand(0)->getCards(),
@@ -93,20 +93,19 @@ class ProjGameController extends AbstractController
     ): Response {
         $game = $session->get("game");
 
-        $whoWin = $game->whoWin();
-
         $data = [
-            'who_win' => $whoWin->getName(),
-            'player' => $game->getPlayer()->getCards(),
+            'numOfHands' => $game->getPlayer()->getNumOfHands(),
+            'winOrLose' => $game->checkWin(),
+            'playerHands' => $game->getPlayer()->getCards(),
             'playerMinSum' => $game->getPlayer()->getMinSum(),
             'playerMaxSum' => $game->getPlayer()->getMaxSum(),
             'playerName' => $game->getPlayer()->getName(),
-            'playerScore' => $game->getPlayer()->getScore(),
-            'bank' => $game->getBank()->getCards(),
-            'bankMinSum' => $game->getBank()->getMinSum(),
-            'bankMaxSum' => $game->getBank()->getMaxSum(),
+            'playerBalance' => $game->getPlayer()->getBalance(),
+            'bank' => $game->getBank()->getCardHand(0)->getCards(),
+            'bankMinSum' => $game->getBank()->getCardHand(0)->getMinSum(),
+            'bankMaxSum' => $game->getBank()->getCardHand(0)->getMaxSum(),
             //'bankName' => $game->getbank()->getName(),
-            'bankScore' => $game->getbank()->getScore(),
+            //'bankScore' => $game->getbank()->getScore(),
         ];
 
         $session->set("game", $game);
@@ -126,6 +125,7 @@ class ProjGameController extends AbstractController
             );
             return $this->redirectToRoute('proj_game_over');
         }
+        $game->newRound();
         $session->set("game", $game);
         return $this->redirectToRoute('proj_game_play');
     }
@@ -135,9 +135,9 @@ class ProjGameController extends AbstractController
     ): Response {
         $game = $session->get("game");
         $data = [
-                "finalScore" => $game->getTotalScore(),
+                //"finalScore" => $game->getTotalScore(),
                 'playerName' => $game->getPlayer()->getName(),
-                'finalWinner' => $game->getFinalWinner() ? $game->getFinalWinner()->getName() : "Ingen",
+                //'finalWinner' => $game->getFinalWinner() ? $game->getFinalWinner()->getName() : "Ingen",
             ];
         return $this->render('proj/game_over.html.twig', $data);
     }

@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h2>Spelare: {{ playerName }}, Score: {{ playerScore }}</h2> min/max: {{ playerMinSum }}/{{ playerMaxSum }}
+<h2>Spelare: {{ playerName }}, Balance: {{ playerBalance }}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Nästa Runda"
 			onClick="this.form.action='/proj/next_round';this.form.method='post';"
@@ -11,19 +11,34 @@
 			onClick="this.form.action='/proj';this.form.method='post';"
 		>
 	</form>
-    <p class="player">
-		{% for card in player %}
-		    <i class="card-pic {{ card.getAsString }}"></i>
+</h2>
+
+<div class="player">
+{% for i in 0..numOfHands-1 %}
+<div class="playerHand">
+    <h3>Hand {{ i+1 }} - min/max: {{ playerMinSum[i] }}/{{ playerMaxSum[i] }}	
+			{% if winOrLose[i] %}
+			    <span class="win">WIN</span>
+			{% else %}
+			    <span class="lose">LOSE</span>
+			{% endif %}
+		</h3>
+	<p class="player_card">
+		{% for card in playerHands[i] %}
+			<i class="card-pic {{ card.getAsString }}"></i>
 		{% endfor %}
 	</p>
+</div>
+{% endfor %}
+</div>
 
-<h2>Bank, Score: {{ bankScore }}</h2>min/max: {{ bankMinSum }}/{{ bankMaxSum }}
+<h2>Bank, </h2>min/max: {{ bankMinSum }}/{{ bankMaxSum }}
     <p class="player">
 		{% for card in bank %}
 		    <i class="card-pic {{ card.getAsString }}"></i>
 		{% endfor %}
     </p>
-<h2>Vinnare i den här rundan är: <span class="winner">{{who_win}}</span></h2>
+<h2>Vinnare i den här rundan är: <span class="winner"></span></h2>
 
 
     {{ include('proj/flash.html.twig') }}

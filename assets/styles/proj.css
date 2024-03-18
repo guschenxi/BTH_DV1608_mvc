@@ -180,3 +180,13 @@ li{
 form {
     display: inline;
 }
+
+.player{
+    display: flexbox;
+    
+}
+
+.bust::after { content: "\1F4A3"; color: red; }
+.twenty-one::after { content: "\1F389"; color: red; }
+.win::after { content: "\2713"; color: green; }
+.lose::after { content: "\274C"; color: red; }

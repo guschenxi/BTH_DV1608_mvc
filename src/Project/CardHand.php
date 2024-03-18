@@ -45,13 +45,13 @@ class CardHand
     {
         switch ($number) {
             case "king":
-                $number = 13;
+                $number = 10;
                 break;
             case "queen":
-                $number = 12;
+                $number = 10;
                 break;
             case "jack":
-                $number = 11;
+                $number = 10;
                 break;
             case "ace":
                 $number = 1;
@@ -65,16 +65,16 @@ class CardHand
     {
         switch ($number) {
             case "king":
-                $number = 13;
+                $number = 10;
                 break;
             case "queen":
-                $number = 12;
+                $number = 10;
                 break;
             case "jack":
-                $number = 11;
+                $number = 10;
                 break;
             case "ace":
-                $number = 14;
+                $number = 11;
                 break;
             default:
                 $number = $number;

@@ -24,7 +24,6 @@ class Game
     public function startGame(): void
     {
         $this->deck->shuffleCards();
-        //$this->player->addCard($this->deck->drawCard());
         $this->newRound();
     }
     public function newRound(): void
@@ -58,44 +57,49 @@ class Game
     }
     public function playerStay(): bool
     {
-        do {
-            $this->bankDraw();
-        } while ($this->bank->getCardHand(0)->getMinSum() < 17);
+        while ($this->bank->getCardHand(0)->getMinSum() < 17) {
+            if (!$this->bankDraw()) {
+                return false;
+            }
+        }
         return true;
     }
-    public function whoWin(): Player
+    public function checkWin(): mixed
     {
-        if ($this->player->getMinSum() > 21) {
-            $winner = $this->bank;
-            $winner->raiseScore();
-            return $winner;
+        $playerMinSum = $this->player->getMinSum();
+        $playerMaxSum = $this->player->getMaxSum();
+        $bankMinSum = $this->bank->getCardHand(0)->getMinSum();
+        $bankMaxSum = $this->bank->getCardHand(0)->getMaxSum();
+        for ($i = 0; $i < $this->player->getNumOfHands(); $i++) {
+            $output[] = $this->whoWin($playerMinSum[$i], $playerMaxSum[$i], $bankMinSum, $bankMaxSum);
         }
-        if ($this->player->getMinSum() == 21 || $this->player->getMaxSum() == 21) {
-            $winner = $this->player;
-            $winner->raiseScore();
-            return $winner;
-        }
-        if ($this->bank->getMinSum() > 21) {
-            $winner = $this->player;
-            $winner->raiseScore();
-            return $winner;
-        }
-
-        return $this->whoWinElse();
+        return $output;
     }
-    public function whoWinElse(): Player
+    public function whoWin(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
     {
-        $playerScore = $this->player->getMaxSum() <= 21 ? $this->player->getMaxSum() : $this->player->getMinSum();
-        $bankScore = $this->bank->getMaxSum() <= 21 ? $this->bank->getMaxSum() : $this->bank->getMinSum();
-        $winner = $bankScore >= $playerScore ? $this->bank : $this->player;
-        $winner->raiseScore();
+        if ($playerMinSum > 21) {
+            return false;
+        }
+        if ($playerMinSum == 21 || $playerMaxSum == 21) {
+            return true;
+        }
+        if ($bankMinSum > 21) {
+            return true;
+        }
+        return $this->whoWinElse($playerMinSum, $playerMaxSum, $bankMinSum, $bankMaxSum);
+    }
+    public function whoWinElse(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
+    {
+        $playerScore = $playerMaxSum <= 21 ? $playerMaxSum : $playerMinSum;
+        $bankScore = $bankMaxSum <= 21 ? $bankMaxSum : $bankMinSum;
+        $winner = $bankScore >= $playerScore ? false : true;
         return $winner;
     }
     public function nextRound(): bool
     {
         //clear hands
-        $this->player->cleanHand();
-        $this->bank->cleanHand();
+        $this->player->cleanHands();
+        $this->bank->cleanHands();
         return $this->deck->hasEnoughCards();
     }
     public function getPlayer(): Player

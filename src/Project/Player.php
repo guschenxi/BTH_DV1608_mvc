@@ -48,6 +48,12 @@ class Player
         }
         return $output;
     }
+    public function cleanHands(): void
+    {
+        foreach ($this->hands as $cardHand) {
+            $cardHand->cleanHand();
+        }
+    }
     public function getNumOfHands(): int
     {
         return count($this->hands);
@@ -64,10 +70,5 @@ class Player
     {
         return $this->balance;
     }
-    public function addCardToHand(Card $card, int $handIndex = 0): void
-    {
-        if ($handIndex >= 0 && $handIndex < count($this->hands)) {
-            $this->hands[$handIndex]->addCard($card);
-        }
-    }
+
 }
