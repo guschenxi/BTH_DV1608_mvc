@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h2>Spelare: {{ playerName }}, Balance: {{ playerBalance }}
+<h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Nästa Runda"
 			onClick="this.form.action='/proj/next_round';this.form.method='post';"
@@ -18,9 +18,9 @@
 <div class="playerHand">
     <h3>Hand {{ i+1 }} - min/max: {{ playerMinSum[i] }}/{{ playerMaxSum[i] }}	
 			{% if winOrLose[i] %}
-			    <span class="win">WIN</span>
+			    <span class="win">WIN {{ bets[i] }} * 1.5 = {{ bets[i] * 1.5}}</span>
 			{% else %}
-			    <span class="lose">LOSE</span>
+			    <span class="lose">LOSE {{ bets[i] }}</span>
 			{% endif %}
 		</h3>
 	<p class="player_card">
@@ -38,7 +38,6 @@
 		    <i class="card-pic {{ card.getAsString }}"></i>
 		{% endfor %}
     </p>
-<h2>Vinnare i den här rundan är: <span class="winner"></span></h2>
 
 
     {{ include('proj/flash.html.twig') }}

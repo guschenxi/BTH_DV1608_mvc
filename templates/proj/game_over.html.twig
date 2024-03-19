@@ -3,10 +3,13 @@
 {% block body %}
     {{ include('proj/flash.html.twig') }}
 <h1>Game Over</h1>
-<h2>Spelare - {{ playerName }}  Banken</h2>
-
-<h2>Vinnare i den här rundan är: <span class="winner"></span></h2>
-
+<h2>Din kontosaldo är nu {{ playerBalance }}.</h2>
+<h2>Din insats var {{ startBalance }} från början.</h2>
+{% if (playerBalance >= startBalance) %}
+<h2>Förändringen i ditt konto är: <span class="winner">+{{ playerBalance-startBalance }}</span></h2>
+{% else %}
+<h2>Förändringen i ditt konto är: <span class="loser">{{ playerBalance-startBalance }}</span></h2>
+{% endif %}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Börja Om"
 			onClick="this.form.action='/proj/';this.form.method='get';"

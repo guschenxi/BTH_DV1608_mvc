@@ -87,6 +87,10 @@ li{
     padding: 3px;
 	color: #111;
 }
+.blur {
+    filter: blur(7px);
+}
+
 .card-pic.heart-2::after { content: "\1F0B2"; color: red; }
 .card-pic.heart-3::after { content: "\1F0B3"; color: red; }
 .card-pic.heart-4::after { content: "\1F0B4"; color: red; }
@@ -150,7 +154,10 @@ li{
     font-size:1em;
 }
 
-
+.deck-part {
+    border: 2px dashed black;
+    background: yellow;
+}
 
 .flash-notice {
     padding: 0.5em;
@@ -173,6 +180,11 @@ li{
 }
 
 .winner{
+    color: green;
+    font-style: bolder;
+}
+
+.loser{
     color: red;
     font-style: bolder;
 }
@@ -186,7 +198,7 @@ form {
     
 }
 
-.bust::after { content: "\1F4A3"; color: red; }
-.twenty-one::after { content: "\1F389"; color: red; }
-.win::after { content: "\2713"; color: green; }
-.lose::after { content: "\274C"; color: red; }
+.bust::after, .loser::after { content: "\1F4A3"; color: red; }
+.twenty-one::after, .winner::after { content: "\1F389"; color: red; }
+.win::before { content: "\2713"; color: green; }
+.lose::before { content: "\274C"; color: red; }

@@ -2,9 +2,9 @@
 
 {% block body %}
 
-<h2>Spelare: {{ playerName }}, Balance: {{ playerBalance }}
+<h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
 	<form>
-		<input type="submit" name="do_it" value="Stanna"
+		<input type="submit" name="do_it" value="Stanna / Bankens Tur"
 			onClick="this.form.action='/proj/player/stay';this.form.method='post';"
 		>
 	</form>
@@ -12,14 +12,20 @@
 <div class="player">
 {% for i in 0..numOfHands-1 %}
 <div class="playerHand">
-    <h3>Hand {{ i+1 }} - min/max: {{ playerMinSum[i] }}/{{ playerMaxSum[i] }}	
+    <h3>Hand {{ i+1 }} - min/max: {{ playerMinSum[i] }}/{{ playerMaxSum[i] }} - Satsning: {{ bets[i] }}
 		<form method="post" action="">
 			<input type="text" name="hand_num" value="{{ i }}" readonly style="display:none;">
+
 			{% if (playerMinSum[i] == 21) or (playerMaxSum[i] == 21) %}
 			    <span class="twenty-one"></span>
 			{% elseif playerMinSum[i] > 21 %}
 			    <span class="bust"></span>
 			{% elseif playerMinSum[i] < 21 %}
+			    {% if playerMinSum[i] == 11 %}
+					<input type="submit" name="do_it" value="Dubbla Satsningen"
+						onClick="this.form.action='/proj/player/double';this.form.method='post';"
+					>
+				{% endif %}
 				<input type="submit" name="do_it" value="Dra Nytt Kort"
 					onClick="this.form.action='/proj/player/draw';this.form.method='post';"
 				>
@@ -34,19 +40,25 @@
 </div>
 {% endfor %}
 </div>
-<h2>Bank </h2> min/max: {{ bankMinSum }}/{{ bankMaxSum }}
+<h2>Bank </h2> 
     <p class="player_card">
 		{% for card in bank %}
-		    <i class="card-pic {{ card.getAsString }}"></i>
+		    {% if (card == bank[1]) %}
+		    	<i class="card-pic {{ card.getAsString }} blur"></i>
+		    {% else %}
+		    	<i class="card-pic {{ card.getAsString }}"></i>
+		    {% endif %}
 		{% endfor %}
     </p>
 
-<h2>Card Deck</h2>
-    <p class="deck">
-		{% for card in deck %}
-		    <i class="card-pic {{ card.getAsString }}"></i>
-		{% endfor %}
-    </p>
+<div class="deck-part">
+	<h2>Card Deck (visas inte i realtid spel)</h2>
+		<p class="deck">
+			{% for card in deck %}
+				<i class="card-pic {{ card.getAsString }}"></i>
+			{% endfor %}
+		</p>
+</div>
     
     {{ include('proj/flash.html.twig') }}
 {% endblock %}

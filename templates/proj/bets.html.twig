@@ -1,0 +1,25 @@
+{% extends "proj.base.html.twig" %}
+
+{% block body %}
+
+<h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
+	<form>
+		<input type="submit" name="do_it" value="Kör!"
+			onClick="this.form.action='/proj/set_bets';this.form.method='post';"
+		>
+
+</h2>
+<div class="player">
+{% for i in 0..numOfHands-1 %}
+<div class="playerHand">
+    <h3>Hand {{ i+1 }}
+			<input type="text" name="hand_num" value="{{ i }}" readonly style="display:none;">
+			<input type="text" name="bets_{{i}}" value="10">
+		</h3>
+</div>
+{% endfor %}
+</div>
+</form>
+    {{ include('proj/flash.html.twig') }}
+{% endblock %}
+

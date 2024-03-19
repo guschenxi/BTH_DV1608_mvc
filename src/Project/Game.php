@@ -124,19 +124,15 @@ class Game
             'deck' => $this->getDeck(),
         ];
     }
-    public function getTotalScore(): string
+    public function changeBalance(array $winOrLose, array $bets): void
     {
-        $playerScore = $this->player->getScore();
-        $bankScore = $this->bank->getScore();
-        return " $playerScore  :  $bankScore ";
-    }
-    public function getFinalWinner(): ?Player
-    {
-        $playerScore = $this->player->getScore();
-        $bankScore = $this->bank->getScore();
-        if ($playerScore == $bankScore) {
-            return null;
-        }
-        return $playerScore > $bankScore ? $this->player : $this->bank ;
+		for ($i = 0; $i < count($winOrLose); $i++) {
+			if ($winOrLose[$i]) {
+			 $this->player->raiseBalance($bets[$i] * 1.5);
+			}
+			else {
+			 $this->player->decreaseBalance($bets[$i]);
+			}
+		}
     }
 }

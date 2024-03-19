@@ -10,106 +10,74 @@
     	<div class="wrapper-sidebar">
     	    <ul>
 			    <li>
-			        <input type="submit" name="do_it" value="api/quote"
-						onClick="this.form.action='/api/quote';this.form.method='get';"
+			        <input type="submit" name="do_it" value="api/proj/game"
+						onClick="this.form.action='{{ path('api_proj_game') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/deck"
-						onClick="this.form.action='{{ path('api_deck') }}';this.form.method='get';"
+			        <input type="submit" name="do_it" value="api/proj/deck"
+						onClick="this.form.action='{{ path('api_proj_deck') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/deck/shuffle"
-						onClick="this.form.action='{{ path('api_deck_shuffle') }}';this.form.method='post';"
+			        <input type="submit" name="do_it" value="api/proj/deck/shuffle"
+						onClick="this.form.action='{{ path('api_proj_deck_shuffle') }}';this.form.method='post';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/deck/draw"
-						onClick="this.form.action='{{ path('api_deck_draw') }}';this.form.method='post';"
+			        <input type="submit" name="do_it" value="api/proj/balance"
+						onClick="this.form.action='{{ path('api_proj_balance') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/deck/draw/8"
-						onClick="this.form.action='/api/deck/draw/8';this.form.method='post';"
+			        <input type="submit" name="do_it" value="api/proj/get_bets"
+						onClick="this.form.action='/api/proj/get_bets';this.form.method='get';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/deck/deal/3/7"
-						onClick="this.form.action='/api/deck/deal/3/7';this.form.method='post';"
+			        <input type="submit" name="do_it" value="api/proj/balance/add/500"
+						onClick="this.form.action='/api/proj/balance/add/500';this.form.method='post';"
 					>
 			    </li>
-			    <li>
-					<input type="submit" name="do_it" value="api/game"
-						onClick="this.form.action='/api/game';this.form.method='post';"
-					>
-				</li>
-			    <li>
-					<input type="submit" name="do_it" value="api/library/books"
-						onClick="this.form.action='/api/library/books';this.form.method='post';"
-					>
-				</li>
-			    <li>
-					<input type="submit" name="do_it" value="api/library/book/<ISBN>"
-						onClick="this.form.action='/api/library/book/1234567890';this.form.method='post';"
-					>
-				</li>
 			</ul>
 		</div>
     	<div class="wrapper-content">
 			<ul>
 			    <li>
-					<input type="submit" name="do_it" value="api/quote"
-						onClick="this.form.action='/api/quote';this.form.method='get';"
+					<input type="submit" name="do_it" value="api/proj/game"
+						onClick="this.form.action='{{ path('api_proj_game') }}';this.form.method='get';"
 					>
-						GET Den väljer en offert bland fem och returnerar den tillsammans med dagens datum och tidsstämpeln vid retur.
+						(GET) api/proj/game/ visar upp den aktuella ställningen för kortspelet Black Jack i en JSON struktur.
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/deck"
-						onClick="this.form.action='{{ path('api_deck') }}';this.form.method='get';"
+					<input type="submit" name="do_it" value="api/proj/deck"
+						onClick="this.form.action='{{ path('api_proj_deck') }}';this.form.method='get';"
 					>
-				 	GET api/deck som returnerar en JSON struktur med hela kortleken sorterad per färg och värde.
+				 	(GET) api/proj/deck som returnerar en JSON struktur med alla kort (färg och värde) som finns på "Deck".
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/deck/shuffle"
-						onClick="this.form.action='{{ path('api_deck_shuffle') }}';this.form.method='post';"
+					<input type="submit" name="do_it" value="api/proj/deck/shuffle"
+						onClick="this.form.action='{{ path('api_proj_deck_shuffle') }}';this.form.method='post';"
 					>
-					POST api/deck/shuffle som blandar kortleken och därefter returnerar en JSON struktur med kortleken.
+					(POST) api/proj/deck/shuffle som blandar alla kort på "Deck" och därefter returnerar en JSON struktur med alla blandade kort.
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/deck/draw"
-						onClick="this.form.action='{{ path('api_deck_draw') }}';this.form.method='post';"
+					<input type="submit" name="do_it" value="api/proj/balance"
+						onClick="this.form.action='{{ path('api_proj_balance') }}';this.form.method='get';"
 					>
-					<input type="submit" name="do_it" value="api/deck/draw/8"
-						onClick="this.form.action='/api/deck/draw/8';this.form.method='post';"
-					>
-
-					POST api/deck/draw och POST api/deck/draw/:number som drar 1 eller :number kort från kortleken och visar upp dem i en JSON struktur samt antalet kort som är kvar i kortleken. Kortleken sparas i sessionen så om man anropar dem flera gånger så minskas antalet kort i kortleken.
+					(GET) api/proj/balance visar upp spelarens banksaldo i nuläget.
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/deck/deal/3/7"
-						onClick="this.form.action='/api/deck/deal/3/7';this.form.method='post';"
+					<input type="submit" name="do_it" value="api/proj/get_bets"
+						onClick="this.form.action='{{ path('api_proj_get_bets') }}';this.form.method='get';"
 					>
-
-					POST api/deck/deal/:players/:cards som delar ut ett antal :cards från kortleken till ett antal :players och visar upp de korten som respektive spelare har fått i en JSON struktur. Visa även antalet kort som är kvar i kortleken.
+					(GET) api/proj/get_bets visar upp spelarens satsningar på varje spelhand i en lista i JSON struktur.
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/game"
-						onClick="this.form.action='/api/game';this.form.method='post';"
+					<input type="submit" name="do_it" value="api/proj/balance/add/1000"
+						onClick="this.form.action='/api/proj/balance/add/1000';this.form.method='post';"
 					>
-					POST api/game/ visar upp den aktuella ställningen för kortspelet Tjugoett i en JSON struktur.
-				</li>
-				<li>
-					<input type="submit" name="do_it" value="api/library/books"
-						onClick="this.form.action='api/library/books';this.form.method='post';"
-					>
-					GET/POST api/library/books visar samtliga böcker i databasen i en JSON struktur.
-				</li>
-				<li>
-					<input type="submit" name="do_it" value="api/library/book/1234567890"
-						onClick="this.form.action='api/library/book/1234567890';this.form.method='post';"
-					>
-					GET/POST api/library/book/<ISBN> visar en boks detaljer via bokens ISBN i en JSON struktur.
+					(POST) api/proj/balance/<integer> addar det inkommande heltal till spelarens bankkonto, och visar upp den nya saldon.
 				</li>
 			</ul>
     	</div>

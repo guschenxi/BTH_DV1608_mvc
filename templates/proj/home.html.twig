@@ -4,32 +4,31 @@
 
 {% block body %}
 
-<h1>Kortspel Tjugoett Avancerad</h1>
+<h1>Kortspel Black Jack Avancerad</h1>
+<h2>Project kmom10</h2>
 <form method="post" action="/proj/new_game">
         <p>
         	<label for='player_name'>Spelarnamn:</label>
 			<input type="text" name="player_name" placeholder="Default: Spelare">
 		</p>
 		<p>
-			Number of Hands: 
+			Antal händer att spela: 
 			<input type="radio" id="one_hand" name="player_hands" value="1" checked>
 			<label for="one_hand">1 hand</label>
 			<input type="radio" id="two_hand" name="player_hands" value="2">
-			<label for="two_hand">2 hands</label>
+			<label for="two_hand">2 händer</label>
 			<input type="radio" id="three_hand" name="player_hands" value="3">
-			<label for="three_hand">3 hands</label>
+			<label for="three_hand">3 händer</label>
 		</p>
 		<p>
-			Bank balance: <input type="text" name="bank_balance" value="100">
+			Kontoinsättning: <input type="text" name="bank_balance" value="100">
 		</p>
 		<p>
 			<input type="submit" name="do_it" value="Börja Spela">
 		</p>
 </form>
 
-<p>
-Project kmom10
-</p>
+
 
 
 {% endblock %}
