@@ -177,11 +177,60 @@ Kodkvalitet är ganska viktig under utvecklingen. Har man hög kodkvalitet spara
         
 		<h2 id = "kmom10">Kmom10</h2>
 		{% apply markdown_to_html %}
-### För varje krav du implementerat, dvs 1-3, 4, 5, 6, skriver du ett textstycke om ca 5-10 meningar där du beskriver hur du löste kravet. Poängsättningen tar sin start i din text så se till att skriva väl för att undvika poängavdrag. Missar du att skriva/dokumentera din lösning så blir det 0 poäng. Du kan inte komplettera en inlämning för att få högre betyg.
+### För varje krav du implementerat, dvs 1-3, 4, 5, 6, skriver du ett textstycke om ca 5-10 meningar där du beskriver hur du löste kravet. 
+
+__Krav 1-3__
+
+Jag har skapat landningssidan och den finns i huvudnavbaren. Jag har skapat "new entry" i filen importmap.php, och sedan skapat en ny CSS-fil, samt skapat en baseproj.base.html-fil i mappen templates, så att min projekt-sidan har en annorlunda utseende och en separat navbar jämfört med filer från andra kursmomenten. Jag har skapat about-sidan och skrivit kort stycke om projektet. Jag har enligt krav skrivit innehåll i readme.md och det syns på GitHub, och badges finns också i filen. I min doc-mapp finns det rapporter genererade av phpdoc och phpmetrics. Jag har skrivit kod för enhetstest åt alla filer i projektet (exkl. Controller), så min kodtäckning nådde 100%. 
+
+![code coverage](../img/code_coverage.png)
+![code coverage change](../img/code_coverage_change.png)
+
+__Om själva spelet__
+
+Jag valde forsätta utveckla Black Jack så att det följer de flesta internationella regler. Jag fick återanvända några klasser Card, CardHand, CardDeck, m.m. Jag har ändrat klassen Player så den inte längre ärvar CardHand eftersom nu är det inte längre bara en hand som spelar varje gång. Men den nya klassen Player använder fortfarande CardHand. Det finns också många ändringar i Game-klassen. På min första sida kan man namnge spelare, välja hur många händer man spelar, samt fylla i önskade insättningen till kontot. 
+
+Vid start av varje runda, kan man ange satsningar på varje hand. Alla dessa input-värden fås av Request. 2 kort är redan dragna av varje hand och banken vid start, bankens andra kort är suddiggjort av CSS-filter, och den visas när det är bankens tur. Spelare kan välja dra nytt kort eller stanna. Både min-summan och max-summan visas på sidan beroende på hur mycket ess är värt, så att det blir lättare att räkna och spela. Om summan överstiger 21 eller är lik med 21, försvinner dra-nytt-kort-knappen. En dubbla-satsning-knappen visas automatiskt när summan av spelarens dragna kort är 11. 
+
+När spelare är färdig med kortdragning, är det bankens tur, och banken drar alltid nya kort tills summan är över 17. På resultat-sidan visas om spelarens varje hand vinner mot banken eller inte. Det finns 3 metoder i Game-klassen som räknar vem som vinner. Innan reslutat-sidan visas finns det en mellan-sidan där vinnare räknas ut och spelarens banksaldon uppdateras enligt sin satsningar. Fördelen med denna mellan-sidan är att den förhindrar att spelare klickar refresh i webbläsaren för att köra uppdatering av banksaldon igen och igen. När varje runda avslutas, töms både spelaren och bankens händer. 
+
+Om det inte finns tillräckliga kort kvar att dra, då kommer man till GameOver-sidan, där ett flash-meddelande om ikke-tillräckliga kort visas, samt hur mycket pengar man tjänat eller förlorat visas också. Jag har också skapat klass DrawnCardDeck som ärver CardDeck och landningssidan som tar hand om statistikt visualisering av dragna kort. Länken av den sidan syns på sidan när man spelar. En visulisering av kort på decken syns också till botten av spel-sidan, detta för att bättre visar hur spelet är designat, men den ska inte finnas där i real spel.
+
+Jag har lagt till vissa ikoner i spelet, så att det blir lite roligare och lättare för spelaren att spela. CSS kunde bli bättre så att spelet ser finare ut, men jag lade mest tid på programmering istället.
+
+
+__Krav 4__
+
+Jag har skapat totalt 12 API som man kan använda, varav 2 använder POST. Alla är presenterade på API-sidan, med introduktion av deras funktioner. 7 av dem handlar om själva spelet, t.ex shuffle cards, visar kort på decken, visar spelarens nuvarande banksaldon, m.m. 3 av dem handlar om att visar statistiken av dragna kort. Sista 2 av dem handlar om att hämtar data från två tabeller i databasen och visar loggade data om spel-tillfällen. 
+
+__Krav 5__
+
+Det var lite svårt att kombinera databas och kortspel, därför har jag skapat två tabeller i databasen för att lagra spel-tillfällen. Detaljerna som tabellerna är skrivna på about-database-sidan enligt kravet. Jag har även skapat enhetstester åt de två Repository-filerna och de två Entity-filerna. Kodtäckning nådde 100% i denna del. Det gick mycket bra att genomföra enhetstesten på min dator. Jag har dock misslyckats göra det på servern på Scrutinizer. Problem ligger på de två RepositoryTest-filerna. När jag laddade upp alla filer på GitHub, har jag ändrat dessa två filers namn som ".bak", så att de hindrar inte genomföring av andra enhetstester.
+
+Det finns inga sidor som hämtar och visar data från databasen, utan bara skickar och sparar i databasen. Därför har jag skapat två API som hämtar data från databasen och visar datan med JSON-struktur.
+
+__Krav 6__
+
+1. Spelaren ska kunna köpa försäkring när banken får blackjack. Det blir mer komplex logik att designa och hantera försäkringsinsatser samt utbetalningar. 
+
+2. Man kan uppgradera spelet så att flera spelare kan spela samtidigt med olika antal händer. Det kräver mycket mer sessionshantering i detta fall, och man måste också har koll på status under spelet. Sedan är det komplicerad att hantera satsningar, och kontouppdateringar och pengutdelningar.
+
+3. Implementering av en korträkningsalgoritm kan vara komplicerad. Man behöver ha koll på redan dragna kort och deras påverkan på sannonlikheten för kort i CardDeck. Det är en utmaning när flera kortlekar används. Det kräver också att designare har djupt förståelse på BlackJacks regler samt matematiken som är bakom spelet.
+
+4. Spelaren ska kunna välja att spela olika varianter av BlackJack, t.ex Europeisk, Vegas, m.m. Man måste kunna anpassa logik och programmeringskod efter olika regler, gränssnittet måste också ändras så att det stödjer olika varianter av spelet.
+
+5. Man ska kunna designa ett helt gambling-system så att det finns stor databasen bakom spelet och användare. Man ska kunna registrera som användare, logga in, fyller på konto, kolla spelhistoria. Det kräver avancerad databashantering och design av bättre gränssnitt.
+
+6. Att höja bankens "intellegens" är också en utmanning, eftersom man kan göra det på så många olika sätt. Statistik och matematik är viktig, sedan måste man kunna skriva kod som stödjer den höjda intellegens.
+
 
 ### Skriv ett allmänt stycke om hur projektet gick att genomföra. Problem/lösningar/strul/enkelt/svårt/snabbt/lång tid, etc. Var projektet lätt eller svårt? Tog det lång tid? Vad var svårt och vad gick lätt? Var det ett bra och rimligt projekt för denna kursen?
 
+Det gick bra att genomföra hela projektet. Det var mycket svårare jämfört med andra uppgifterna i kursen, det kräver mycket funderingar och prövningar och felsökningar fram och tillbaka. Det finns fortfarande optionella punkter som jag inte lyckade lösa till sist, t.ex enhetstest med databasen på Scrutinizer. Det krävde också mycket tester för att spelet kan köras utan problem. Om man räknar med optionella krav så tar det nog mycket mer tid än 30-40 timmar att genomföra projektet. Projektet är bra, men lite för stort för denna kursen.
+
 ### Avsluta med ett sista stycke med dina tankar om kursen och vad du anser om materialet och handledningen (ca 5-10 meningar). Ge feedback till lärarna och förslå eventuella förbättringsförslag till kommande kurstillfällen. Är du nöjd/missnöjd? Kommer du att rekommendera kursen till dina vänner/kollegor? På en skala 1-10, vilket betyg ger du kursen?
+
+Jag gillar denna kurs. Det är något som jag inte alls kunde innan. Man hörde alltid om objektorienterad programmering, men aldrig lärt sig innan. Jag har lärt mig mycket, men ändå känns det som att det fortfarande väldigt grundläggande. När det gäller ORM, är det ännu mer grundläggande. Jag har fortfarande inte uppfattat många kods funktion och struktur. Det känns som ett väldigt djupt område om man vill lära sig mer. Jag är nöjd så länge och jag har redan rekommenderat kursen till en kollega som är intresserad. Jag ger kursen betyg 9.
         {% endapply %}
 	</div>
 </div>

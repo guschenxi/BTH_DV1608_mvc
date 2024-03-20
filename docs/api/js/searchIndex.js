@@ -381,6 +381,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-APIControllerProj.html#method_apiProjSuitedDrawnCardStat"
         },                {
+            "fqsen": "\\App\\Controller\\APIControllerProj\u003A\u003AshowGameLog\u0028\u0029",
+            "name": "showGameLog",
+            "summary": "",
+            "url": "classes/App-Controller-APIControllerProj.html#method_showGameLog"
+        },                {
+            "fqsen": "\\App\\Controller\\APIControllerProj\u003A\u003AshowRoundLog\u0028\u0029",
+            "name": "showRoundLog",
+            "summary": "",
+            "url": "classes/App-Controller-APIControllerProj.html#method_showRoundLog"
+        },                {
             "fqsen": "\\App\\Controller\\BookController",
             "name": "BookController",
             "summary": "",
@@ -896,6 +906,91 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Entity-Book.html#property_image"
         },                {
+            "fqsen": "\\App\\Entity\\Gamelog",
+            "name": "Gamelog",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_getId"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AsetId\u0028\u0029",
+            "name": "setId",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_setId"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_getName"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_setName"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AgetHands\u0028\u0029",
+            "name": "getHands",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_getHands"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AsetHands\u0028\u0029",
+            "name": "setHands",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_setHands"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AgetBalance\u0028\u0029",
+            "name": "getBalance",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_getBalance"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AsetBalance\u0028\u0029",
+            "name": "setBalance",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_setBalance"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AgetTimestamp\u0028\u0029",
+            "name": "getTimestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_getTimestamp"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003AsetTimestamp\u0028\u0029",
+            "name": "setTimestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#method_setTimestamp"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#property_id"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#property_name"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A\u0024hands",
+            "name": "hands",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#property_hands"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A\u0024balance",
+            "name": "balance",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#property_balance"
+        },                {
+            "fqsen": "\\App\\Entity\\Gamelog\u003A\u003A\u0024timestamp",
+            "name": "timestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Gamelog.html#property_timestamp"
+        },                {
             "fqsen": "\\App\\Entity\\Product",
             "name": "Product",
             "summary": "",
@@ -940,6 +1035,101 @@ Search.appendIndex(
             "name": "value",
             "summary": "",
             "url": "classes/App-Entity-Product.html#property_value"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog",
+            "name": "Roundlog",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getId"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetGamelogId\u0028\u0029",
+            "name": "getGamelogId",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getGamelogId"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AsetGamelogId\u0028\u0029",
+            "name": "setGamelogId",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_setGamelogId"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetWinhands\u0028\u0029",
+            "name": "getWinhands",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getWinhands"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AsetWinhands\u0028\u0029",
+            "name": "setWinhands",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_setWinhands"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetDifference\u0028\u0029",
+            "name": "getDifference",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getDifference"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AsetDifference\u0028\u0029",
+            "name": "setDifference",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_setDifference"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetNewbalance\u0028\u0029",
+            "name": "getNewbalance",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getNewbalance"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AsetNewbalance\u0028\u0029",
+            "name": "setNewbalance",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_setNewbalance"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AgetTimestamp\u0028\u0029",
+            "name": "getTimestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_getTimestamp"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003AsetTimestamp\u0028\u0029",
+            "name": "setTimestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#method_setTimestamp"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_id"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024gamelog_id",
+            "name": "gamelog_id",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_gamelog_id"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024winhands",
+            "name": "winhands",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_winhands"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024difference",
+            "name": "difference",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_difference"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024newbalance",
+            "name": "newbalance",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_newbalance"
+        },                {
+            "fqsen": "\\App\\Entity\\Roundlog\u003A\u003A\u0024timestamp",
+            "name": "timestamp",
+            "summary": "",
+            "url": "classes/App-Entity-Roundlog.html#property_timestamp"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
@@ -1361,6 +1551,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-BookRepository.html#method___construct"
         },                {
+            "fqsen": "\\App\\Repository\\GamelogRepository",
+            "name": "GamelogRepository",
+            "summary": "",
+            "url": "classes/App-Repository-GamelogRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\GamelogRepository\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Repository-GamelogRepository.html#method___construct"
+        },                {
             "fqsen": "\\App\\Repository\\ProductRepository",
             "name": "ProductRepository",
             "summary": "",
@@ -1370,6 +1570,16 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/App-Repository-ProductRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\RoundlogRepository",
+            "name": "RoundlogRepository",
+            "summary": "",
+            "url": "classes/App-Repository-RoundlogRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\RoundlogRepository\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Repository-RoundlogRepository.html#method___construct"
         },                {
             "fqsen": "\\",
             "name": "\\",
