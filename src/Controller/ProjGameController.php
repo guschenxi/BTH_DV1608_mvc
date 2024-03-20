@@ -8,13 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Project\Game;
+use App\Entity\Gamelog;
+use App\Entity\Roundlog;
+use DateTime;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProjGameController extends AbstractController
 {
     #[Route("/proj/new_game", name: "proj_game_play_new")]
     public function newGame(
         SessionInterface $session,
-        Request $request
+        Request $request,
+        ManagerRegistry $doctrine
     ): Response {
         $session->remove('game');
         $playerName = $request->request->get('player_name');
@@ -22,8 +27,19 @@ class ProjGameController extends AbstractController
         $bankBalance = (int)$request->request->get('bank_balance');
         $game = new Game($playerName, $numberOfHands, $bankBalance);
 
+        // write into database
+		$entityManager = $doctrine->getManager();
+		$gamelog = new Gamelog();
+		$gamelog->setName($playerName? $playerName : "Spelare");
+		$gamelog->setHands($numberOfHands);
+		$gamelog->setBalance($bankBalance);
+		$entityManager->persist($gamelog);
+		$entityManager->flush();
+		$gamelogId = $gamelog->getId();
+
         $session->set("game", $game);
         $session->set("startBalance", $bankBalance);
+        $session->set("gamelogId", $gamelogId);
         return $this->redirectToRoute('proj_enter_bets');
     }
     #[Route("/proj/enter_bets", name: "proj_enter_bets")]
@@ -84,13 +100,27 @@ class ProjGameController extends AbstractController
 
     #[Route("/proj/win", name: "proj_who_win")]
     public function whoWin(
-        SessionInterface $session
+        SessionInterface $session,
+        ManagerRegistry $doctrine
     ): Response {
         $game = $session->get("game");
+        $gamelogId = $session->get("gamelogId");
+        $currentBalance = $game->getPlayer()->getBalance();
         $winOrLose = $game->checkWin();
         $bets = $game->getPlayer()->getBets();
         $game->changeBalance($winOrLose, $bets);
+        $newBalance = $game->getPlayer()->getBalance();
 
+        // write into database
+		$entityManager = $doctrine->getManager();
+		$roundlog = new Roundlog();
+		$roundlog->setGamelogId($gamelogId);
+		$roundlog->setWinhands(count(array_filter($winOrLose)));
+		$roundlog->setDifference($newBalance - $currentBalance);
+		$roundlog->setNewbalance($newBalance);
+		$entityManager->persist($roundlog);
+		$entityManager->flush();		
+		
         $session->set("game", $game);
         //$session->set("winOrLose", $winOrLose)
         return $this->redirectToRoute('proj_result');
