@@ -5,9 +5,9 @@ namespace App\Project;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test cases for class Card.
+ * Test cases for class CardDeck.
  */
-class CardDeckTest extends TestCase
+class ProjCardDeckTest extends TestCase
 {
     public function testCreateCardDeck(): void
     {

@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\RoundlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
 
 #[ORM\Entity(repositoryClass: RoundlogRepository::class)]
 class Roundlog

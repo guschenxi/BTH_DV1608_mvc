@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\GamelogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
 
 #[ORM\Entity(repositoryClass: GamelogRepository::class)]
 class Gamelog

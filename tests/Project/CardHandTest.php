@@ -5,9 +5,9 @@ namespace App\Project;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test cases for class Card.
+ * Test cases for class CardHand.
  */
-class CardHandTest extends TestCase
+class ProjCardHandTest extends TestCase
 {
     /**
      * Construct object and verify that the object has the expected

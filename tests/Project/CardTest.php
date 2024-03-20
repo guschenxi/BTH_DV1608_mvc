@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test cases for class Card.
  */
-class CardTest extends TestCase
+class ProjCardTest extends TestCase
 {
     /**
      * Construct object and verify that the object has the expected
