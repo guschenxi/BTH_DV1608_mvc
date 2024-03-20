@@ -1,10 +1,9 @@
 {% extends "proj.base.html.twig" %}
 
-{% block title %}Project Kmom10 Database{% endblock %}
+{% block title %}Project Kmom10 About Database{% endblock %}
 
 {% block body %}
-    <h1>Project Kmom10 Database</h1>
-    <div class="wrapper">
+    <div>
     	<div class="wrapper-sidebar">
 
 		</div>
@@ -18,11 +17,13 @@
 		
 ## För varje tabell beskriv i en mening vad som sparas i tabellen.
 
-Det var lite svårt att kombinera kortspel med databas, därför tänkte jag att skapa en databas för att logga alla händelser under spelningen i databasen.
+* Det var lite svårt att kombinera kortspel med databas, därför tänkte jag att skapa en databas för att logga alla händelser under spelningen i databasen.
 
-Tabelen "roundlog" sparar alla spel-tillfällen med spelarens namn, antal spelande händer, insättning till bankkontot, och när spelaren började spela (current_timestamp).
+* Tabelen "roundlog" sparar alla spel-tillfällen med spelarens namn, antal spelande händer, insättning till bankkontot, och när spelaren började spela (current_timestamp).
 
-Den sparar alla spel-rundor under ett spel-tillfälle, med antal vunnen händer, tjänade eller förlorade pengar (ett minus tal), ny banksaldo, och tiden (current_timestamp) då varje runda skedde.
+* Den sparar alla spel-rundor under ett spel-tillfälle, med antal vunnen händer, tjänade eller förlorade pengar (ett minus tal), ny banksaldo, och tiden (current_timestamp) då varje runda skedde.
+
+* Det finns ingen webbsida som hämtar data från databasen och visar data, utan bara skickar data till databasen och sparar data. Därför har jag skapat två yttligare API som hämtar data från de två tabellerna och visar data av JSON-struktur. Dessa två API finns på API-sidan.
 
 ## Förklara hur du löste eventuella relationer mellan tabellerna.
 
@@ -70,10 +71,21 @@ class GamelogRepositoryTest extends KernelTestCase
 
 * Angående enhetstest på Entity:s, har jag endast skrivit kod som skaffar objekt och kör alla "setXX()" t.ex setId(), och kör alla "getXX()" t.ex getName(), och sedan kontrollerar om värden från get och set är samma; dvs. enhetstester på Entity:s har inte gått genom den äkta databasen.
 
+* Enhetstesterna har gått genom utan problem på min data och täckning på de två filerna har nått 100%.
+
+ ![Repository test local](../../img/repository_test_local.png)
+  ![Entity test local](../../img/entity_test_local.png)
+
 ## Berätta om/hur du lyckades med enhetstester på Scrutinizer med databasen.
 
+Jag lyckades inte med att köra enhetstester på Scrutinizer med databasen. Felmeddelandet visade att tabeln kunde inte hittas, dvs det misslyckades att ansluta till den databasfilen jag hade i var-mappen. Jag försökte hitta lösning men misslyckades. Jag tycker att det borde kunna lösas genom att lägga kommandon i .scrutinizer.yml.
 
 ## Berätta med egna ord (cirka 15 meningar) om hur du ser på fördelar, nackdelar, likheter och skillnader mellan ORM och det sätt vi jobbade med databasen i databaskursen.
+
+* ORM gör att vi kan hantera databasen på ett mer objektorienterat sätt. Tabeller i databasen är mappade som olika objekt i programmeringsspråk, PHP i vårt sammanhäng. Det verkar som att vi kan genom detta sätt hantera databasen på ett mycket lättare sätt och skriver mycket mindre kod, jämfört med det sättet vi använt innan. Oavsett vilken databas eller tabell vi vill hantera, kan vi återanvända ganska likadan kod och göra mycket mindre ändringar på att anpassa nya uppgifter.
+
+* Både ORM och det traditionella sättet stödjer CRUD som vi övat under kursernas gång. På det sättet vi använt innan använde vi direkt SQL-satser för att hantera databasen. Det sättet var mer direkt och kraftfullare och det kändes som att vi hade bättre kontroll över databasen, medan ORM verkar mer abstrakt och mindre kraftfull än att använda direkt SQL-satser och vi har mindre kontroll över databasen.
+
 {% endapply %}
     	</div>
 	</div>
