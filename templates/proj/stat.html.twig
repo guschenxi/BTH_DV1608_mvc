@@ -1,0 +1,23 @@
+{% extends "proj.base.html.twig" %}
+
+{% block body %}
+
+<div class="bar-chart">
+    {% for key, value in rankStatistics %}
+        <div class="bar" style="height: {{ value * 20 }}px;">{{ key }} ({{ value }})</div>
+    {% endfor %}
+</div>
+
+<div class="bar-chart">
+    {% for key, value in suitStatistics %}
+        <div class="bar" style="height: {{ value * 10 }}px;">{{ key }} 	({{ value }})</div>
+    {% endfor %}
+</div>
+
+<h2>Dragna kort </h2> 
+    <p class="player_card">
+		{% for card in drawnCardDeck %}
+		    	<i class="card-pic {{ card.getAsString }}"></i>
+		{% endfor %}
+    </p>
+{% endblock %}

@@ -198,4 +198,19 @@ class ProjGameController extends AbstractController
             ];
         return $this->render('proj/game_over.html.twig', $data);
     }
+    #[Route("/proj/stat", name: "proj_stat")]
+    public function stat(
+        SessionInterface $session
+    ): Response {
+        $game = $session->get("game");
+        $statistics = $game->getDrawnCardDeck()->getAllDrawnCardsStat();
+        $rankStatistics = $game->getDrawnCardDeck()->getRankedDrawnCardsStat();
+        $suitStatistics = $game->getDrawnCardDeck()->getSuitedDrawnCardsStat();
+        $data = [
+            'rankStatistics' => $rankStatistics,
+            'suitStatistics' => $suitStatistics,
+            'drawnCardDeck' => $game->getDrawnCardDeck()->getCards(),
+        ];
+        return $this->render('proj/stat.html.twig', $data);
+    }
 }

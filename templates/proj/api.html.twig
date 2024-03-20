@@ -30,13 +30,33 @@
 					>
 			    </li>
 			    <li>
+			        <input type="submit" name="do_it" value="api/proj/balance/add/500"
+						onClick="this.form.action='/api/proj/balance/add/500';this.form.method='post';"
+					>
+			    </li>
+			    <li>
 			        <input type="submit" name="do_it" value="api/proj/get_bets"
 						onClick="this.form.action='/api/proj/get_bets';this.form.method='get';"
 					>
 			    </li>
 			    <li>
-			        <input type="submit" name="do_it" value="api/proj/balance/add/500"
-						onClick="this.form.action='/api/proj/balance/add/500';this.form.method='post';"
+			        <input type="submit" name="do_it" value="api/proj/drawn_cards/"
+						onClick="this.form.action='/api/proj/drawn_cards';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="/api/proj/stat/all"
+						onClick="this.form.action='/api/proj/stat/all';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="/api/proj/stat/ranked"
+						onClick="this.form.action='/api/proj/stat/ranked';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="/api/proj/stat/suited"
+						onClick="this.form.action='/api/proj/stat/suited';this.form.method='get';"
 					>
 			    </li>
 			</ul>
@@ -68,16 +88,40 @@
 					(GET) api/proj/balance visar upp spelarens banksaldo i nuläget.
 				</li>
 				<li>
+					<input type="submit" name="do_it" value="api/proj/balance/add/1000"
+						onClick="this.form.action='/api/proj/balance/add/1000';this.form.method='post';"
+					>
+					(POST) api/proj/balance/<integer> addar det inkommande heltal till spelarens bankkonto, och visar upp den nya saldon.
+				</li>
+				<li>
 					<input type="submit" name="do_it" value="api/proj/get_bets"
 						onClick="this.form.action='{{ path('api_proj_get_bets') }}';this.form.method='get';"
 					>
 					(GET) api/proj/get_bets visar upp spelarens satsningar på varje spelhand i en lista i JSON struktur.
 				</li>
 				<li>
-					<input type="submit" name="do_it" value="api/proj/balance/add/1000"
-						onClick="this.form.action='/api/proj/balance/add/1000';this.form.method='post';"
+					<input type="submit" name="do_it" value="api/proj/drawn_cards"
+						onClick="this.form.action='{{ path('api_proj_drawn_cards') }}';this.form.method='get';"
 					>
-					(POST) api/proj/balance/<integer> addar det inkommande heltal till spelarens bankkonto, och visar upp den nya saldon.
+					(GET) api/proj/drawn_cards visar upp korten som redan är dragna av spelaren och datorn.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="/api/proj/stat/all"
+						onClick="this.form.action='{{ path('api_proj_stat_all') }}';this.form.method='get';"
+					>
+					(GET) api/proj/stat/all visar statistik av dragna kort.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="/api/proj/stat/ranked"
+						onClick="this.form.action='{{ path('api_proj_stat_ranked') }}';this.form.method='get';"
+					>
+					(GET) api/proj/stat/ranked visar statistik av dragna kort per "rank".
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="/api/proj/stat/suited"
+						onClick="this.form.action='{{ path('api_proj_stat_suited') }}';this.form.method='get';"
+					>
+					(GET) api/proj/stat/ranked visar statistik av dragna kort per "suit".
 				</li>
 			</ul>
     	</div>

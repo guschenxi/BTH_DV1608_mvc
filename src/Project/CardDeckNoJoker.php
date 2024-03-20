@@ -77,7 +77,7 @@ class CardDeckNoJoker
      */
     public function hasEnoughCards(): bool
     {
-        $minimumCardsForRound = 6;
+        $minimumCardsForRound = 12;
 
         return $this->getAmount() >= $minimumCardsForRound;
     }

@@ -10,13 +10,15 @@ use App\Project\Player;
 
 class Game
 {
-    protected CardDeckNoJoker $deck;
+    protected CardDeck $deck;
+    protected DrawnCardDeck $drawnCardDeck;
     protected Player $player;
     protected Player $bank;
 
     public function __construct(mixed $playerName, int $numOfHands, int $bank_balance)
     {
-        $this->deck = new CardDeckNoJoker();
+        $this->deck = new CardDeck($numOfHands);
+        $this->drawnCardDeck = new DrawnCardDeck;
         $this->player = new Player(($playerName === "") ? "Spelare" : $playerName, $numOfHands, $bank_balance);
         $this->bank = new Player("SmartPC", 1, 0);
         $this->startGame();
@@ -40,6 +42,7 @@ class Game
     public function playerDraw($handNum): bool
     {
         $drawnCard = $this->deck->drawCard();
+        $this->drawnCardDeck->addCard($drawnCard);
         if (!$drawnCard) {
             return false;
         }
@@ -49,6 +52,7 @@ class Game
     public function bankDraw(): bool
     {
     	$drawnCard = $this->deck->drawCard();
+        $this->drawnCardDeck->addCard($drawnCard);
         if (!$drawnCard) {
             return false;
         }
@@ -115,6 +119,10 @@ class Game
     {
         return $this->deck;
     }
+    public function getDrawnCardDeck(): DrawnCardDeck
+    {
+        return $this->drawnCardDeck;
+    }
     public function jsonSerialize(): mixed
     {
         return
@@ -122,6 +130,7 @@ class Game
             'player' => $this->getPlayer(),
             'bank' => $this->getBank(),
             'deck' => $this->getDeck(),
+            'drawnCardDeck' => $this->getDrawnCardDeck(),
         ];
     }
     public function changeBalance(array $winOrLose, array $bets): void

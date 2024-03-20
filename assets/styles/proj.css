@@ -88,7 +88,8 @@ li{
 	color: #111;
 }
 .blur {
-    filter: blur(7px);
+    filter: blur(6px);
+    border: 1px solid black;
 }
 
 .card-pic.heart-2::after { content: "\1F0B2"; color: red; }
@@ -202,3 +203,23 @@ form {
 .twenty-one::after, .winner::after { content: "\1F389"; color: red; }
 .win::before { content: "\2713"; color: green; }
 .lose::before { content: "\274C"; color: red; }
+
+.bar-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    border: 1px solid #ccc;
+    margin: 0 0 20px 0;
+    padding: 20px 0 0 0;
+}
+
+.bar {
+    width: 80px;
+    background-color: #007bff;
+    text-align: center;
+    color: #fff;
+	border: 1px solid black;
+}

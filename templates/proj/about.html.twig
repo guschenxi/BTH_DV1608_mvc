@@ -7,15 +7,36 @@
     <div class="wrapper">
     	<div class="wrapper-sidebar">
     	    <ul>
-			    <li><a href="https://github.com/dbwebb-se/mvc/">Kursens Git-repo</a></li>
-			    <li><a href="https://github.com/guschenxi/BTH_DV1608_mvc/tree/master">Mitt Git-repo</a></li>
+			    <li><a href="#about">About</a></li>
+			    <li><a href="#highlights">Highlights</a></li>
+			    <li><a href="#database">Database</a></li>
+			    <li><a href="#others">Others</a></li>
 			</ul>
 		</div>
     	<div class="wrapper-content">
-			<p>About</p>
-En sida /proj/about som ger en kort introduktion till ditt projekt och vad det handlar om.
-
-<a href="{{ path('project_about_database') }}">Gå till proj/about/database</a>
+			<h2 id="about">About</h2>
+			{% apply markdown_to_html %}
+Denna sidan är ett kursprojekt av kurs Objektorienterade webbteknologier (mvc) 7,5 hp. Jag har vidarebyggt kortspelet Tjugoett som jag gjorde i föregående kursmoment. Jag har återanvänt några klasser som redan fanns och kompelterat med nya funktioner i spelet. Det nya spelet är lik det internationella kortspelet Black Jack och följer de flesta internationella reglerna. Spelet är utveklat av MVC-model.
+			{% endapply %}
+            <h2 id="highlights">Highlights</h2>
+{% apply markdown_to_html %}
+1. Man kan ange ett namn åt spelaren.
+2. Man kan ange ett heltal som insättningen.
+3. Man kan välja spela mellan 1 hand och 3 händer samtidigt.
+4. Man kan ange satsningar på varje hand innan varje runda börjar.
+5. Två kort är redan dragna när man börjar varje runda.
+6. Bankens andra kort är osynlig innan man väljer stanna.
+7. Alla kort är visuellt presenterade av UTF-8-symboler på sidan.
+8. Kontosaldon är alltid synlig på sidan. 
+9. Min- och maxsumman beroende på hur mycket ess är värt är räknade och syns på sidan.
+10. Om summan inte överstiger 21 eller är lik med 21, kan man välja dra nytt kort eller stanna.
+11. Om summan av två drgna korten är 11, kan man välja att dubbla satsningen.
+12. När banken har dragit kort färdigt, visas resultatet med symboler och hur mycket pengar man tjänat eller förlorat på varje hand.
+13. När det inte finns tillräckliga kort att dra, avslutar spelet, och hur mycket man vunnit eller förlorat efter spelet visas.
+{% endapply %}
+            <h2 id="others">Others</h2>
+            <p>Man kan se statistik visualiserad av dragna kort på både respektiv sida och genom API.</p>
+<h3 id="database"><a href="{{ path('project_about_database') }}">Gå till proj/about/database</a></h3>
     	</div>
 	</div>
 {% endblock %}
