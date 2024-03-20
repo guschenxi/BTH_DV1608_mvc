@@ -6,23 +6,75 @@
     <h1>Project Kmom10 Database</h1>
     <div class="wrapper">
     	<div class="wrapper-sidebar">
-    	    <ul>
-			    <li><a href="https://github.com/dbwebb-se/mvc/">Kursens Git-repo</a></li>
-			    <li><a href="https://github.com/guschenxi/BTH_DV1608_mvc/tree/master">Mitt Git-repo</a></li>
-			</ul>
+
 		</div>
     	<div class="wrapper-content">
-			<p>About Poject Database</p>
-			Skapa en sida proj/about/database, och lägg till
+			<h1>About Poject Database</h1>
+			{% apply markdown_to_html %}
 
-En bild på ett ER diagram av tabellerna.
-För varje tabell beskriv i en mening vad som sparas i tabellen.
-Förklara hur du löste eventuella relationer mellan tabellerna.
-Berätta om du använde SQLite eller någon annan databas.
-Berätta om du gjorde enhetstester mot databasen.
-Berätta om/hur du lyckades med enhetstester på Scrutinizer med databasen.
-Berätta med egna ord (cirka 15 meningar) om hur du ser på fördelar, nackdelar, likheter och skillnader mellan ORM och det sätt vi jobbade med databasen i databaskursen.
+## En bild på ett ER diagram av tabellerna.
 
+![Er-diagram](../../img/er.png)
+		
+## För varje tabell beskriv i en mening vad som sparas i tabellen.
+
+Det var lite svårt att kombinera kortspel med databas, därför tänkte jag att skapa en databas för att logga alla händelser under spelningen i databasen.
+
+Tabelen "roundlog" sparar alla spel-tillfällen med spelarens namn, antal spelande händer, insättning till bankkontot, och när spelaren började spela (current_timestamp).
+
+Den sparar alla spel-rundor under ett spel-tillfälle, med antal vunnen händer, tjänade eller förlorade pengar (ett minus tal), ny banksaldo, och tiden (current_timestamp) då varje runda skedde.
+
+## Förklara hur du löste eventuella relationer mellan tabellerna.
+
+Eftersom relationen mellan de två tabellerna är 1:N. Då kan man inte ha all data i samma tabell. Tabelen "roundlog" är länkad till "gamelog" med en Foreign Key "gamelog_id", 
+
+## Berätta om du använde SQLite eller någon annan databas.
+
+Jag använde SQLite. Databasen är sparad i filen "var/data.db".
+
+## Berätta om du gjorde enhetstester mot databasen.
+
+* Ja, Jag har gjort enhetstester mot databasen.
+
+Inspirationen kommer från https://aksymfony.readthedocs.io/en/5.4/testing/database.html.
+
+Jag fick googla fram lösningen på denna webbplats.
+
+Jag gjorde ungefär så för att enhetstesta Repository:
+
+```php
+class GamelogRepositoryTest extends KernelTestCase
+{
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $entityManager;
+
+    protected function setUp(): void
+    {
+        $kernel = self::bootKernel();
+
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
+    public function testSearchByName()
+    {
+  // other parts of function test
+  // ...
+  // ...
+}
+```
+
+* Detta är baserad på att jag redan har någon data i databasen. Och jag kontrollerade om den hämtade datan stämmer överens med värdet jag angett i Assert-satsen.
+
+* Angående enhetstest på Entity:s, har jag endast skrivit kod som skaffar objekt och kör alla "setXX()" t.ex setId(), och kör alla "getXX()" t.ex getName(), och sedan kontrollerar om värden från get och set är samma; dvs. enhetstester på Entity:s har inte gått genom den äkta databasen.
+
+## Berätta om/hur du lyckades med enhetstester på Scrutinizer med databasen.
+
+
+## Berätta med egna ord (cirka 15 meningar) om hur du ser på fördelar, nackdelar, likheter och skillnader mellan ORM och det sätt vi jobbade med databasen i databaskursen.
+{% endapply %}
     	</div>
 	</div>
 {% endblock %}

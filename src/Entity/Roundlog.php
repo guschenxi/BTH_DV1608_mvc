@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RoundlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DataTime;
 
 #[ORM\Entity(repositoryClass: RoundlogRepository::class)]
 class Roundlog
@@ -29,11 +30,11 @@ class Roundlog
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $timestamp = null;
 
-	public function __construct()
-	{
-		$this->timestamp = new \DateTime();
-	}
-	
+    public function __construct()
+    {
+        $this->timestamp = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

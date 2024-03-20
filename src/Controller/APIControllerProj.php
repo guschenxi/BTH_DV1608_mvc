@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Exception;
+use App\Repository\GamelogRepository;
+use App\Repository\RoundlogRepository;
 
 class APIControllerProj extends AbstractController
 {
@@ -154,6 +156,30 @@ class APIControllerProj extends AbstractController
         $drawnCards = $game->getDrawnCardDeck()->getSuitedDrawnCardsStat();
 
         $response = new JsonResponse($drawnCards);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route('/api/proj/gamelog', name: 'api_proj_gamelog')]
+    public function showGameLog(
+        GamelogRepository $gamelogRepository
+    ): Response {
+        $gamelog = $gamelogRepository
+            ->findAll();
+        $response = $this->json($gamelog);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+    #[Route('/api/proj/roundlog', name: 'api_proj_roundlog')]
+    public function showRoundLog(
+        RoundlogRepository $roundlogRepository
+    ): Response {
+        $roundlog = $roundlogRepository
+            ->findAll();
+        $response = $this->json($roundlog);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );

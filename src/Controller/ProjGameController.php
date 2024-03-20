@@ -28,14 +28,14 @@ class ProjGameController extends AbstractController
         $game = new Game($playerName, $numberOfHands, $bankBalance);
 
         // write into database
-		$entityManager = $doctrine->getManager();
-		$gamelog = new Gamelog();
-		$gamelog->setName($playerName? $playerName : "Spelare");
-		$gamelog->setHands($numberOfHands);
-		$gamelog->setBalance($bankBalance);
-		$entityManager->persist($gamelog);
-		$entityManager->flush();
-		$gamelogId = $gamelog->getId();
+        $entityManager = $doctrine->getManager();
+        $gamelog = new Gamelog();
+        $gamelog->setName($playerName ? (string)$playerName : "Spelare");
+        $gamelog->setHands($numberOfHands);
+        $gamelog->setBalance($bankBalance);
+        $entityManager->persist($gamelog);
+        $entityManager->flush();
+        $gamelogId = $gamelog->getId();
 
         $session->set("game", $game);
         $session->set("startBalance", $bankBalance);
@@ -112,15 +112,15 @@ class ProjGameController extends AbstractController
         $newBalance = $game->getPlayer()->getBalance();
 
         // write into database
-		$entityManager = $doctrine->getManager();
-		$roundlog = new Roundlog();
-		$roundlog->setGamelogId($gamelogId);
-		$roundlog->setWinhands(count(array_filter($winOrLose)));
-		$roundlog->setDifference($newBalance - $currentBalance);
-		$roundlog->setNewbalance($newBalance);
-		$entityManager->persist($roundlog);
-		$entityManager->flush();		
-		
+        $entityManager = $doctrine->getManager();
+        $roundlog = new Roundlog();
+        $roundlog->setGamelogId($gamelogId);
+        $roundlog->setWinhands(count(array_filter($winOrLose)));
+        $roundlog->setDifference($newBalance - $currentBalance);
+        $roundlog->setNewbalance($newBalance);
+        $entityManager->persist($roundlog);
+        $entityManager->flush();
+
         $session->set("game", $game);
         //$session->set("winOrLose", $winOrLose)
         return $this->redirectToRoute('proj_result');

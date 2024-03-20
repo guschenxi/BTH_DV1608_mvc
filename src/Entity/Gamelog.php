@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GamelogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DataTime;
 
 #[ORM\Entity(repositoryClass: GamelogRepository::class)]
 class Gamelog
@@ -22,15 +23,15 @@ class Gamelog
 
     #[ORM\Column]
     private ?float $balance = null;
-    
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $timestamp = null;
-    
-	public function __construct()
-	{
-		$this->timestamp = new \DateTime();
-	}
-	
+
+    public function __construct()
+    {
+        $this->timestamp = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

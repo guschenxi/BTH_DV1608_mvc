@@ -59,6 +59,16 @@
 						onClick="this.form.action='/api/proj/stat/suited';this.form.method='get';"
 					>
 			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="/api/proj/gamelog"
+						onClick="this.form.action='/api/proj/gamelog';this.form.method='get';"
+					>
+			    </li>
+			    <li>
+			        <input type="submit" name="do_it" value="/api/proj/roundlog"
+						onClick="this.form.action='/api/proj/roundlog';this.form.method='get';"
+					>
+			    </li>
 			</ul>
 		</div>
     	<div class="wrapper-content">
@@ -122,6 +132,18 @@
 						onClick="this.form.action='{{ path('api_proj_stat_suited') }}';this.form.method='get';"
 					>
 					(GET) api/proj/stat/ranked visar statistik av dragna kort per "suit".
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="/api/proj/gamelog"
+						onClick="this.form.action='{{ path('api_proj_gamelog') }}';this.form.method='get';"
+					>
+					(GET) api/proj/gamelog visar loggad spel-tillfällen i databasen.
+				</li>
+				<li>
+					<input type="submit" name="do_it" value="/api/proj/roundlog"
+						onClick="this.form.action='{{ path('api_proj_roundlog') }}';this.form.method='get';"
+					>
+					(GET) api/proj/roundlog visar loggad spel-rundor av varje spel-tillfälle i databasen.
 				</li>
 			</ul>
     	</div>
