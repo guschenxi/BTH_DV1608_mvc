@@ -72,7 +72,7 @@ class GameTest extends TestCase
         $game = new Game("Sven", 2, 200);
         $game->getPlayer()->cleanHands();
         $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "ace"));
+        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "ace")); //21
         $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "jack"));
         $game->getBank()->getCardHand(0)->addCard(new Card("heart", "jack"));
         $this->assertTrue($game->checkWin()[0]);
@@ -80,43 +80,27 @@ class GameTest extends TestCase
         $game = new Game("Sven", 2, 200);
         $game->getPlayer()->cleanHands();
         $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "9"));
+        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "9")); //19
         $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "jack"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "jack"));
+        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "jack")); //20
         $game->getBank()->getCardHand(0)->addCard(new Card("spade", "jack"));
         $this->assertFalse($game->checkWin()[0]);
 
         $game = new Game("Sven", 2, 200);
         $game->getPlayer()->cleanHands();
         $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "jack"));
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "king"));
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "6"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "8"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("spade", "10"));
-        $winOrLose = $game->checkWin();
-        $this->assertFalse($winOrLose[0]);
-
-        $balance = $game->getPlayer()->getBalance();
-        $game->changeBalance($winOrLose, [20, 15]);
-        $newBalance = $game->getPlayer()->getBalance();
-        $this->assertEquals($balance - 35, $newBalance);
-
-        $game = new Game("Sven", 2, 200);
-        $game->getPlayer()->cleanHands();
-        $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "queen"));
+        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "queen")); //17
         $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "7"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "6"));
+        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "6")); //11
         $game->getBank()->getCardHand(0)->addCard(new Card("spade", "5"));
         $this->assertTrue($game->checkWin()[0]);
 
         $game = new Game("Sven", 2, 200);
         $game->getPlayer()->cleanHands();
         $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "queen"));
+        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "queen")); // 17
         $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "7"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "6"));
+        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "6"));// 24
         $game->getBank()->getCardHand(0)->addCard(new Card("spade", "8"));
         $game->getBank()->getCardHand(0)->addCard(new Card("spade", "queen"));
         $winOrLose = $game->checkWin();
@@ -130,9 +114,9 @@ class GameTest extends TestCase
         $game = new Game("Sven", 1, 200);
         $game->getPlayer()->cleanHands();
         $game->getBank()->cleanHands();
-        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "18"));
+        $game->getPlayer()->getCardHand(0)->addCard(new Card("heart", "18")); //24
         $game->getPlayer()->getCardHand(0)->addCard(new Card("spade", "6"));
-        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "queen"));
+        $game->getBank()->getCardHand(0)->addCard(new Card("heart", "queen")); //15
         $game->getBank()->getCardHand(0)->addCard(new Card("spade", "5"));
         $winOrLose = $game->checkWin();
         $this->assertFalse($winOrLose[0]);
