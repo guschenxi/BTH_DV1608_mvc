@@ -18,8 +18,8 @@ class ProjGameController extends AbstractController
     ): Response {
         $session->remove('game');
         $playerName = $request->request->get('player_name');
-        $numberOfHands = $request->request->get('player_hands');
-        $bankBalance = $request->request->get('bank_balance');
+        $numberOfHands = (int)$request->request->get('player_hands');
+        $bankBalance = (int)$request->request->get('bank_balance');
         $game = new Game($playerName, $numberOfHands, $bankBalance);
 
         $session->set("game", $game);
@@ -31,13 +31,13 @@ class ProjGameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game = $session->get("game");
-    
-    	$data = [
+
+        $data = [
             'numOfHands' => $game->getPlayer()->getNumOfHands(),
             'playerName' => $game->getPlayer()->getName(),
             'playerBalance' => $game->getPlayer()->getBalance()
         ];
-        
+
         return $this->render('proj/bets.html.twig', $data);
     }
     #[Route("/proj/set_bets", name: "proj_set_bets")]
@@ -46,9 +46,9 @@ class ProjGameController extends AbstractController
         Request $request
     ): Response {
         $game = $session->get("game");
-        $bets=[
-            $request->request->get('bets_0'), 
-            $request->request->get('bets_1'), 
+        $bets = [
+            $request->request->get('bets_0'),
+            $request->request->get('bets_1'),
             $request->request->get('bets_2')
         ];
         $game->getPlayer()->setBets($bets);
@@ -58,7 +58,6 @@ class ProjGameController extends AbstractController
     #[Route("/proj/play", name: "proj_game_play")]
     public function playGame(
         SessionInterface $session,
-        Request $request
     ): Response {
         $game = $session->get("game");
 
@@ -82,55 +81,7 @@ class ProjGameController extends AbstractController
         $session->set("game", $game);
         return $this->render('proj/play.html.twig', $data);
     }
-    #[Route("/proj/player/draw", name: "proj_player_draw", methods: ["POST"])]
-    public function playerDraw(
-        SessionInterface $session,
-        Request $request
-    ): Response {
-        $game = $session->get("game");
-        $handNum = $request->request->get('hand_num');
 
-        if (!$game->playerDraw($handNum)) {
-            $this->addFlash(
-                'notice',
-                "Det finns inte tillräckligt kort kvar att dra."
-            );
-            return $this->redirectToRoute('proj_game_over');
-        }
-
-        $session->set("game", $game);
-        return $this->redirectToRoute('proj_game_play');
-    }
-    #[Route("/proj/player/stay", name: "proj_player_stay", methods: ["POST"])]
-    public function playerStay(
-        SessionInterface $session
-    ): Response {
-        $game = $session->get("game");
-
-        $game->playerStay();
-        if (!$game->playerStay()) {
-            $this->addFlash(
-                'notice',
-                "Det finns inte tillräckligt kort kvar att dra."
-            );
-            return $this->redirectToRoute('proj_game_over');
-        }
-
-        $session->set("game", $game);
-        return $this->redirectToRoute('proj_who_win');
-    }
-    #[Route("/proj/player/double", name: "proj_player_double", methods: ["POST"])]
-    public function playerDouble(
-        SessionInterface $session,
-        Request $request
-    ): Response {
-        $game = $session->get("game");
-        $handNum = $request->request->get('hand_num');
-        
-        $game->getPlayer()->doubleBets($handNum);
-        $session->set("game", $game);
-        return $this->redirectToRoute('proj_game_play');
-    }
     #[Route("/proj/win", name: "proj_who_win")]
     public function whoWin(
         SessionInterface $session
@@ -148,7 +99,7 @@ class ProjGameController extends AbstractController
     public function showWhoWin(
         SessionInterface $session
     ): Response {
-    	$game = $session->get("game");
+        $game = $session->get("game");
         $winOrLose = $game->checkWin();
         $bets = $game->getPlayer()->getBets();
         $data = [
@@ -190,7 +141,7 @@ class ProjGameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game = $session->get("game");
-        
+
         $data = [
             'playerBalance' => $game->getPlayer()->getBalance(),
             'playerName' => $game->getPlayer()->getName(),
@@ -203,7 +154,7 @@ class ProjGameController extends AbstractController
         SessionInterface $session
     ): Response {
         $game = $session->get("game");
-        $statistics = $game->getDrawnCardDeck()->getAllDrawnCardsStat();
+        //$statistics = $game->getDrawnCardDeck()->getAllDrawnCardsStat();
         $rankStatistics = $game->getDrawnCardDeck()->getRankedDrawnCardsStat();
         $suitStatistics = $game->getDrawnCardDeck()->getSuitedDrawnCardsStat();
         $data = [

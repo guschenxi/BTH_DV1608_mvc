@@ -48,7 +48,7 @@ class APIControllerProj extends AbstractController
     public function apiProjDeckShuffle(
         SessionInterface $session
     ): JsonResponse {
-    
+
         $game = $session->get("game");
 
         $deck = $game->getDeck();
@@ -70,10 +70,10 @@ class APIControllerProj extends AbstractController
     public function apiProjBalance(
         SessionInterface $session
     ): Response {
-    
+
         $game = $session->get("game");
         $balance = $game->getPlayer()->getBalance();
-        
+
         $response = new Response($balance);
         return $response;
     }
@@ -84,7 +84,7 @@ class APIControllerProj extends AbstractController
 
         $game = $session->get("game");
         $bets = $game->getPlayer()->getBets();
-        
+
         $response = new JsonResponse($bets);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
@@ -93,13 +93,13 @@ class APIControllerProj extends AbstractController
     }
     #[Route("/api/proj/balance/add/{num<\d+>}", name: "api_proj_add_balance", methods: ['POST'])]
     public function apiProjSetBalance(
-    	int $num,
+        int $num,
         SessionInterface $session
     ): Response {
 
         $game = $session->get("game");
         $newBalance = $game->getPlayer()->addBalance($num);
-        
+
         $response = new Response($newBalance);
         return $response;
     }
@@ -107,10 +107,10 @@ class APIControllerProj extends AbstractController
     public function apiProjDrawnCards(
         SessionInterface $session
     ): Response {
-    
+
         $game = $session->get("game");
         $drawnCards = $game->getDrawnCardDeck()->getCards();
-        
+
         $response = new JsonResponse($drawnCards);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
@@ -121,24 +121,24 @@ class APIControllerProj extends AbstractController
     public function apiProjAllDrawnCardStat(
         SessionInterface $session
     ): Response {
-    
+
         $game = $session->get("game");
         $drawnCards = $game->getDrawnCardDeck()->getAllDrawnCardsStat();
-        
+
         $response = new JsonResponse($drawnCards);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
     }
-        #[Route("/api/proj/stat/ranked", name: "api_proj_stat_ranked", methods: ['GET'])]
+    #[Route("/api/proj/stat/ranked", name: "api_proj_stat_ranked", methods: ['GET'])]
     public function apiProjRankedDrawnCardStat(
         SessionInterface $session
     ): Response {
-    
+
         $game = $session->get("game");
         $drawnCards = $game->getDrawnCardDeck()->getRankedDrawnCardsStat();
-        
+
         $response = new JsonResponse($drawnCards);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
@@ -149,10 +149,10 @@ class APIControllerProj extends AbstractController
     public function apiProjSuitedDrawnCardStat(
         SessionInterface $session
     ): Response {
-    
+
         $game = $session->get("game");
         $drawnCards = $game->getDrawnCardDeck()->getSuitedDrawnCardsStat();
-        
+
         $response = new JsonResponse($drawnCards);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT

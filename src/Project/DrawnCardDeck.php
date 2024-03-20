@@ -8,9 +8,9 @@ use App\Project\CardDeckNoJoker;
 class DrawnCardDeck extends CardDeckNoJoker
 {
     public mixed $cards;
-    public mixed $rankedCards;
-    public mixed $suitedCards;
-    public mixed $allCards;
+    public mixed $rankedCards = [];
+    public mixed $suitedCards = [];
+    public mixed $allCards = [];
 
     public function __construct()
     {
@@ -19,40 +19,40 @@ class DrawnCardDeck extends CardDeckNoJoker
     public function addCard(Card $card): void
     {
         $this->cards[] = $card;
-        
-        $rankedKey = $card->getNumber();// . ' of ' . $card->getSuit();
+
+        $rankedKey = $card->getNumber();
 
         if (!isset($this->rankedCards[$rankedKey])) {
             $this->rankedCards[$rankedKey] = 1;
-        } else {
+        } elseif (isset($this->rankedCards[$rankedKey])) {
             $this->rankedCards[$rankedKey]++;
         }
-        
+
         $suitedKey = $card->getColor();
 
         if (!isset($this->suitedCards[$suitedKey])) {
             $this->suitedCards[$suitedKey] = 1;
-        } else {
+        } elseif (isset($this->suitedCards[$suitedKey])) {
             $this->suitedCards[$suitedKey]++;
         }
-        
+
         $allKey = $card->getNumber() . ' of ' . $card->getColor();
 
         if (!isset($this->allCards[$allKey])) {
             $this->allCards[$allKey] = 1;
-        } else {
+        } elseif (isset($this->allCards[$allKey])) {
             $this->allCards[$allKey]++;
         }
     }
-    public function getAllDrawnCardsStat(): array
+    public function getAllDrawnCardsStat(): mixed
     {
         return $this->allCards;
     }
-    public function getRankedDrawnCardsStat(): array
+    public function getRankedDrawnCardsStat(): mixed
     {
         return $this->rankedCards;
     }
-    public function getSuitedDrawnCardsStat(): array
+    public function getSuitedDrawnCardsStat(): mixed
     {
         return $this->suitedCards;
     }

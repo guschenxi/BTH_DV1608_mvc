@@ -14,11 +14,11 @@ class CardDeck extends CardDeckNoJoker
         $colors = ['heart', 'diamond', 'club', 'spade'];
         $numbers = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
         for ($i = 0; $i < $num; $i++) {
-		    foreach ($colors as $color) {
-		        foreach ($numbers as $number) {
-		            $this->cards[] = new Card($color, $number);
-		        }
-		    }
-    	}
+            foreach ($colors as $color) {
+                foreach ($numbers as $number) {
+                    $this->cards[] = new Card($color, $number);
+                }
+            }
+        }
     }
 }

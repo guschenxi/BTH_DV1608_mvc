@@ -15,11 +15,11 @@ class Game
     protected Player $player;
     protected Player $bank;
 
-    public function __construct(mixed $playerName, int $numOfHands, int $bank_balance)
+    public function __construct(mixed $playerName, int $numOfHands, int $bankBalance)
     {
         $this->deck = new CardDeck($numOfHands);
-        $this->drawnCardDeck = new DrawnCardDeck;
-        $this->player = new Player(($playerName === "") ? "Spelare" : $playerName, $numOfHands, $bank_balance);
+        $this->drawnCardDeck = new DrawnCardDeck();
+        $this->player = new Player(($playerName === "") ? "Spelare" : $playerName, $numOfHands, $bankBalance);
         $this->bank = new Player("SmartPC", 1, 0);
         $this->startGame();
     }
@@ -37,25 +37,25 @@ class Game
         }
         $this->bankDraw();
         $this->bankDraw();
-        
+
     }
-    public function playerDraw($handNum): bool
+    public function playerDraw(int $handNum): bool
     {
         $drawnCard = $this->deck->drawCard();
-        $this->drawnCardDeck->addCard($drawnCard);
         if (!$drawnCard) {
             return false;
         }
+        $this->drawnCardDeck->addCard($drawnCard);
         $this->player->getCardHand($handNum)->addCard($drawnCard);
         return true;
     }
     public function bankDraw(): bool
     {
-    	$drawnCard = $this->deck->drawCard();
-        $this->drawnCardDeck->addCard($drawnCard);
+        $drawnCard = $this->deck->drawCard();
         if (!$drawnCard) {
             return false;
         }
+        $this->drawnCardDeck->addCard($drawnCard);
         $this->bank->getCardHand(0)->addCard($drawnCard);
         return true;
     }
@@ -70,6 +70,7 @@ class Game
     }
     public function checkWin(): mixed
     {
+        $output = [];
         $playerMinSum = $this->player->getMinSum();
         $playerMaxSum = $this->player->getMaxSum();
         $bankMinSum = $this->bank->getCardHand(0)->getMinSum();
@@ -79,7 +80,7 @@ class Game
         }
         return $output;
     }
-    public function whoWin(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
+    protected function whoWin(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
     {
         if ($playerMinSum > 21) {
             return false;
@@ -92,7 +93,7 @@ class Game
         }
         return $this->whoWinElse($playerMinSum, $playerMaxSum, $bankMinSum, $bankMaxSum);
     }
-    public function whoWinElse(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
+    protected function whoWinElse(int $playerMinSum, int $playerMaxSum, int $bankMinSum, int $bankMaxSum): bool
     {
         $playerScore = $playerMaxSum <= 21 ? $playerMaxSum : $playerMinSum;
         $bankScore = $bankMaxSum <= 21 ? $bankMaxSum : $bankMinSum;
@@ -133,15 +134,15 @@ class Game
             'drawnCardDeck' => $this->getDrawnCardDeck(),
         ];
     }
-    public function changeBalance(array $winOrLose, array $bets): void
+    public function changeBalance(mixed $winOrLose, mixed $bets): void
     {
-		for ($i = 0; $i < count($winOrLose); $i++) {
-			if ($winOrLose[$i]) {
-			 $this->player->raiseBalance($bets[$i] * 1.5);
-			}
-			else {
-			 $this->player->decreaseBalance($bets[$i]);
-			}
-		}
+        $loop = count($winOrLose);
+        for ($i = 0; $i < $loop; $i++) {
+            if ($winOrLose[$i]) {
+                $this->player->raiseBalance($bets[$i] * 1.5);
+                continue;
+            }
+            $this->player->decreaseBalance($bets[$i]);
+        }
     }
 }
