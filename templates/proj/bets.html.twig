@@ -5,7 +5,7 @@
 <h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
 	<form>
 		<input type="submit" name="do_it" value="Kör!"
-			onClick="this.form.action='/proj/set_bets';this.form.method='post';"
+			onClick="this.form.action='{{ path('proj_set_bets') }}';this.form.method='post';"
 		>
 
 </h2>

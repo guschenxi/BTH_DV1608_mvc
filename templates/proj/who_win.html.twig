@@ -5,13 +5,13 @@
 <h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Nästa Runda"
-			onClick="this.form.action='/proj/next_round';this.form.method='post';"
+			onClick="this.form.action='{{ path('proj_next_round') }}';this.form.method='post';"
 		>
 		<input type="submit" name="do_it" value="Börja Om"
-			onClick="this.form.action='/proj';this.form.method='post';"
+			onClick="this.form.action='{{ path('project') }}';this.form.method='post';"
 		>
 	</form>
-	    <a href='/proj/stat' target="_blank">(Visa statistik av dragna kort)</a>
+	    <a href='{{ path('proj_stat') }}' target="_blank">(Visa statistik av dragna kort)</a>
 </h2>
 
 <div class="player">

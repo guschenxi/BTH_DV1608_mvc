@@ -6,7 +6,7 @@
 
 <h1>Kortspel Black Jack Avancerad</h1>
 <h2>Project kmom10</h2>
-<form method="post" action="/proj/new_game">
+<form method="post" action="{{ path('proj_game_play_new') }}">
         <p>
         	<label for='player_name'>Spelarnamn:</label>
 			<input type="text" name="player_name" placeholder="Default: Spelare">

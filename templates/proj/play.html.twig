@@ -5,10 +5,10 @@
 <h2>Spelare: {{ playerName }}, Kontosaldon: {{ playerBalance }}
 	<form>
 		<input type="submit" name="do_it" value="Stanna / Bankens Tur"
-			onClick="this.form.action='/proj/player/stay';this.form.method='post';"
+			onClick="this.form.action='{{ path('proj_player_stay') }}';this.form.method='post';"
 		>
 	</form>
-    <a href='/proj/stat' target="_blank">(Visa statistik av dragna kort)</a>
+    <a href='{{ path('proj_stat') }}' target="_blank">(Visa statistik av dragna kort)</a>
 </h2>
 <div class="player">
 {% for i in 0..numOfHands-1 %}
@@ -24,11 +24,11 @@
 			{% elseif playerMinSum[i] < 21 %}
 			    {% if playerMinSum[i] == 11 %}
 					<input type="submit" name="do_it" value="Dubbla Satsningen"
-						onClick="this.form.action='/proj/player/double';this.form.method='post';"
+						onClick="this.form.action='{{ path('proj_player_double') }}';this.form.method='post';"
 					>
 				{% endif %}
 				<input type="submit" name="do_it" value="Dra Nytt Kort"
-					onClick="this.form.action='/proj/player/draw';this.form.method='post';"
+					onClick="this.form.action='{{ path('proj_player_draw') }}';this.form.method='post';"
 				>
 			{% endif %}
 	    </form>

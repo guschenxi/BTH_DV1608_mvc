@@ -12,7 +12,7 @@
 {% endif %}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Börja Om"
-			onClick="this.form.action='/proj/';this.form.method='get';"
+			onClick="this.form.action='{{ path('project') }}';this.form.method='get';"
 		>
 	</form>
 	

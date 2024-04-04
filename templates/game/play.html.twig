@@ -5,10 +5,10 @@
 <h2>Spelare: {{ playerName }}, Score: {{ playerScore }}</h2> min/max: {{ playerMinSum }}/{{ playerMaxSum }}
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Dra Nytt Kort"
-			onClick="this.form.action='/game/player/draw';this.form.method='post';"
+			onClick="this.form.action='{{ path('player_draw') }}';this.form.method='post';"
 		>
 		<input type="submit" name="do_it" value="Stanna"
-			onClick="this.form.action='/game/player/stay';this.form.method='post';"
+			onClick="this.form.action='{{ path('player_stay') }}';this.form.method='post';"
 		>
     </form>
     <p class="player">

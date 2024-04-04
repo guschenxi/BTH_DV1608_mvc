@@ -9,7 +9,7 @@
 
 	<form method="post" action="">
 		<input type="submit" name="do_it" value="Börja Om"
-			onClick="this.form.action='/game/';this.form.method='get';"
+			onClick="this.form.action='{{ path('game_start') }}';this.form.method='get';"
 		>
 	</form>
 	

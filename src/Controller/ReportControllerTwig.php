@@ -40,7 +40,7 @@ class ReportControllerTwig extends AbstractController
     }
 
 
-    #[Route("/api/quote")]
+    #[Route("/api/quote", name: "api_quote")]
     public function jsonNumber(): JsonResponse
     {
         $quotes = array(

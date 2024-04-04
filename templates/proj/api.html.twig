@@ -31,42 +31,42 @@
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="api/proj/balance/add/500"
-						onClick="this.form.action='/api/proj/balance/add/500';this.form.method='post';"
+						onClick="this.form.action='{{ path('api_proj_balance') }}/add/500';this.form.method='post';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="api/proj/get_bets"
-						onClick="this.form.action='/api/proj/get_bets';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_get_bets') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="api/proj/drawn_cards/"
-						onClick="this.form.action='/api/proj/drawn_cards';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_drawn_cards') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="/api/proj/stat/all"
-						onClick="this.form.action='/api/proj/stat/all';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_stat_all') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="/api/proj/stat/ranked"
-						onClick="this.form.action='/api/proj/stat/ranked';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_stat_ranked') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="/api/proj/stat/suited"
-						onClick="this.form.action='/api/proj/stat/suited';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_stat_suited') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="/api/proj/gamelog"
-						onClick="this.form.action='/api/proj/gamelog';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_gamelog') }}';this.form.method='get';"
 					>
 			    </li>
 			    <li>
 			        <input type="submit" name="do_it" value="/api/proj/roundlog"
-						onClick="this.form.action='/api/proj/roundlog';this.form.method='get';"
+						onClick="this.form.action='{{ path('api_proj_roundlog') }}';this.form.method='get';"
 					>
 			    </li>
 			</ul>
@@ -99,7 +99,7 @@
 				</li>
 				<li>
 					<input type="submit" name="do_it" value="api/proj/balance/add/1000"
-						onClick="this.form.action='/api/proj/balance/add/1000';this.form.method='post';"
+						onClick="this.form.action='{{ path('api_proj_balance') }}/add/1000';this.form.method='post';"
 					>
 					(POST) api/proj/balance/<integer> addar det inkommande heltal till spelarens bankkonto, och visar upp den nya saldon.
 				</li>

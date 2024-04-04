@@ -19,16 +19,16 @@
 		{% for book in books %}
 		    <tr>
 		        <td>{{ book.id }}</td>
-		        <td><a href="/library/show/{{ book.id }}">{{ book.title }}</a></td>
+		        <td><a href="{{ path('book_show_all') }}/{{ book.id }}">{{ book.title }}</a></td>
 		        <td>{{ book.isbn }}</td>
 		        <td>{{ book.author }}</td>
 		        <td>{{ book.image }}</td>
 		        <td>
 		            <input type="submit" name="do_it" value="Update book"
-		            	onClick="this.form.action='/library/update/{{ book.id }}';this.form.method='get';"
+		            	onClick="this.form.action='{{ path('app_library') }}/update/{{ book.id }}';this.form.method='get';"
 		            >
 		            <input type="submit" name="do_it" value="Delete book"
-		            	onClick="this.form.action='/library/delete/{{ book.id }}';this.form.method='post';"
+		            	onClick="this.form.action='{{ path('app_library') }}/delete/{{ book.id }}';this.form.method='post';"
 		            >
 		        </td>
 		    </tr>

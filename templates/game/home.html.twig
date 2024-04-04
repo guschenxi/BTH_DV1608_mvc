@@ -5,7 +5,7 @@
 {% block body %}
 
 <h1>Kortspel Tjugoett</h1>
-<form method="post" action="/game/play_new">
+<form method="post" action="{{ path('game_play_new') }}">
         <label for='player_name'>Spelarnamn:</label>
 		<input type="text" name="player_name" placeholder="Default: Spelare">
 		<input type="submit" name="do_it" value="Börja Spela">
